@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Registro de usuarios</title>
-</head>
-<body>
+@extends('../plantilla')
+
+@section('cabecera')
+Usuarios registrados
+@endsection
+@section('cuerpo')
 	<center>
-	<form action="/success" method="POST" accept-charset="utf-8">
 		<table border="1" align="center">
 			<caption>USUARIOS REGISTRADOS</caption>
 			<thead>
@@ -26,7 +24,5 @@
 				@endforeach
 			</tbody>
 		</table>
-	</form>
 	</center>
-</body>
-</html>
+@endsection
