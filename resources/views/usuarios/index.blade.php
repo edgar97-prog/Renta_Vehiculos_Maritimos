@@ -1,8 +1,6 @@
 @extends('../plantilla')
 
-@section('cabecera')
-Usuarios registrados
-@endsection
+@section('cabecera','Usuarios registrados')
 @section('cuerpo')
 	<center>
 		<table border="1" align="center">
