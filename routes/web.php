@@ -12,8 +12,16 @@
 */
 use app\rol;
 
+/*
 Route::get('/', function () {
     return view('welcome');
+<<<<<<< HEAD
 });
 Route::get('cuas','RolesController@todo');
+
+=======
+});*/
+Route::get('roles','RolesController@todo');
+
+Route::resource('/usuarios','UsuariosController');
 

@@ -11,7 +11,7 @@ class RolesController extends Controller
     public function todo()
     {
     	$roles = rol::all();
-    	return view('welcome',compact('roles'));
+    	return view('roles',compact('roles'));
     }
     
 }
