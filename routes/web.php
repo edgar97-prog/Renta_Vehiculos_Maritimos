@@ -12,7 +12,10 @@
 */
 use app\rol;
 
+/*
 Route::get('/', function () {
     return view('welcome');
-});
-Route::get('cuas','RolesController@todo');
+});*/
+Route::get('roles','RolesController@todo');
+
+Route::resource('/usuarios','UsuariosController');
