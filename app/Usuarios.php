@@ -14,4 +14,8 @@ class Usuarios extends Model
     public function rol(){
     	return $this->belongsTo(rol::class);
     }
+    public  function Vehiculos()
+    {
+    	return $this->belongsToMany("App\Vehiculos");
+    }
 }
