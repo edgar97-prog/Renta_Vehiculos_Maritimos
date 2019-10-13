@@ -6,7 +6,8 @@
 </head>
 <body>
 	<center>
-	<form action="route(usuario.store)" method="POST" accept-charset="utf-8">
+	{!! Form::open(['route' => 'usuarios.store','method' => 'post']) !!}
+	{!!Form::token()!!}
 		@csrf
 		<table>
 			<caption>REGISTRO DE USUARIOS</caption>
@@ -18,42 +19,37 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td><label for="correo">Correo:</label></td>
-					<td><input type="text" name="Correo" placeholder="example@example.com"></td>
+					<td>{!!Form::label('correo','Correo:')!!}</td>
+					<td>{!! Form::text('Correo',null,['placeholder'=>'example@example.com']) !!}</td>
 				</tr>
 				<tr>
-					<td><label for="correo">Clave:</label></td>
-					<td><input type="password" name="Contra" placeholder="**************"></td>
+					<td>{!!Form::label('clave','Clave:')!!}</td>
+					<td>{!! Form::password('Contra',['placeholder'=>'********']) !!}</td>
 				</tr>
 				<tr>
-					<td><label for="nombre">Nombre:</label></td>
-					<td><input type="text" name="Nombre"></td>
+					<td>{!!Form::label('Nombre','Nombre:')!!}</td>
+					<td>{!! Form::text('Nombre') !!}</td>
 				</tr>
 				<tr>
-					<td><label for="Ap">Apellido Materno:</label></td>
-					<td><input type="text" name="Ap"></td>
+					<td>{!!Form::label('Ap','Apellido Paterno:')!!}</td>
+					<td>{!! Form::text('Ap') !!}</td>
 				</tr>
 				<tr>
-					<td><label for="Am">Apellido Materno:</label></td>
-					<td><input type="text" name="Am"></td>
+					<td>{!!Form::label('Am','Apellido Materno:')!!}</td>
+					<td>{!! Form::text('Am') !!}</td>
 				</tr>
 				<tr>
-					<td><label for="Sexo">Sexo:</label></td>
-					<td>
-						<select name="Sexo">
-						  <option value="M" selected>Masculino</option> 
-						  <option value="F">Femenino</option>
-						</select>
-					</td>
+					<td>{!!Form::label('sexo','Sexo:')!!}</td>
+					<td>{!! Form::select('Sexo',['M'=>'Masculino','F'=>'Femenino']) !!}</td>
 				</tr>
 				<tr>
 					<td colspan="2" align="center">
-						<input type="submit" name="btnReg" value="Registrar">
+						{!! Form::submit('Registrar') !!}
 					</td>
 				</tr>
 			</tbody>
 		</table>
-	</form>
+	{!! Form::close() !!}
 	</center>
 </body>
 </html>
