@@ -10,7 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use app\rol;
 
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('cuas','RolesController@todo');
