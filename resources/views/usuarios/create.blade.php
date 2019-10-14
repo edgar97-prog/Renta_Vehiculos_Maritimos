@@ -6,7 +6,7 @@
 </head>
 <body>
 	<center>
-	<form action="route(usuario.store)" method="POST" accept-charset="utf-8">
+	<form action="{{route('usuarios.store')}}" method="POST" accept-charset="utf-8">
 		@csrf
 		<table>
 			<caption>REGISTRO DE USUARIOS</caption>
