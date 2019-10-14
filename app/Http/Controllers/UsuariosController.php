@@ -45,7 +45,9 @@ class UsuariosController extends Controller
         $usuario->Sexo = $request->Sexo;
         $usuario->rol_id = 1;
         $usuario->save();
-        return "Exito";
+        
+        $usuarios = Usuarios::all();
+        return view('usuarios.index',compact('usuarios'));
     }
 
     /**

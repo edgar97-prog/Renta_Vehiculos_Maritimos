@@ -1,22 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Registro de usuarios</title>
-</head>
-<body>
+@extends('../plantilla')
+
+@section('cuerpo')
 	<center>
-	<form action="/success" method="POST" accept-charset="utf-8">
 		<table border="1" align="center">
-			<caption>USUARIOS REGISTRADOS</caption>
-			<thead>
+			<thead align="center">
 				<tr>
 					<th>Correo</th>
 					<th>Nombre</th>
 					<th>Sexo</th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody align="center">
 				@foreach($usuarios as $usu)
 				<tr>
 					<td>{{$usu->Correo}}</td>
@@ -26,7 +20,5 @@
 				@endforeach
 			</tbody>
 		</table>
-	</form>
 	</center>
-</body>
-</html>
+@endsection
