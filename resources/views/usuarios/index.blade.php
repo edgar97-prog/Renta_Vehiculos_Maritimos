@@ -1,18 +1,16 @@
 @extends('../plantilla')
 
-@section('cabecera','Usuarios registrados')
 @section('cuerpo')
 	<center>
 		<table border="1" align="center">
-			<caption>USUARIOS REGISTRADOS</caption>
-			<thead>
+			<thead align="center">
 				<tr>
 					<th>Correo</th>
 					<th>Nombre</th>
 					<th>Sexo</th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody align="center">
 				@foreach($usuarios as $usu)
 				<tr>
 					<td>{{$usu->Correo}}</td>

@@ -1,0 +1,29 @@
+*{
+	margin:0px;
+	padding:0px;
+}
+.cuerpo{
+	min-height: 530px;
+}
+header{
+	background: #305285;
+	color: white;
+	padding: 10px 0px;
+}
+.titulo{
+	font-family: sans-serif;
+}
+.footer{
+	background: #305285;
+	color: white;
+	min-height: 50px;
+	text-align: center;
+	padding: 5px 0px;
+}
+.tablaReg{
+	width: 80%;
+	margin-top: 10px;
+}
+.subtitle{
+	padding: 10px 0px;
+}
