@@ -27,3 +27,67 @@ header{
 .subtitle{
 	padding: 10px 0px;
 }
+
+/* ESTILOS PARA LAS VIEWS DE VEHICULOS */
+
+/*Boton para agregar nuevo vehiculo*/
+.nvo_vehiculo{
+  width:50px;
+  height:50px;
+  background-color:#305285;
+  margin: 5px;
+  padding:10px;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  border-radius: 50px;
+  font-size:30px;
+  line-height:22px;
+  text-transform: uppercase;
+  float:right;
+}
+.nvo_vehiculo:hover
+{
+	opacity: 0.50;
+  -moz-opacity: .50;
+  filter:alpha (opacity=50);
+}
+.let{
+	color: white;
+	 padding:5px 5px 10px 5px;
+}
+
+/* ESTILO PARA LA TABLA DE LOS VEHICULOS */
+
+.footable {
+  width: 100%;
+  font-family: 'trebuchet MS' , 'Lucida sans' , Arial;
+  font-size: 14px;
+  color: #444;
+ 
+  border: solid #ccc 1px;
+  border-collapse: separate;
+  border-spacing: 0;
+   -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+}
+ .footable > tbody > tr > td, .footable > thead > tr > th {
+  border-left: 1px solid #ccc;
+  border-top: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+ 
+.footable > thead > tr > th, .footable > thead > tr > td {
+  background-color: #dce9f9;
+}
+.footable > tbody > tr:hover {
+  background: #fbf8e9;
+}
+
+/*Modal */
+.header-modal
+{
+	background-color: #305285;
+	color: white;
+}

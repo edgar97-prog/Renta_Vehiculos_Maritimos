@@ -15,6 +15,8 @@ class VehiculosController extends Controller
     public function index()
     {
         //
+        $vehiculos = Vehiculos::all();
+        return view('vehiculos.index',compact('vehiculos'));
     }
 
     /**
@@ -36,6 +38,10 @@ class VehiculosController extends Controller
     public function store(Request $request)
     {
         //
+        $data = request()->validate([],[]);
+
+        Vehiculos::create($request->all());
+        return redirect()->route('vehiculos.index')->with('mensaje','El Vehiculo se Agrego Correctamente');
     }
 
     /**

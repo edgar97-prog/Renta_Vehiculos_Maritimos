@@ -3,7 +3,10 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script type="text/javascript" src="{{asset('js/jquery.js')}}"></script>
+         <script type="text/javascript" src="{{asset('js/bootstrap.min.js')}}"></script>
         <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.min.css')}}">
+        <script type="text/javascript" src="{{asset('js/vehiculos.js')}}"></script>
         <link rel="stylesheet" type="text/css" href="{{asset('css/estilos.css')}}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <title>Vehículos maritimos</title>

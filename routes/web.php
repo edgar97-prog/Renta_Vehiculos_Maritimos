@@ -25,3 +25,6 @@ Route::get('roles','RolesController@todo');
 
 Route::resource('/usuarios','UsuariosController');
 
+//Controlador para vehiculos
+Route::resource('/vehiculos','VehiculosController');
+

@@ -7,9 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Vehiculos extends Model
 {
     //
-    private $primaryKey = "id";
-    private $table = "Vehiculos";
-    private $fillable = ["Nombre","Descripcion","precioRenta","Cantidad"];
+    protected $primaryKey = "id";
+    protected $table = "Vehiculos";
+    protected $fillable = ["Nombre","Descripcion","precioRenta","Cantidad"];
+    public $timestamps = false;
 
     public function Fotos()
     {
