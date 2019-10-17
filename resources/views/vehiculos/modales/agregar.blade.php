@@ -25,12 +25,18 @@
               </tr>
               <tr>
                 <td>{!!Form::label('cantidad','Cantidad:')!!}</td>
-                <td>{!! Form::text('Cantidad',null,['class'=>'form form-control','required'=>'y']) !!}</td>
+                <td>{!!Form::text('Cantidad',null,['class'=>'form form-control','required'=>'y']) !!}</td>
               </tr>
               <tr>
-                <td></td>
-                <td></td>
+                <td>{!!Form::label('foto','Foto Principal:')!!}</td>
+                <td>{!!Form::file('foto')!!}</td>
               </tr>
+              <td colspan="2" align="center">
+                <a href="#" class="btn btn-primary ag_foto"> Agregar fotografia</a>
+            </td>
+          <div class="fotos">
+            
+          </div>
             </table>
       </div>
       <div class="modal-footer">
