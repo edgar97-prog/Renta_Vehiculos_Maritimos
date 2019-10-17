@@ -8,6 +8,14 @@
         <h4 class="modal-title">Nuevo Vehiculo</h4>
       </div>
       <div class="modal-body">
+        @if($errors->any())
+        @foreach($errors->all() as $error)
+        <div class="alert alert-danger">
+          {{$error}}
+        </div>
+        @break
+        @endforeach
+        @endif
        {!!Form::open(['route'=>'vehiculos.store','method'=>'POST'])!!}
 
             <table class="tablaReg">
