@@ -91,3 +91,15 @@ header{
 	background-color: #305285;
 	color: white;
 }
+
+/* ESTILO PARA MODAL LOGIN */
+.login_modal{
+  background-color:#305285;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 5px;
+  text-transform: uppercase;
+}
+.login_modal:hover{
+  opacity: 0.8;
+}

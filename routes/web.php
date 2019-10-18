@@ -21,6 +21,10 @@ Route::get('cuas','RolesController@todo');
 
 =======
 });*/
+Route::get('/', function () {
+	return view('welcome');
+});
+
 Route::get('roles','RolesController@todo');
 
 Route::resource('/usuarios','UsuariosController');
@@ -28,3 +32,10 @@ Route::resource('/usuarios','UsuariosController');
 //Controlador para vehiculos
 Route::resource('/vehiculos','VehiculosController');
 
+//Rutas para login y logout
+//----------------------------------------
+
+Route::get('/logout','UsuariosController@logout');
+
+Route::post('/login','UsuariosController@login');
+//----------------------------------------
