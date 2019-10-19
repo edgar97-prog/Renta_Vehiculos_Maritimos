@@ -37,7 +37,6 @@ class VehiculosController extends Controller
      */
     public function store(Request $request)
     {
-        //
         $data = request()->validate(['Nombre'=>'required|min:3|max:25','Cantidad'=>'required|regex:[0-9]'],['Nombre.required'=>'El nombre es requerido','Nombre.min'=>'El nombre debe contener al menos 3 caracteres','Nombre.max'=>'El nombre es demasiado largo']);
 
         Vehiculos::create($request->all());

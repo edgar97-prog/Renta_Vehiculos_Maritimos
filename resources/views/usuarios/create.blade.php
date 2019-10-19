@@ -1,9 +1,17 @@
 
-@extends('../plantilla')
+@extends('plantilla')
 
 @section('cuerpo')
 <center>
 <h3 class="subtitle">REGISTRATE</h3>
+@if($errors->any())
+@foreach($errors->all() as $error)
+<div class="alert alert-danger">
+	{{$error}}
+</div>
+@break
+@endforeach
+@endif
 {!! Form::open(['route' => 'usuarios.store','method' => 'post']) !!}
 {!!Form::token()!!}
 	@csrf
@@ -21,19 +29,19 @@
 			</tr>
 			<tr>
 				<td>{!!Form::label('clave','Clave:')!!}</td>
-				<td>{!! Form::password('Contra',['placeholder'=>'********','class'=>'form form-control','required'=>'y']) !!}</td>
+				<td>{!! Form::password('Contra',['placeholder'=>'********','class'=>'form form-control','required'=>'y','max'=>'30','min'=>'8']) !!}</td>
 			</tr>
 			<tr>
 				<td>{!!Form::label('Nombre','Nombre:')!!}</td>
-				<td>{!! Form::text('Nombre',null,['class'=>'form form-control','required'=>'y']) !!}</td>
+				<td>{!! Form::text('Nombre',null,['class'=>'form form-control','required'=>'y','pattern'=>'[a-zA-Z ñÑáéíóúÁÉÍÓÚ]{3,20}','autocomplete'=>'off']) !!}</td>
 			</tr>
 			<tr>
 				<td>{!!Form::label('Ap','Apellido Paterno:')!!}</td>
-				<td>{!! Form::text('Ap',null,['class'=>'form form-control','required'=>'y']) !!}</td>
+				<td>{!! Form::text('ApellidoP',null,['class'=>'form form-control','required'=>'y','pattern'=>'[a-zA-Z ñÑáéíóúÁÉÍÓÚ]{3,20}','autocomplete'=>'off']) !!}</td>
 			</tr>
 			<tr>
 				<td>{!!Form::label('Am','Apellido Materno:')!!}</td>
-				<td>{!! Form::text('Am',null,['class'=>'form form-control','required'=>'y']) !!}</td>
+				<td>{!! Form::text('ApellidoM',null,['class'=>'form form-control','required'=>'y','pattern'=>'[a-zA-Z ñÑáéíóúÁÉÍÓÚ]{3,20}','autocomplete'=>'off']) !!}</td>
 			</tr>
 			<tr>
 				<td>{!!Form::label('sexo','Sexo:')!!}</td>
@@ -54,4 +62,3 @@
 {!! Form::close() !!}
 </center>
 @endsection
-

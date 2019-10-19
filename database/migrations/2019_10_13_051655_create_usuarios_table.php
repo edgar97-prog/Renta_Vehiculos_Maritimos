@@ -20,7 +20,7 @@ class CreateUsuariosTable extends Migration
             $table->String('ApellidoP','20');
             $table->String('ApellidoM','20');
             $table->Char('Sexo','1');
-            $table->bigInteger('rol_id')->unsigned();
+            $table->bigInteger('rol_id')->unsigned()->default('1');
 
             $table->foreign('rol_id')->references('id')->on('roles')
             ->onDelete('cascade')
