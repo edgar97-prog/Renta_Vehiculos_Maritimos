@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Vehiculos;
+use App\Fotos;
 use Illuminate\Http\Request;
 
 class VehiculosController extends Controller
@@ -38,9 +39,28 @@ class VehiculosController extends Controller
     public function store(Request $request)
     {
         //
-        $data = request()->validate(['Nombre'=>'required|min:3|max:25','Cantidad'=>'required|regex:[0-9]'],['Nombre.required'=>'El nombre es requerido','Nombre.min'=>'El nombre debe contener al menos 3 caracteres','Nombre.max'=>'El nombre es demasiado largo']);
+        $data = request()->validate(['Nombre'=>'required|min:3|max:25','Cantidad'=>'required'],['Nombre.required'=>'El nombre es requerido','Nombre.min'=>'El nombre debe contener al menos 3 caracteres','Nombre.max'=>'El nombre es demasiado largo']);
 
-        Vehiculos::create($request->all());
+        $vehiculo = Vehiculos::create($request->all());
+        $imagen = $request->file('Foto');
+        $nameImage = $imagen->getClientOriginalName();
+        $arrFotos = array('Foto'=>$nameImage,'Vehiculo_id'=>$vehiculo->id);
+        Fotos::create($arrFotos);
+        $imagen->move('fotos',$nameImage);
+        
+       $contador = $request->contador;
+
+        for($i=1; $i<=$contador; $i++)
+        {
+            $imagen = $request->file('foto'.$i);
+            $nameImage = $imagen->getClientOriginalName();
+            $arrFotos['Foto'] = $nameImage;
+            Fotos::create($arrFotos);
+            $imagen->move('fotos',$nameImage);
+
+        }
+
+
         return redirect()->route('vehiculos.index')->with('mensaje','El Vehiculo se Agrego Correctamente');
     }
 

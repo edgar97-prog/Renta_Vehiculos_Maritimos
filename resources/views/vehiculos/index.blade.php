@@ -36,10 +36,8 @@
 	</div>
 		@include('vehiculos.modales.agregar')
 	@if($errors->any())
-	@foreach($errors->all() as $error)
 	<script>
 		$('#ModalAgregar').modal('show');
 	</script>
-	@endforeach
 	@endif
 @endsection

@@ -13,10 +13,9 @@
         <div class="alert alert-danger">
           {{$error}}
         </div>
-        @break
         @endforeach
         @endif
-       {!!Form::open(['route'=>'vehiculos.store','method'=>'POST'])!!}
+       {!!Form::open(['route'=>'vehiculos.store','method'=>'POST','enctype'=>'multipart/form-data'])!!}
 
             <table class="tablaReg">
               <tr>
@@ -35,16 +34,13 @@
                 <td>{!!Form::label('cantidad','Cantidad:')!!}</td>
                 <td>{!!Form::text('Cantidad',null,['class'=>'form form-control','required'=>'y']) !!}</td>
               </tr>
-              <tr>
+              <tr id="fila">
                 <td>{!!Form::label('foto','Foto Principal:')!!}</td>
-                <td>{!!Form::file('foto')!!}</td>
+                <td>{!!Form::file('Foto',['class'=>'form form-control'])!!}</td>
+                <td>    <a href="#" class="btn btn-primary ag_foto">+</a></td>
+                 <td>    <a href="#" class="btn btn-danger ag_foto">-</a></td>
               </tr>
-              <td colspan="2" align="center">
-                <a href="#" class="btn btn-primary ag_foto"> Agregar fotografia</a>
-            </td>
-          <div class="fotos">
-            
-          </div>
+              <input type="hidden" name="contador" id="cont">
             </table>
       </div>
       <div class="modal-footer">

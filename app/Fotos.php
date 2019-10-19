@@ -7,9 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Fotos extends Model
 {
     //
-    private $primaryKey = "id";
-    private $table = "Fotos";
-    private $fillable = ["Fotos","Vehiculo_id"];
+    protected $primaryKey = "id";
+    protected $table = "Fotos";
+    protected $fillable = ["Foto","Vehiculo_id"];
+     public $timestamps = false;
 
     public function Vehiculos(){
     	return $this->belongsTo("App\Vehiculos");
