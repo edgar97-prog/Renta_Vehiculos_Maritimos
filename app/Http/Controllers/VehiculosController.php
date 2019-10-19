@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Vehiculos;
+use App\Fotos;
 use Illuminate\Http\Request;
 
 class VehiculosController extends Controller
@@ -37,9 +38,8 @@ class VehiculosController extends Controller
      */
     public function store(Request $request)
     {
-        $data = request()->validate(['Nombre'=>'required|min:3|max:25','Cantidad'=>'required|regex:[0-9]'],['Nombre.required'=>'El nombre es requerido','Nombre.min'=>'El nombre debe contener al menos 3 caracteres','Nombre.max'=>'El nombre es demasiado largo']);
 
-        Vehiculos::create($request->all());
+
         return redirect()->route('vehiculos.index')->with('mensaje','El Vehiculo se Agrego Correctamente');
     }
 

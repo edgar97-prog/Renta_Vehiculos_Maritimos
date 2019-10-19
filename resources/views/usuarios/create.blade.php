@@ -55,7 +55,7 @@
 			</tr>
 			<tr><td colspan="2"><br></td></tr>
 			<tr>
-				<td colspan="2" align="center"><a href="#">¿Ya tienes una cuenta?</a></td>
+				<td colspan="2" align="center"><a href="#" class="login_modal" style="background: white">¿Ya tienes una cuenta?</a></td>
 			</tr>
 		</tbody>
 	</table>

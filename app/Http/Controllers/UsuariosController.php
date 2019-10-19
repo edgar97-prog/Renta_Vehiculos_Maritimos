@@ -111,4 +111,35 @@ class UsuariosController extends Controller
     {
         //
     }
+
+    public function login(Request $request){
+        
+        $data = request()->validate(['Correo'=>'required|min:9|max:50','Contra'=>'required|max:25'],['Correo.required'=>'Es necesario que ingrese su correo','Correo.min'=>'El correo no cumple con lo requerido','Correo.max'=>'El correo excede el límite de caracteres','Contra.max'=>'La contraseña excede el límite de caracteres']);
+
+        $correo = $request->Correo;
+        $user = Usuarios::where('Correo','=',$correo)->get();;
+        if(empty($user[0])){
+            return redirect('/login');
+        }else{
+            if($user[0]->Contra == $request->Contra){
+                //$usuarios = Usuarios::all();
+                $request->session()->put('user_session',$correo);
+                /*$aux = $request->session()->get('user_sessio',function(){
+                    echo "NO HAY SESION DE USUARIO";
+                });
+                echo $aux;
+                if (session::has('user_session')) {
+                    #dd(session::has('user_session'));
+                    #echo $request->session()->get('user_session');
+                }*/
+                return view('welcome');
+            }
+
+        }
+        
+    }
+    public function logout(){
+        session()->forget('user_session');
+        return redirect('/');
+    }
 }
