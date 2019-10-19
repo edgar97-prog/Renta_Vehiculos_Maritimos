@@ -18,7 +18,7 @@
 				<th>Descripción</th>
 				<th>Precio de Renta</th>
 				<th>Cantidad</th>
-				<th>Fotografia Principal</th>
+				<th>Fotografías</th>
 			</thead>
 			<tbody>
 		@foreach($vehiculos as $vehiculo)
@@ -27,7 +27,7 @@
 					<td>{{$vehiculo->Descripcion}}</td>
 					<td>{{$vehiculo->precioRenta}}</td>
 					<td>{{$vehiculo->Cantidad}}</td>
-					<td></td>
+					<td><button class="btn btn-primary">Ver fotografías</button></td>
 				</tr>
 		@endforeach
 			</tbody>

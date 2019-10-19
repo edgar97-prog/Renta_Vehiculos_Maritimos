@@ -38,8 +38,7 @@ class VehiculosController extends Controller
      */
     public function store(Request $request)
     {
-
-
+        
         return redirect()->route('vehiculos.index')->with('mensaje','El Vehiculo se Agrego Correctamente');
     }
 
