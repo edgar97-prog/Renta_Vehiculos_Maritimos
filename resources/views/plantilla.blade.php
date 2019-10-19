@@ -17,7 +17,7 @@
             <h2 class="container titulo" style="display: inline-block;">
                 Vehiculos
             </h2>
-            <ul class="nav justify-content-end">
+            <ul class="nav justify-content-end listaMenu">
               <li class="nav-item">
                 <a class="nav-link active" href="{{ url('/') }}">INICIO</a>
               </li>
@@ -28,14 +28,16 @@
                   <li class="nav-item">
                     <a class="nav-link login_modal" href="#">INICIAR SESIÓN</a>
                   </li>
-              @else
                   <li class="nav-item">
-                    <a class="nav-link" href="{{ action('UsuariosController@logout') }}">CERRAR SESIÓN</a>
+                    <a class="nav-link" href="{{ action('UsuariosController@create') }}">REGISTRARSE</a>
                   </li>
+              @else
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ action('UsuariosController@logout') }}">CERRAR SESIÓN</a>
+                </li>
+                @yield('opcMenu')
               @endif
-              <li class="nav-item">
-                <a class="nav-link" href="{{ action('UsuariosController@create') }}">REGISTRARSE</a>
-              </li>
+              
             </ul>
         </header>
         <div class="container cuerpo">

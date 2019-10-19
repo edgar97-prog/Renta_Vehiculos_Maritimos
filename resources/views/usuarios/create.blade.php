@@ -1,9 +1,27 @@
 
 @extends('plantilla')
+@isset($rol)
+@section('opcMenu')
+	@if($rol == 3)
+    <li class="nav-item">
+        <a class="nav-link" href="{{ action('UsuariosController@create') }}">REGISTRAR EMPLEADO</a>
+    </li>
+    @endif
+@endsection
+@endisset
 
 @section('cuerpo')
 <center>
+@isset($rol)
+@if($rol == 3)
+<h3 class="subtitle">REGISTRAR EMPLEADO</h3>
+@else
 <h3 class="subtitle">REGISTRATE</h3>
+@endif
+@else
+<h3 class="subtitle">REGISTRATE</h3>
+@endisset
+
 @if($errors->any())
 @foreach($errors->all() as $error)
 <div class="alert alert-danger">
@@ -12,7 +30,15 @@
 @break
 @endforeach
 @endif
+@isset($rol)
+@if($rol == 3)
+{!! Form::open(['url' => 'nvoEmpleado','method' => 'post']) !!}
+@else
 {!! Form::open(['route' => 'usuarios.store','method' => 'post']) !!}
+@endif
+@else
+{!! Form::open(['route' => 'usuarios.store','method' => 'post']) !!}
+@endisset
 {!!Form::token()!!}
 	@csrf
 	<table class="tablaReg">

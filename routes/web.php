@@ -10,20 +10,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-use app\rol;
 
-/*
-Route::get('/', function () {
-    return view('welcome');
-<<<<<<< HEAD
-});
-Route::get('cuas','RolesController@todo');
-
-=======
-});*/
-Route::get('/', function () {
-	return view('welcome');
-});
+Route::get('/','UsuariosController@inicio');
 
 Route::get('roles','RolesController@todo');
 
@@ -39,3 +27,5 @@ Route::get('/logout','UsuariosController@logout');
 
 Route::post('/login','UsuariosController@login');
 //----------------------------------------
+
+Route::post('/nvoEmpleado','UsuariosController@storeEmpleado');

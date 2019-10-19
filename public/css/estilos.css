@@ -27,7 +27,10 @@ header{
 .subtitle{
 	padding: 10px 0px;
 }
-
+/* ESTILO PARA EL MENÚ*/
+.listaMenu li{border-radius: 15px;text-transform: uppercase;}
+.listaMenu li:hover{background: #416FB3;}
+.listaMenu li a{color: white;}
 /* ESTILOS PARA LAS VIEWS DE VEHICULOS */
 
 /*Boton para agregar nuevo vehiculo*/
@@ -94,12 +97,12 @@ header{
 
 /* ESTILO PARA MODAL LOGIN */
 .login_modal{
-  background-color:#305285;
+  /*background-color:#305285;*/
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   border-radius: 5px;
   text-transform: uppercase;
 }
 .login_modal:hover{
-  opacity: 0.8;
+  /*opacity: 0.3;*/
 }
