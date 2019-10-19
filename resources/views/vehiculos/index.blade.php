@@ -27,7 +27,11 @@
 					<td>{{$vehiculo->Descripcion}}</td>
 					<td>{{$vehiculo->precioRenta}}</td>
 					<td>{{$vehiculo->Cantidad}}</td>
-					<td><button class="btn btn-primary">Ver fotografías</button></td>
+					<td>
+						@foreach($vehiculo->Fotos as $foto)
+						<img width="90" height="90" src="{{asset("fotos/$foto->Foto")}}">
+						@endforeach
+					</td>
 				</tr>
 		@endforeach
 			</tbody>
