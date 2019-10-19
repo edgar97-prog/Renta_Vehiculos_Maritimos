@@ -16,7 +16,7 @@ class VehiculosController extends Controller
     public function index()
     {
         //
-        $vehiculos = Vehiculos::all();
+        $vehiculos = Vehiculos::with('Fotos')->get(); 
         return view('vehiculos.index',compact('vehiculos'));
     }
 
@@ -42,7 +42,7 @@ class VehiculosController extends Controller
         $vehiculo = Vehiculos::create($request->all());
         $imagen = $request->file('Foto');
         $nameImage = $imagen->getClientOriginalName();
-        $arrFotos = array('Foto'=>$nameImage,'Vehiculo_id'=>$vehiculo->id);
+        $arrFotos = array('Foto'=>$nameImage,'vehiculos_id'=>$vehiculo->id);
         Fotos::create($arrFotos);
         $imagen->move('fotos',$nameImage);
         

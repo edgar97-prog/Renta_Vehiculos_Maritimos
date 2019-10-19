@@ -16,9 +16,9 @@ class CreateFotosTable extends Migration
         Schema::create('fotos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->String('Foto','100');
-            $table->bigInteger('Vehiculo_id')->unsigned();
+            $table->bigInteger('vehiculos_id')->unsigned();
 
-            $table->foreign('Vehiculo_id')->references('id')->on('vehiculos')
+            $table->foreign('vehiculos_id')->references('id')->on('vehiculos')
             ->onDelete('cascade')
             ->onUpdate('cascade');
         });

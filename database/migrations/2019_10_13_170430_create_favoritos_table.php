@@ -17,7 +17,6 @@ class CreateFavoritosTable extends Migration
             $table->bigInteger('Vehiculo_id')->unsigned();
             $table->String('Correo_id','50');
             $table->primary(["Vehiculo_id","Correo_id"]);
-            
             $table->foreign('Vehiculo_id')->references('id')->on('Vehiculos')
             ->onDelete('cascade')
             ->onUpdate('cascade');
