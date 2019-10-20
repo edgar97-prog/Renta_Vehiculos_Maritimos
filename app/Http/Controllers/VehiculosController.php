@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Vehiculos;
 use App\Fotos;
+use App\Usuarios;
+use Session;
 use Illuminate\Http\Request;
 
 class VehiculosController extends Controller
@@ -16,8 +18,10 @@ class VehiculosController extends Controller
     public function index()
     {
         //
-        $vehiculos = Vehiculos::with('Fotos')->get(); 
-        return view('vehiculos.index',compact('vehiculos'));
+        $vehiculos = Vehiculos::with('Fotos')->get();
+        $user = Usuarios::where('Correo','=',Session::get('user_session'))->first();
+        $rol = $user->rol_id;
+        return view('vehiculos.index',compact('vehiculos','rol'));
     }
 
     /**

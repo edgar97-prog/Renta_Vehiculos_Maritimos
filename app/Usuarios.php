@@ -20,4 +20,7 @@ class Usuarios extends Model
     {
     	return $this->belongsToMany("App\Vehiculos");
     }
+    public function Direcciones(){
+        return $this->belongsTo('App\Direcciones');
+    }
 }

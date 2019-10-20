@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Usuarios;
+use App\Direcciones;
 use Illuminate\Http\Request;
 use Session;
 
@@ -31,7 +32,13 @@ class UsuariosController extends Controller
         $user = Usuarios::where('Correo','=',Session::get('user_session'))->get();
         if($user[0]->rol_id == 3){
             $rol = $user[0]->rol_id;
-            return view('usuarios.create',compact('rol'));
+            if(Session::has('mensaje')){
+                $msj = Session::get('mensaje');
+                return view('usuarios.create',compact('rol','msj'));
+            }
+            else{
+                return view('usuarios.create',compact('rol'));
+            }
         }
         else
             return redirect('/');
@@ -51,7 +58,7 @@ class UsuariosController extends Controller
              'Nombre'=>'required|min:3|max:20|regex:/[a-zA-Z ñÑáéíóúÁÉÍÓÚ]/u',
              'ApellidoP'=>'required|min:3|max:20|regex:/[a-zA-Z ñÑáéíóúÁÉÍÓÚ]/u',
              'ApellidoM'=>'required|min:3|max:20|regex:/[a-zA-Z ñÑáéíóúÁÉÍÓÚ]/u',
-             'Sexo'=>'min:1|max:1|regex:/[HM]/u'],
+             'Sexo'=>'min:1|max:1|regex:/[MF]/u'],
             ['Correo.required'=>'Debes ingresar un correo',
              'Contra.required'=>'Debes ingresar una contraseña',
              'Contra.min'=>'La contraseña debe tener minimo 8 caracteres',
@@ -70,6 +77,7 @@ class UsuariosController extends Controller
              'ApellidoM.regex'=>'El apellido materno sólo debe contener letras',
              'Sexo.regex'=>'El atributo sexo se ha modificado, intente nuevamente recargando la página.']);
         Usuarios::create($request->all());
+        $request->session()->put('user_session',$request->Correo);
         return redirect('/');
     }
 
@@ -191,7 +199,22 @@ class UsuariosController extends Controller
         $user->Sexo = $request->Sexo;
         $user->rol_id = 2;
         $user->save();
-        $request->session()->put('user_session',$user->Correo);
-        return redirect('/');
+        $arregloDir = array('Correo_id' => $request->Correo ,'Calle'=>$request->Calle,'Colonia'=>$request->Colonia,'CP'=>$request->CP);
+        $dirreccion = Direcciones::create($arregloDir);
+        return redirect('/usuarios/create')->with('mensaje','Se ha registrado el empleado correctamente');
+    }
+
+    public function paneladmin(Request $request)
+    {
+        if(Session::has('user_session')){
+            $user = Usuarios::where('Correo','=',Session::get('user_session'))->get();
+            $rol = $user[0]->rol_id;
+            if($rol == 3 || $rol == 2)
+                return view('paneladmin',compact('rol'));
+            else
+                return redirect('/');    
+        }else{
+            return redirect('/');
+        }
     }
 }

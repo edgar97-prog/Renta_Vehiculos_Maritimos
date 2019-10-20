@@ -1,6 +1,14 @@
 @extends('plantilla')
+@isset($rol)
+	@section('opcMenu')
+		@if($rol == 3 || $rol == 2)
+	    <li class="nav-item">
+	        <a class="nav-link btn btn-warning" href="{{ url('paneladmin') }}">PANEL ADMINISTRATIVO</a>
+	    </li>
+	    @endif
+	@endsection
+@endisset
 @section('cuerpo')
-	
 	<div class="container">
 		<center><h3 class="subtitle">Vehiculos</h3></center>
 	@if(session()->has('mensaje'))
@@ -11,7 +19,7 @@
 	</center>
 	</div>
 	@endif
-		<button class="let nvo_vehiculo">+</button>
+		<button class="let nvo_vehiculo" style="cursor: pointer;">+</button>
 		<table class="footable">
 			<thead>
 				<th>Nombre</th>

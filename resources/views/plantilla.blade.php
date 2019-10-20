@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script type="text/javascript" src="{{asset('js/jquery.js')}}"></script>
-         <script type="text/javascript" src="{{asset('js/bootstrap.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('js/bootstrap.min.js')}}"></script>
         <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.min.css')}}">
         <script type="text/javascript" src="{{asset('js/vehiculos.js')}}"></script>
         <script type="text/javascript" src="{{asset('js/login.js')}}"></script>
@@ -40,7 +40,7 @@
               
             </ul>
         </header>
-        <div class="container cuerpo">
+        <div class="container cuerpo" id="cuerpo">
             @yield('cuerpo')
         </div>
         @include('login_modal')

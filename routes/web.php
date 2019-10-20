@@ -29,3 +29,5 @@ Route::post('/login','UsuariosController@login');
 //----------------------------------------
 
 Route::post('/nvoEmpleado','UsuariosController@storeEmpleado');
+
+Route::get('/paneladmin','UsuariosController@paneladmin');
