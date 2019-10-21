@@ -1,11 +1,11 @@
-<div id="ModalAgregar" class="modal fade" role="dialog">
+<div id="ModalModificar" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header header-modal">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Nuevo Vehiculo</h4>
+        <h4 class="modal-title">Modificar Vehiculo</h4>
       </div>
       <div class="modal-body">
         @if($errors->any())
@@ -20,31 +20,27 @@
             <table class="tablaReg">
               <tr>
                 <td>{!!Form::label('nombre','Nombre:')!!}</td>
-                <td>{!! Form::text('Nombre',null,['class'=>'form form-control','required'=>'y']) !!}</td>
+                <td>{!! Form::text('Nombre',null,['class'=>'form form-control nombre','required'=>'y']) !!}</td>
               </tr>
               <tr>
                <td>{!!Form::label('Descripcion','Descripción:')!!}</td>
-                <td>{!! Form::text('Descripcion',null,['class'=>'form form-control','required'=>'y']) !!}</td>
+                <td>{!! Form::text('Descripcion',null,['class'=>'form form-control descr','required'=>'y']) !!}</td>
               </tr>
               <tr>
                 <td>{!!Form::label('precioRenta','Precio de Renta:')!!}</td>
-                <td>{!! Form::text('precioRenta',null,['class'=>'form form-control','required'=>'y']) !!}</td>
+                <td>{!! Form::text('precioRenta',null,['class'=>'form form-control renta','required'=>'y']) !!}</td>
               </tr>
               <tr>
                 <td>{!!Form::label('cantidad','Cantidad:')!!}</td>
-                <td>{!!Form::text('Cantidad',null,['class'=>'form form-control','required'=>'y']) !!}</td>
+                <td>{!!Form::text('Cantidad',null,['class'=>'form form-control cant','required'=>'y']) !!}</td>
               </tr>
-              <tr id="fila">
-                <td>{!!Form::label('foto','Foto Principal:')!!}</td>
-                <td>{!!Form::file('Foto',['class'=>'form form-control'])!!}</td>
-                <td>   <a href="#" class="btn btn-primary ag_foto">+</a></td>
-                 <td>  <a href="#" class="btn btn-danger rm_foto">-</a></td>
-              </tr>
-              <input type="hidden" name="contador" id="cont">
+              <section id="fot">
+                
+              </section>
+                
             </table>
       </div>
       <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">Registrar</button>
         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
       </div>
     {!!Form::close()!!}

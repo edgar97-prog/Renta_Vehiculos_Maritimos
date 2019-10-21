@@ -102,4 +102,26 @@ class VehiculosController extends Controller
     {
         //
     }
+
+    public function datos(Request $request)
+    {
+     if($request->isMethod('post'))
+        {
+        $vehiculos = Vehiculos::find($request->id);
+
+            $i=0;
+            $datos = array('id'=>$vehiculos->id,'nombre'=>$vehiculos->Nombre,
+            'descripcion'=>$vehiculos->Descripcion,'renta'=>$vehiculos->precioRenta,'cantidad'=>$vehiculos->Cantidad);
+            $fotos = array();
+        foreach ($vehiculos->fotos as $foto) {
+            
+            $fotos[$i] = $foto->Foto;
+            $i++;
+        }
+
+        $data = array($datos,$fotos);
+
+        return json_encode($data,JSON_FORCE_OBJECT);
+        }
+    }
 }

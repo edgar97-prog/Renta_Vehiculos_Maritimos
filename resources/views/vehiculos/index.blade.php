@@ -1,5 +1,7 @@
 @extends('plantilla')
 @section('cuerpo')
+
+<meta name="_token" content="{!!csrf_token()!!}">
 	
 	<div class="container">
 		<center><h3 class="subtitle">Vehiculos</h3></center>
@@ -22,7 +24,7 @@
 			</thead>
 			<tbody>
 		@foreach($vehiculos as $vehiculo)
-				<tr>
+				<tr data-id='{{$vehiculo->id}}' class="registro">
 					<td>{{$vehiculo->Nombre}}</td>
 					<td>{{$vehiculo->Descripcion}}</td>
 					<td>{{$vehiculo->precioRenta}}</td>
@@ -39,6 +41,7 @@
 
 	</div>
 		@include('vehiculos.modales.agregar')
+		@include('vehiculos.modales.modificar')
 	@if($errors->any())
 	<script>
 		$('#ModalAgregar').modal('show');
