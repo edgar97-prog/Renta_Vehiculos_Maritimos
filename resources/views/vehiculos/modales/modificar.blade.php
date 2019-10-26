@@ -15,35 +15,45 @@
         </div>
         @endforeach
         @endif
-       {!!Form::open(['route'=>'vehiculos.store','method'=>'POST','enctype'=>'multipart/form-data'])!!}
-
+       {!!Form::open(['enctype'=>'multipart/form-data','class'=>'formod'])!!}
+            @method('PUT')
             <table class="tablaReg">
               <tr>
-                <td>{!!Form::label('nombre','Nombre:')!!}</td>
-                <td>{!! Form::text('Nombre',null,['class'=>'form form-control nombre','required'=>'y']) !!}</td>
+                  <td>{!!Form::label('nombre','Nombre:')!!}</td>
+                  <td>{!! Form::text('Nombre',null,['class'=>'form form-control nombre','required'=>'y']) !!}</td>
               </tr>
               <tr>
-               <td>{!!Form::label('Descripcion','Descripción:')!!}</td>
-                <td>{!! Form::text('Descripcion',null,['class'=>'form form-control descr','required'=>'y']) !!}</td>
+                <td>{!!Form::label('Descripcion','Descripción:')!!}</td>
+                 <td>{!! Form::text('Descripcion',null,['class'=>'form form-control descr','required'=>'y']) !!}</td>
               </tr>
               <tr>
-                <td>{!!Form::label('precioRenta','Precio de Renta:')!!}</td>
-                <td>{!! Form::text('precioRenta',null,['class'=>'form form-control renta','required'=>'y']) !!}</td>
+                  <td>{!!Form::label('precioRenta','Precio de Renta:')!!}</td>
+                  <td>{!! Form::text('precioRenta',null,['class'=>'form form-control renta','required'=>'y']) !!}</td>
               </tr>
               <tr>
-                <td>{!!Form::label('cantidad','Cantidad:')!!}</td>
-                <td>{!!Form::text('Cantidad',null,['class'=>'form form-control cant','required'=>'y']) !!}</td>
+                  <td>{!!Form::label('cantidad','Cantidad:')!!}</td>
+                  <td>{!!Form::text('Cantidad',null,['class'=>'form form-control cant','required'=>'y']) !!}</td>
               </tr>
+            </table>
+            <input type="hidden" name="idfot" id="idfot">
+            <input type="hidden" name="idv" id="idv">
+      <center>
+              <label>Para eliminar, haga clic sobre la fotografia.</label>
               <section id="fot">
                 
               </section>
-                
-            </table>
+      </center>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-primary">Modificar</button>
+        <button type="button" class="btn btn-success" data-dismiss="modal">Cerrar</button>
       </div>
     {!!Form::close()!!}
+    <center><form id="form_elim" method="POST" action="">
+      @method('DELETE')
+      @csrf 
+          <button type="submit" class="btn btn-danger">Eliminar</button>
+        </form> </center>
     </div>
 
   </div>

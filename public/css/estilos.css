@@ -138,3 +138,17 @@ header{
   width: 100px;
 }
 .sublistaPanel li{cursor: pointer;}
+
+#form_elim
+{
+  position: relative;
+  top: -54px;
+  left: -23px;
+  width: 10px;
+  height: 10px;
+}
+
+.imagen
+{
+    filter: grayscale(0);
+}

@@ -19,9 +19,9 @@ class VehiculosController extends Controller
     {
         //
         $vehiculos = Vehiculos::with('Fotos')->get();
-        $user = Usuarios::where('Correo','=',Session::get('user_session'))->first();
-        $rol = $user->rol_id;
-        return view('vehiculos.index',compact('vehiculos','rol'));
+      /*  $user = Usuarios::where('Correo','=',Session::get('user_session'))->first();
+        $rol = $user->rol_id;*/
+        return view('vehiculos.index',compact('vehiculos'));
     }
 
     /**
@@ -94,6 +94,14 @@ class VehiculosController extends Controller
     public function update(Request $request, Vehiculos $vehiculos)
     {
         //
+        $vehiculo = Vehiculos::find($request->idv);
+        $vehiculo->update($request->all());
+        $arregloEliminaFoto = explode(',', $request->idfot);
+        foreach ($arregloEliminaFoto as $foto ) {
+            Fotos::destroy($foto);
+        }
+        return redirect()->route('vehiculos.index')->with('mensaje','Modificación exitosa');
+
     }
 
     /**
@@ -102,9 +110,10 @@ class VehiculosController extends Controller
      * @param  \App\Vehiculos  $vehiculos
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Vehiculos $vehiculos)
-    {
-        //
+    public function destroy(Vehiculos $vehiculos,$id)
+    {   
+        $vehiculos->destroy($id);
+        return redirect()->route('vehiculos.index')->with('mensaje','Vehiculo Eliminado');
     }
 
     public function datos(Request $request)
@@ -114,17 +123,19 @@ class VehiculosController extends Controller
         $vehiculos = Vehiculos::find($request->id);
 
             $i=0;
-            $datos = array('id'=>$vehiculos->id,'nombre'=>$vehiculos->Nombre,
+            $datos = array('id'=>$vehiculos->id,'nombre'=>$vehiculos->Nombre,'urlElim'=>route('vehiculos.destroy',$vehiculos->id),'urlMod'=>route('vehiculos.update',$vehiculos->id),
             'descripcion'=>$vehiculos->Descripcion,'renta'=>$vehiculos->precioRenta,'cantidad'=>$vehiculos->Cantidad);
             $fotos = array();
         foreach ($vehiculos->fotos as $foto) {
             
-            $fotos[$i] = $foto->Foto;
+            $fotos[$i]['nombre'] = $foto->Foto;
+            $fotos[$i]['id'] = $foto->id;
             $i++;
         }
 
-        $data = array($datos,$fotos);
+      $data = array($datos,$fotos);
 
+      //  return $data[1][1]['id'];
         return json_encode($data,JSON_FORCE_OBJECT);
         }
     }

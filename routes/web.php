@@ -19,7 +19,7 @@ Route::resource('/usuarios','UsuariosController');
 
 //Controlador para vehiculos
 Route::resource('/vehiculos','VehiculosController');
-Route::post('/datos/vehiculo/','VehiculosController@datos');
+Route::post('/datos/vehiculo','VehiculosController@datos');
 
 //Rutas para login y logout
 //----------------------------------------
