@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Favoritos extends Model
 {
     //
-    private $primaryKey = ["Vehiculo_id","Correo_id"];
-    private $table = "Favoritos";
-    private $fillable = ["Vehiculo_id","Correo_id"];
+    protected $primaryKey = ["Vehiculo_id","Correo_id"];
+    protected $table = "Favoritos";
+    protected $fillable = ["Vehiculo_id","Correo_id"];
 
 }

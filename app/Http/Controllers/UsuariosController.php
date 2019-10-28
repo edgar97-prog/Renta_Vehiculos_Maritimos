@@ -14,6 +14,10 @@ class UsuariosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct(){
+        $this->middleware('autenticar',['only'=>['paneladmin']]);
+        $this->middleware('Is_admin',['only'=>['storeEmpleado']]);
+    }
     public function index()
     {
         $usuarios = Usuarios::all();
@@ -29,9 +33,8 @@ class UsuariosController extends Controller
     {
         if(!Session::has('user_session'))
             return view('usuarios.create');
-        $user = Usuarios::where('Correo','=',Session::get('user_session'))->get();
-        if($user[0]->rol_id == 3){
-            $rol = $user[0]->rol_id;
+        $rol = Session::get('user_session')[1];
+        if($rol == 3){
             if(Session::has('mensaje')){
                 $msj = Session::get('mensaje');
                 return view('usuarios.create',compact('rol','msj'));
@@ -77,7 +80,8 @@ class UsuariosController extends Controller
              'ApellidoM.regex'=>'El apellido materno sólo debe contener letras',
              'Sexo.regex'=>'El atributo sexo se ha modificado, intente nuevamente recargando la página.']);
         Usuarios::create($request->all());
-        $request->session()->put('user_session',$request->Correo);
+        $clave = array($request->Correo,1);
+        $request->session()->put('user_session',$clave);
         return redirect('/');
     }
 
@@ -133,11 +137,13 @@ class UsuariosController extends Controller
         $correo = $request->Correo;
         $user = Usuarios::where('Correo','=',$correo)->get();
         if(empty($user[0])){
-            return redirect('/login');
+            return view('welcome')->withErrors(array('message' => 'Datos incorrectos'));
         }else{
             if($user[0]->Contra == $request->Contra){
                 //$usuarios = Usuarios::all();
-                $request->session()->put('user_session',$correo);
+                $rol = $user[0]->rol_id;
+                $clave = array($correo,$rol);
+                $request->session()->put('user_session',$clave);
                 /*$aux = $request->session()->get('user_sessio',function(){
                     echo "NO HAY SESION DE USUARIO";
                 });
@@ -146,9 +152,9 @@ class UsuariosController extends Controller
                     #dd(session::has('user_session'));
                     #echo $request->session()->get('user_session');
                 }*/
-                $rol = $user[0]->rol_id;
-                return view('welcome',compact('rol'));
+                return redirect('/');//,compact('rol'));
             }
+            return view('welcome')->withErrors(array('message' => 'Datos incorrectos'));
         } 
     }
     public function logout(){
@@ -157,8 +163,7 @@ class UsuariosController extends Controller
     }
     public function inicio(){
         if(Session::has('user_session')){
-            $user = Usuarios::where('Correo','=',Session::get('user_session'))->get();
-            $rol = $user[0]->rol_id;
+            $rol = Session::get('user_session')[1];
         }else{
             $rol = 1;
         }
@@ -172,7 +177,7 @@ class UsuariosController extends Controller
              'Nombre'=>'required|min:3|max:20|regex:/[a-zA-Z ñÑáéíóúÁÉÍÓÚ]/u',
              'ApellidoP'=>'required|min:3|max:20|regex:/[a-zA-Z ñÑáéíóúÁÉÍÓÚ]/u',
              'ApellidoM'=>'required|min:3|max:20|regex:/[a-zA-Z ñÑáéíóúÁÉÍÓÚ]/u',
-             'Sexo'=>'min:1|max:1|regex:/[HM]/u'],
+             'Sexo'=>'min:1|max:1|regex:/[MF]/u'],
             ['Correo.required'=>'Debes ingresar un correo',
              'Contra.required'=>'Debes ingresar una contraseña',
              'Contra.min'=>'La contraseña debe tener minimo 8 caracteres',
@@ -206,15 +211,10 @@ class UsuariosController extends Controller
 
     public function paneladmin(Request $request)
     {
-        if(Session::has('user_session')){
-            $user = Usuarios::where('Correo','=',Session::get('user_session'))->get();
-            $rol = $user[0]->rol_id;
-            if($rol == 3 || $rol == 2)
-                return view('paneladmin',compact('rol'));
-            else
-                return redirect('/');    
-        }else{
+        $rol = Session::get('user_session')[1];
+        if($rol == 3 || $rol == 2)
+            return view('paneladmin',compact('rol'));
+        else
             return redirect('/');
-        }
     }
 }

@@ -15,13 +15,18 @@ class VehiculosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct(){
+        $this->middleware('autenticar');
+        $this->middleware('Both_user');
+    }
     public function index()
     {
         //
         $vehiculos = Vehiculos::with('Fotos')->get();
       /*  $user = Usuarios::where('Correo','=',Session::get('user_session'))->first();
         $rol = $user->rol_id;*/
-        return view('vehiculos.index',compact('vehiculos'));
+        $rol = Session::get('user_session')[1];
+        return view('vehiculos.index',compact('vehiculos','rol'));
     }
 
     /**

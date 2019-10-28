@@ -18,7 +18,7 @@ Route::get('roles','RolesController@todo');
 Route::resource('/usuarios','UsuariosController');
 
 //Controlador para vehiculos
-Route::resource('/vehiculos','VehiculosController');
+Route::resource('/vehiculos','VehiculosController');	
 Route::post('/datos/vehiculo','VehiculosController@datos');
 
 //Rutas para login y logout
