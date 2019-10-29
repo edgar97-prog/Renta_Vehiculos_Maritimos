@@ -40,7 +40,7 @@
                 <td>   <a href="#" class="btn btn-primary ag_foto">+</a></td>
                  <td>  <a href="#" class="btn btn-danger rm_foto">-</a></td>
               </tr>
-              <input type="hidden" name="contador" id="cont">
+              <input type="text" name="contador" id="cont">
             </table>
       </div>
       <div class="modal-footer">

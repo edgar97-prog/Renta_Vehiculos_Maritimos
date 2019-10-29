@@ -1,4 +1,4 @@
-$(document).ready(function(){
+ $(document).ready(function(){
 
 	//SETUP PARA UTILIZAR AJAX
 	$.ajaxSetup({
@@ -22,10 +22,12 @@ $(document).ready(function(){
 	$('.rm_foto').click(function()
 	{
 	if(contfotos>0)
-	{
+	{	
 		$('input[name=foto'+contfotos+']').remove();
 		$('label[name=NoFoto'+contfotos+']').remove();
 		contfotos--;
+		$('#cont').attr('value',contfotos);
+		
 	}
 	});
 
