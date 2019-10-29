@@ -8,6 +8,7 @@
         <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.min.css')}}">
         <script type="text/javascript" src="{{asset('js/vehiculos.js')}}"></script>
         <script type="text/javascript" src="{{asset('js/login.js')}}"></script>
+        <script type="text/javascript" src="{{asset('js/scripts.js')}}"></script>
         <link rel="stylesheet" type="text/css" href="{{asset('css/estilos.css')}}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <title>Vehículos maritimos</title>
@@ -20,6 +21,9 @@
             <ul class="nav justify-content-end listaMenu">
               <li class="nav-item">
                 <a class="nav-link active" href="{{ url('/') }}">INICIO</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">CATÁLOGO</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">CONTACTO</a>

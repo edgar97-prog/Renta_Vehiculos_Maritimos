@@ -8,8 +8,8 @@
 @endsection
 
 @section('cuerpo')
-<div class="container-fluid" style="position: absolute; left: 0;">
-	<div class="aside">
+<div class="container-fluid row">
+	<div class="aside col-sm-3">
 		<h4>REGISTROS</h4>
 		<hr style="background: gray;">
 		<ul class="listaPanel">
@@ -19,29 +19,27 @@
 					<a href="{{action('UsuariosController@create')}}">
 						<li>AGREGAR</li>
 					</a>
-					<a href="#">
-						<li>BUSCAR</li>
-					</a>
-					<a href="#">
-						<li>ELIMINAR</li>
-					</a>
+					<li id="btnVerTodo">VER TODO</li>
 				</ul>
 				</li>
 			@endif
-				<li>VEHÍCULOS
-				<ul class="sublistaPanel">
-					<a href="{{action('VehiculosController@index')}}">
-						<li>AGREGAR</li>
-					</a>
-					<a href="#">
-						<li>BUSCAR</li>
-					</a>
-					<a href="#">
-						<li>ELIMINAR</li>
-					</a>
-				</ul>
-				</li>
+				<a href="{{action('VehiculosController@index')}}">
+					<li style="cursor: pointer;">VEHÍCULOS</li>
+				</a>
 		</ul>
+	</div>
+	<div class="col-sm-8 subcuerpo" id="subcuerpo">
+		<h4 id="tituloemp">EMPLEADOS REGISTRADOS</h4>
+		<table class="footable">
+			<thead>
+				<th>Nombre</th>
+				<th>Correo</th>
+				<th>Sexo</th>
+				<th>Accion</th>
+			</thead>
+			<tbody id="tbody">
+			</tbody>
+		</table>
 	</div>
 </div>
 @endsection

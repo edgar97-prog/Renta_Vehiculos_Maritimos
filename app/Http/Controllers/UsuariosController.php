@@ -140,19 +140,10 @@ class UsuariosController extends Controller
             return view('welcome')->withErrors(array('message' => 'Datos incorrectos'));
         }else{
             if($user[0]->Contra == $request->Contra){
-                //$usuarios = Usuarios::all();
                 $rol = $user[0]->rol_id;
                 $clave = array($correo,$rol);
                 $request->session()->put('user_session',$clave);
-                /*$aux = $request->session()->get('user_sessio',function(){
-                    echo "NO HAY SESION DE USUARIO";
-                });
-                echo $aux;
-                if (session::has('user_session')) {
-                    #dd(session::has('user_session'));
-                    #echo $request->session()->get('user_session');
-                }*/
-                return redirect('/');//,compact('rol'));
+                return redirect('/');
             }
             return view('welcome')->withErrors(array('message' => 'Datos incorrectos'));
         } 
@@ -216,5 +207,9 @@ class UsuariosController extends Controller
             return view('paneladmin',compact('rol'));
         else
             return redirect('/');
+    }
+    public function datosEmpleado(){
+        $Empleados = Usuarios::where('rol_id','=','2')->get();
+        return json_encode($Empleados,JSON_FORCE_OBJECT);
     }
 }
