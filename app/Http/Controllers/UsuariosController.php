@@ -125,9 +125,10 @@ class UsuariosController extends Controller
      * @param  \App\Usuarios  $usuarios
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Usuarios $usuarios)
+    public function destroy(Usuarios $usuarios,$id)
     {
-        //
+        $usuarios->destroy($id);
+        return "exito";
     }
 
     public function login(Request $request){

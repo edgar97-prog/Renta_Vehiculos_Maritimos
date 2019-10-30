@@ -37,9 +37,10 @@
 				<th>Sexo</th>
 				<th>Accion</th>
 			</thead>
-			<tbody id="tbody">
+			<tbody id="tbody" title="Presione doble click para ver más datos">
 			</tbody>
 		</table>
 	</div>
+	<input type="hidden" id="token" value="{{csrf_token()}}">
 </div>
 @endsection
