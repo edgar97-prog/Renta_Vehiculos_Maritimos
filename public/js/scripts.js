@@ -14,25 +14,49 @@ $(document).ready(function(){
 				$('#tbody').empty();
 				var i = 0;
 				$.each(datos,function(index,element){
-					$('#tbody').append("<tr><td>"+datos[i]['Nombre']+" "+datos[i]['ApellidoP']+" "+datos[i]['ApellidoM']+"</td><td>"+datos[i]['Correo']+"</td><td>"+datos[i]['Sexo']+"</td><td><button class='btn btn-danger' onclick='eliminar(this);' data-id='"+datos[i]['Correo']+"'>Eliminar</button></td></tr>");
+					$('#tbody').append("<tr style='cursor:default;' data-id='"+datos[i]['Correo']+"'><td class='rowEmp'>"+
+						datos[i]['Nombre']+" "+datos[i]['ApellidoP']+" "+datos[i]['ApellidoM']+
+						"</td><td class='rowEmp'>"+datos[i]['Correo']+"</td><td class='rowEmp'>"
+						+datos[i]['Sexo']+"</td><td><button class='btn btn-danger btnEliminar' title='Eliminar empleado' data-id='"+datos[i]['Correo']+"'>Eliminar</button></td></tr>");
 					i++;
 				},'json');
+				$('.rowEmp').dblclick(function(){
+					var id = this.parentElement.dataset.id;
+					var token = document.getElementById("token").value;
+					$.ajax({
+						type:'POST',
+						url:'/datosEmp',
+						data:{
+							'id':id,
+							'_token':token
+						},
+						success:function(data){
+							var datos = JSON.parse(data);
+							$('#_calle').html(datos[0]['Calle']);
+							$('#_colonia').html(datos[0]['Colonia']);
+							$('#_cp').html(datos[0]['CP']);
+							$('#_tel').html(datos[1]['Telefono']);
+							$("#ModalDatosEmp").modal('show');		
+						}
+					});
+				});
+				$('.btnEliminar').click(function(){
+					var token = document.getElementById("token").value;
+					$.ajax({
+						type: 'POST',
+						url: '/usuarios/'+this.dataset.id,
+						data:{
+							"_token":token,
+							"_method":'DELETE',
+							"id":this.dataset.id
+						},
+						success:function(result){
+							$('#btnVerTodo').click();
+						}
+					});
+				});
 			}
 		});
+		
 	});
 });
-function eliminar(e){
-	var token = document.getElementById("token").value;
-	$.ajax({
-		type: 'POST',
-		url: '/usuarios/'+e.dataset.id,
-		data:{
-			"_token":token,
-			"_method":'DELETE',
-			"id":e.dataset.id
-		},
-		success:function(result){
-			$('#btnVerTodo').click();
-		}
-	});
-}

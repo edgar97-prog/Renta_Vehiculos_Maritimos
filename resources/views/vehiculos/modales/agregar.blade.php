@@ -4,8 +4,8 @@
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header header-modal">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">Nuevo Vehiculo</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body">
         @if($errors->any())
@@ -40,7 +40,7 @@
                 <td>   <a href="#" class="btn btn-primary ag_foto">+</a></td>
                  <td>  <a href="#" class="btn btn-danger rm_foto">-</a></td>
               </tr>
-              <input type="text" name="contador" id="cont">
+              <input type="hidden" name="contador" id="cont">
             </table>
       </div>
       <div class="modal-footer">

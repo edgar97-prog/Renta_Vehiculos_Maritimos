@@ -43,4 +43,5 @@
 	</div>
 	<input type="hidden" id="token" value="{{csrf_token()}}">
 </div>
+@include('usuarios.modales.datos')
 @endsection

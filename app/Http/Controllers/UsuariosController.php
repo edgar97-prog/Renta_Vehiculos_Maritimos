@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Usuarios;
 use App\Direcciones;
+use App\Telefonos;
 use Illuminate\Http\Request;
 use Session;
 
@@ -169,7 +170,8 @@ class UsuariosController extends Controller
              'Nombre'=>'required|min:3|max:20|regex:/[a-zA-Z ñÑáéíóúÁÉÍÓÚ]/u',
              'ApellidoP'=>'required|min:3|max:20|regex:/[a-zA-Z ñÑáéíóúÁÉÍÓÚ]/u',
              'ApellidoM'=>'required|min:3|max:20|regex:/[a-zA-Z ñÑáéíóúÁÉÍÓÚ]/u',
-             'Sexo'=>'min:1|max:1|regex:/[MF]/u'],
+             'Sexo'=>'min:1|max:1|regex:/[MF]/u',
+             'Telefono'=>'min:7|max:10|regex:/[0-9]/u'],
             ['Correo.required'=>'Debes ingresar un correo',
              'Contra.required'=>'Debes ingresar una contraseña',
              'Contra.min'=>'La contraseña debe tener minimo 8 caracteres',
@@ -186,7 +188,10 @@ class UsuariosController extends Controller
              'ApellidoM.min'=>'El apellido materno debe contener al menos 3 caracteres',
              'ApellidoM.max'=>'El apellido materno es demasiado largo',
              'ApellidoM.regex'=>'El apellido materno sólo debe contener letras',
-             'Sexo.regex'=>'El atributo sexo se ha modificado, intente nuevamente recargando la página.']);
+             'Sexo.regex'=>'El atributo sexo se ha modificado, intente nuevamente recargando la página.',
+             'Telefono.min'=>'El telefono está incompleto.',
+             'Telefono.max'=>'El telefono contiene números de más.',
+             'Telefono.regex'=>'El campo telefono tiene un formato distinto.']);
         $user = new Usuarios;
         $user->Correo = $request->Correo;
         $user->Contra = $request->Contra;
@@ -198,6 +203,8 @@ class UsuariosController extends Controller
         $user->save();
         $arregloDir = array('Correo_id' => $request->Correo ,'Calle'=>$request->Calle,'Colonia'=>$request->Colonia,'CP'=>$request->CP);
         $dirreccion = Direcciones::create($arregloDir);
+        $arregloTel = array('Telefono' => $request->Telefono,'Usuario_id'=>$request->Correo);
+        $tel = Telefonos::create($arregloTel);
         return redirect('/usuarios/create')->with('mensaje','Se ha registrado el empleado correctamente');
     }
 
@@ -212,5 +219,11 @@ class UsuariosController extends Controller
     public function datosEmpleado(){
         $Empleados = Usuarios::where('rol_id','=','2')->get();
         return json_encode($Empleados,JSON_FORCE_OBJECT);
+    }
+    public function infoEmpleados(Request $request){
+        $dir = Direcciones::where('Correo_id','=',$request->id)->get();
+        $tel =  Telefonos::where('Usuario_id','=',$request->id)->get();
+        $arreglo = array($dir[0],$tel[0]);
+        return json_encode($arreglo,JSON_FORCE_OBJECT);   
     }
 }
