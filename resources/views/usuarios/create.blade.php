@@ -78,6 +78,10 @@
 				<td>{!!Form::label('sexo','Sexo:')!!}</td>
 				<td>{!! Form::select('Sexo',['M'=>'Masculino','F'=>'Femenino'],'M',['class'=>'form form-control','required'=>'y']) !!}</td>
 			</tr>
+			<tr>
+				<td>{!!Form::label('tel','Telefono:')!!}</td>
+				<td>{!! Form::text('Telefono',null,['class'=>'form form-control','required'=>'y','pattern'=>'[0-9]{7,10}','autocomplete'=>'off']) !!}</td>
+			</tr>
 			@isset($rol)
 				@if($rol == 3)
 					<tr>

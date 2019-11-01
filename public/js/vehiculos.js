@@ -99,9 +99,5 @@ var elimFot = [];
 			elimFot.splice(encuentraIndice,1);
 			$('#idfot').attr('value',elimFot);
 		}
-
-			
-		
 	});
-
 });
