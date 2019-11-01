@@ -31,9 +31,14 @@ header{
 	padding: 10px 0px;
 }
 /* ESTILO PARA EL MENÚ*/
-.listaMenu li{border-radius: 15px;text-transform: uppercase;}
+.listaMenu li{border-radius: 15px;padding: 0px 5px; text-transform: uppercase;}
 .listaMenu li:hover{background: #416FB3;}
 .listaMenu li a{color: white;}
+
+#opcpanel:hover{background: #305285;}
+.listaMenu li:hover > .sublistaMenu{
+  display: block;
+}
 /* ESTILOS PARA LAS VIEWS DE VEHICULOS */
 
 /*Boton para agregar nuevo vehiculo*/
@@ -165,4 +170,59 @@ header{
 .imagen
 {
     filter: grayscale(0);
+}
+.sublistaMenu{
+  position: absolute;
+  background: #123E80;
+  margin-left: -171px;
+  padding: 10px;
+  width: 200px;
+  text-align: center;
+  display: none;
+  font-size: 13px;
+  -webkit-box-shadow: 0px 3px 15px -3px rgba(128,128,128,1);
+    -moz-box-shadow: 0px 3px 15px -3px rgba(128,128,128,1);
+      box-shadow: 0px 3px 15px -3px rgba(128,128,128,1);
+  z-index: 1;
+}
+.gradiente{
+  font-size: 70px;
+  text-align: center;
+  color: white;
+  padding: 50px 0px;
+  margin-top: 20px;
+  background: rgba(255,255,255,1);
+  background: -moz-linear-gradient(-45deg, rgba(255,255,255,1) 0%, rgba(93,157,240,1) 35%, rgba(12,94,245,1) 51%, rgba(93,157,240,1) 66%, rgba(255,255,255,1) 100%);
+  background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(255,255,255,1)), color-stop(35%, rgba(93,157,240,1)), color-stop(51%, rgba(12,94,245,1)), color-stop(66%, rgba(93,157,240,1)), color-stop(100%, rgba(255,255,255,1)));
+  background: -webkit-linear-gradient(-45deg, rgba(255,255,255,1) 0%, rgba(93,157,240,1) 35%, rgba(12,94,245,1) 51%, rgba(93,157,240,1) 66%, rgba(255,255,255,1) 100%);
+  background: -o-linear-gradient(-45deg, rgba(255,255,255,1) 0%, rgba(93,157,240,1) 35%, rgba(12,94,245,1) 51%, rgba(93,157,240,1) 66%, rgba(255,255,255,1) 100%);
+  background: -ms-linear-gradient(-45deg, rgba(255,255,255,1) 0%, rgba(93,157,240,1) 35%, rgba(12,94,245,1) 51%, rgba(93,157,240,1) 66%, rgba(255,255,255,1) 100%);
+  background: linear-gradient(135deg, rgba(255,255,255,1) 0%, rgba(93,157,240,1) 35%, rgba(12,94,245,1) 51%, rgba(93,157,240,1) 66%, rgba(255,255,255,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffffff', GradientType=1 );
+  -webkit-box-shadow: 0px 3px 19px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 3px 19px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 3px 19px 0px rgba(0,0,0,0.75);
+  animation-duration: 4s;
+  position: absolute;
+  width: 80%;
+  animation-name: mueve;
+  word-break: break-all;
+}
+@keyframes mueve {
+  from {margin-left: -1210px;}
+  to {margin-left: 0px;}
+}
+.tbcuenta{
+  padding: 10px 0px;
+  width: 100%;
+}
+#tbbodycuenta tr div{
+  margin-top: 5px;
+  cursor: default;
+}
+.bordeestilo{
+  margin-top: 10px;
+  border:1px solid #808080;
+  border-radius: 16px;
+  width: 60%;
 }
