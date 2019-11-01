@@ -16,13 +16,17 @@ class UsuariosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function __construct(){
-        $this->middleware('autenticar',['only'=>['paneladmin']]);
+        $this->middleware('autenticar',['only'=>['paneladmin','index']]);
         $this->middleware('Is_admin',['only'=>['storeEmpleado']]);
     }
     public function index()
     {
-        $usuarios = Usuarios::all();
-        return view('usuarios.index',compact('usuarios'));
+        $correo = Session::get('user_session')[0];
+        $user = Usuarios::where('Correo','=',$correo)->first();
+        $rol = Session::get('user_session')[1];
+        //$user2 = Direcciones::where('Correo_id','=',$correo)->with('Usuarios')->first();
+        //dd($user2);
+        return view('usuarios.cuenta',compact('user','rol'));
     }
 
     /**
