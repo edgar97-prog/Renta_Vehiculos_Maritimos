@@ -42,6 +42,11 @@
               <section id="fot">
                 
               </section>
+              <section id="fil">
+                <label>Si desea agregar fotografias, utilice los siguientes botones</label><br>
+              <a href="#" class="btn btn-primary ag_fotomod">+</a><a href="#" class="btn btn-danger rm_fotomod">-</a>
+              </section>
+              <input type="hidden" name="nvafotos" id="nvafotos">
       </center>
       </div>
       <div class="modal-footer">

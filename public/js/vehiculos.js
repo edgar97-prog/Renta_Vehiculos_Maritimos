@@ -8,6 +8,7 @@
 		});
 
 	var contfotos = 0;
+	var contfotosmod = 0;
 	$('.nvo_vehiculo').click(function()
 	{
 			$("#ModalAgregar").modal('show');
@@ -15,6 +16,7 @@
 
 	$('.ag_foto').click(function()
 	{	contfotos++;
+		alert(contfotos);
 		$('#cont').attr('value',contfotos);
 		$('#fila').after('<tr><td> <label name="NoFoto'+contfotos+'"> Fotografia '+contfotos+': </label></td><td><input type="file" name="foto'+contfotos+'" class="form form-control"></td> </tr>');
 	});
@@ -27,6 +29,25 @@
 		$('label[name=NoFoto'+contfotos+']').remove();
 		contfotos--;
 		$('#cont').attr('value',contfotos);
+		
+	}
+	});
+
+	//PARA MODIFICAR
+		$('.ag_fotomod').click(function()
+	{	contfotosmod++;
+		$('#nvafotos').attr('value',contfotosmod);
+		$('#fil').after('<tr><td> <label name="NoFoto'+contfotosmod+'"> Fotografia '+contfotosmod+': </label></td><td><input type="file" name="foto'+contfotosmod+'" class="form form-control"></td> </tr>');
+	});
+
+	$('.rm_fotomod').click(function()
+	{
+	if(contfotosmod>0)
+	{	
+		$('input[name=foto'+contfotosmod+']').remove();
+		$('label[name=NoFoto'+contfotosmod+']').remove();
+		contfotosmod--;
+		$('#nvafotos').attr('value',contfotosmod);
 		
 	}
 	});
