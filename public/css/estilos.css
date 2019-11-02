@@ -167,6 +167,23 @@ header{
   height: 10px;
 }
 
+#busqueda /*  FORMULARIO PARA BUSCAR UN VEHICULO ESPECIFICAMENTE  */
+{
+  position: relative;
+  top:26px;
+  left: 0px;
+  width: 800px;
+  height: 10px;
+}
+/* BOTON PARA CONSULTAR TODOS LOS RESGISTROS DE VEHICULSO VEHICULOS>INDEX */
+#btn_general
+{
+  position: relative;
+  top:16px;
+  left: 440px;
+  width: 200px;
+  
+}
 .imagen
 {
     filter: grayscale(0);

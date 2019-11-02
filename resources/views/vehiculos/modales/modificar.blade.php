@@ -50,7 +50,7 @@
       </center>
       </div>
       <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">Modificar</button>
+        <button type="submit" class="btn btn-primary">Actualizar</button>
         <button type="button" class="btn btn-success" data-dismiss="modal">Cerrar</button>
       </div>
     {!!Form::close()!!}
