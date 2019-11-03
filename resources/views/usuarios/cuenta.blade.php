@@ -40,7 +40,7 @@
 									<td class="col-sm-3">Nombre:</td>
 									<td class="col-sm-9">
 										<div class="form-control" style="width: 100%;text-align: center;">
-											{{$user->Nombre}}
+											{{$user['Nombre']}}
 										</div>
 									</td>
 									</div>
@@ -50,7 +50,7 @@
 									<td class="col-sm-3">Apellido paterno:</td>
 									<td class="col-sm-9">
 										<div class="form-control" style="width: 100%;text-align: center;">
-											{{$user->ApellidoP}}
+											{{$user['ApellidoP']}}
 										</div>
 									</td>
 									</div>
@@ -60,7 +60,7 @@
 									<td class="col-sm-3">Apellido materno:</td>
 									<td class="col-sm-9">
 										<div class="form-control" style="width: 100%;text-align: center;">
-											{{$user->ApellidoM}}
+											{{$user['ApellidoM']}}
 										</div>
 									</td>
 									</div>
@@ -70,7 +70,7 @@
 									<td class="col-sm-3">Sexo:</td>
 									<td class="col-sm-9">
 										<div class="form-control" style="width: 100%;text-align: center;">
-											@if($user->Sexo == 'M')
+											@if($user['Sexo'] == 'M')
 											<i class="fa fa-mars" aria-hidden="true"></i>
 											Masculino
 											@else
