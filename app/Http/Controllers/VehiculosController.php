@@ -105,7 +105,19 @@ class VehiculosController extends Controller
         foreach ($arregloEliminaFoto as $foto ) {
             Fotos::destroy($foto);
         }
-        return redirect()->route('vehiculos.index')->with('mensaje','Modificación exitosa');
+        $arrFotos = array('Foto'=>"",'vehiculos_id'=>$vehiculo->id);
+
+      $contFoto =  $request->nvafotos;
+        for($i=1; $i<=$contFoto; $i++)
+        {
+            $imagen = $request->file('foto'.$i);
+            $nameImage = $imagen->getClientOriginalName();
+            $arrFotos['Foto'] = $nameImage;
+            Fotos::create($arrFotos);
+            $imagen->move('fotos',$nameImage);
+        }
+
+      return redirect()->route('vehiculos.index')->with('mensaje','Modificación exitosa');
 
     }
 
@@ -143,5 +155,13 @@ class VehiculosController extends Controller
       //  return $data[1][1]['id'];
         return json_encode($data,JSON_FORCE_OBJECT);
         }
+    }
+
+    public function busqueda(Request $request)
+    {
+
+        $vehiculos = Vehiculos::where('Nombre','LIKE','%'.$request->nombre.'%')->with('Fotos')->get();
+        #$rol = Session::get('user_session')[1];
+        return view('vehiculos.index',compact('vehiculos'));
     }
 }

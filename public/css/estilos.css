@@ -88,7 +88,11 @@ header{
   padding: 10px;
   text-align: left;
 }
- 
+
+/* ESPACIO PARA LA PLANTILLA*/
+.space {padding:80px 0;}
+.footable >thead >th {color: black;}
+
 .footable > thead > tr > th, .footable > thead > tr > td {
   background-color: #dce9f9;
 }
@@ -167,6 +171,23 @@ header{
   height: 10px;
 }
 
+#busqueda /*  FORMULARIO PARA BUSCAR UN VEHICULO ESPECIFICAMENTE  */
+{
+  position: relative;
+  top:26px;
+  left: 0px;
+  width: 800px;
+  height: 10px;
+}
+/* BOTON PARA CONSULTAR TODOS LOS RESGISTROS DE VEHICULSO VEHICULOS>INDEX */
+#btn_general
+{
+  position: relative;
+  top:16px;
+  left: 440px;
+  width: 200px;
+  
+}
 .imagen
 {
     filter: grayscale(0);
@@ -183,7 +204,7 @@ header{
   -webkit-box-shadow: 0px 3px 15px -3px rgba(128,128,128,1);
     -moz-box-shadow: 0px 3px 15px -3px rgba(128,128,128,1);
       box-shadow: 0px 3px 15px -3px rgba(128,128,128,1);
-  z-index: 1;
+  z-index: 2;
 }
 .gradiente{
   font-size: 70px;

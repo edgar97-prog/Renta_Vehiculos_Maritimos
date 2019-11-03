@@ -21,6 +21,6 @@ class Usuarios extends Model
     	return $this->belongsToMany("App\Vehiculos");
     }
     public function Direcciones(){
-        return $this->belongsTo('App\Direcciones');
+        return $this->hasMany('App\Direcciones','Correo_id');
     }
 }
