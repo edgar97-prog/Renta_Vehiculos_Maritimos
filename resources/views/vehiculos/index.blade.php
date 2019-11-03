@@ -29,7 +29,11 @@
 	</span>
 	<table class="footable">
 	<thead>
+<<<<<<< HEAD
 	<th class="color">
+=======
+	<th>
+>>>>>>> refs/remotes/origin/Proyecto
 		Nombre
 	</th>
 	<th>
