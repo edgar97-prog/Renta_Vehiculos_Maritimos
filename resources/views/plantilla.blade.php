@@ -5,11 +5,19 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script type="text/javascript" src="{{asset('js/jquery.js')}}"></script>
         <script type="text/javascript" src="{{asset('js/bootstrap.min.js')}}"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
         <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.min.css')}}">
         <script type="text/javascript" src="{{asset('js/vehiculos.js')}}"></script>
         <script type="text/javascript" src="{{asset('js/login.js')}}"></script>
         <script type="text/javascript" src="{{asset('js/scripts.js')}}"></script>
+         <!-- Compiled and minified Bootstrap CSS -->
+
+<!-- Minified JS library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- Compiled and minified Bootstrap JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
         <link rel="stylesheet" type="text/css" href="{{asset('css/estilos.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{asset('css/layout.css')}}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <title>The Pelican's</title>
     </head>
@@ -53,7 +61,7 @@
               @endif
             </ul>
         </header>
-        <div class="container cuerpo" id="cuerpo">
+        <div class=" cuerpo" id="cuerpo">
             @yield('cuerpo')
         </div>
         @include('login_modal')
