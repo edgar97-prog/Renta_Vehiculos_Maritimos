@@ -26,8 +26,8 @@ class UsuariosController extends Controller
         if($rol != 2)
             $user = Usuarios::where('Correo','=',$correo)->first()->toArray();
         else
-            $user = Usuarios::where('Correo','=',$correo)->with('Direcciones')->first()->toArray();    
-        
+            $user = Usuarios::where('Correo','=',$correo)->with('Direcciones')->first()->toArray();
+            
         return view('usuarios.cuenta',compact('user','rol'));
     }
 

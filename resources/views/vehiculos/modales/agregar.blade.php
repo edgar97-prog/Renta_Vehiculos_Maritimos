@@ -38,7 +38,7 @@
                 <td>{!!Form::label('foto','Foto Principal:')!!}</td>
                 <td>{!!Form::file('Foto',['class'=>'form form-control'])!!}</td>
                 <td>   <a href="#" class="btn btn-primary ag_foto">+</a></td>
-                 <td>  <a href="#" class="btn btn-danger rm_foto">-</a></td>
+                <td>  <a href="#" class="btn btn-danger rm_foto">-</a></td>
               </tr>
               <input type="hidden" name="contador" id="cont">
             </table>

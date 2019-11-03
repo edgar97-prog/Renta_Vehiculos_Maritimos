@@ -24,6 +24,8 @@ Route::get('/cuenta','UsuariosController@index');
 //Controlador para vehiculos
 Route::resource('/vehiculos','VehiculosController');	
 Route::post('/datos/vehiculo','VehiculosController@datos');
+#BUSQUEDA ESPECIFICA
+Route::post('/busqueda/especifica','VehiculosController@busqueda');
 
 //Rutas para login y logout
 //----------------------------------------
