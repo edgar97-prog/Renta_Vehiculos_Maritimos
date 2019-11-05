@@ -23,14 +23,12 @@ class UsuariosController extends Controller
     public function index()
     {
         $correo = Session::get('user_session')[0];
-        $user = Usuarios::where('Correo','=',$correo)->first();
         $rol = Session::get('user_session')[1];
-        $user2 = Usuarios::where('Correo','=',$correo)->with('Direcciones')->first()->toArray();
-        dd($user2);
-
-        
-        //Direcciones::where('Correo_id','=',$correo)->with('Usuarios')->first();
-        dd($user2);
+        if($rol != 2)
+            $user = Usuarios::where('Correo','=',$correo)->with('Telefonos')->first()->toArray();
+        else
+            $user = Usuarios::where('Correo','=',$correo)->with('Direcciones')->with('Telefonos')->first()->toArray();
+         
         return view('usuarios.cuenta',compact('user','rol'));
     }
 
