@@ -163,6 +163,7 @@ class UsuariosController extends Controller
         session()->forget('user_session');
         return redirect('/');
     }
+
     public function inicio(){
         if(Session::has('user_session')){
             $rol = Session::get('user_session')[1];
@@ -170,15 +171,18 @@ class UsuariosController extends Controller
             $rol = 1;
         }
         $vehiculos = Vehiculos::with('Fotos')->get();
+        if(!is_null($vehiculos)){
         $Fotos = array();
         for ($i=0; $i < 3; $i++) { 
            $numFoto = rand(0,(count($vehiculos)-1));
            $foto = $vehiculos[$numFoto]->fotos[0]['Foto'];
            array_push($Fotos,$foto);
         }
-        
-        return view('welcome',compact('rol','Fotos'));
+            return view('welcome',compact('rol','Fotos'));
+        }
+        return view('welcome',compact('rol'));
     }
+    
     public function storeEmpleado(Request $request)
     {
         $data = request()->validate(
