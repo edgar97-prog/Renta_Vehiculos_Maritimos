@@ -1,3 +1,10 @@
+/*  PARA EL CAROUSEL */
+ .carousel-inner > .item > img {
+  height: 100px;
+  width:  1200px;
+}
+
+
 *{
 	margin:0px;
 	padding:0px;
@@ -10,6 +17,14 @@ header{
 	color: white;
   padding-bottom: 10px;
   padding-right: 5px;
+}
+ /* a{color:#E43F21;}*/
+a:active, a:focus{background:transparent;}
+
+.foot
+{
+  background: #305285;
+  color: white;
 }
 .titulo{
 	font-family: sans-serif;

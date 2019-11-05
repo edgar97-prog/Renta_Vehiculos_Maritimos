@@ -3,6 +3,7 @@
 <a class="nav-link btn btn-warning" href="{{ url('paneladmin') }}">PANEL ADMINISTRATIVO</a>
 </li>
  @endif @endsection @endisset @section('cuerpo')
+ <div class="cuerpo">
 <meta name="_token" content="{!!csrf_token()!!}">
 <div class="container">
 	<center>
@@ -28,12 +29,10 @@
 	<button class="let nvo_vehiculo" style="cursor: pointer;">+</button>
 	</span>
 	<table class="footable">
-	<thead>
-<<<<<<< HEAD
-	<th class="color">
-=======
+		<thead>
+
 	<th>
->>>>>>> refs/remotes/origin/Proyecto
+
 		Nombre
 	</th>
 	<th>
@@ -74,6 +73,7 @@
 	</table>
 </div>
  @include('vehiculos.modales.agregar') @include('vehiculos.modales.modificar') @if($errors->any())
+ </div>
 <script>
 		$('#ModalAgregar').modal('show');
 </script>

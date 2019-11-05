@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Usuarios;
 use App\Direcciones;
 use App\Telefonos;
+use App\Vehiculos;
 use Illuminate\Http\Request;
 use Session;
 
@@ -168,7 +169,15 @@ class UsuariosController extends Controller
         }else{
             $rol = 1;
         }
-        return view('welcome',compact('rol'));
+        $vehiculos = Vehiculos::with('Fotos')->get();
+        $Fotos = array();
+        for ($i=0; $i < 3; $i++) { 
+           $numFoto = rand(0,(count($vehiculos)-1));
+           $foto = $vehiculos[$numFoto]->fotos[0]['Foto'];
+           array_push($Fotos,$foto);
+        }
+        
+        return view('welcome',compact('rol','Fotos'));
     }
     public function storeEmpleado(Request $request)
     {

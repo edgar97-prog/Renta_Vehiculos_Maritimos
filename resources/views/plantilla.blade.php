@@ -3,19 +3,12 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.min.css')}}">
         <script type="text/javascript" src="{{asset('js/jquery.js')}}"></script>
         <script type="text/javascript" src="{{asset('js/bootstrap.min.js')}}"></script>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
-        <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.min.css')}}">
         <script type="text/javascript" src="{{asset('js/vehiculos.js')}}"></script>
         <script type="text/javascript" src="{{asset('js/login.js')}}"></script>
         <script type="text/javascript" src="{{asset('js/scripts.js')}}"></script>
-         <!-- Compiled and minified Bootstrap CSS -->
-
-<!-- Minified JS library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!-- Compiled and minified Bootstrap JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
         <link rel="stylesheet" type="text/css" href="{{asset('css/estilos.css')}}">
         <link rel="stylesheet" type="text/css" href="{{asset('css/layout.css')}}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -70,15 +63,69 @@
             $('#login').modal('show');
         </script>
         @endif
-        <footer class="footer">
-            <div class="container">
-                <h4>&copy; 2019 Todos los derechos reservados</h4>
-                <ul>
-                    <li><a href="#">Acerca de</a></li>
-                    <li><a href="#">Contactanos</a></li>
-                    <li><a href="#">Redes Sociales</a></li>
-                </ul>   
-            </div>
-        </footer>
+        <br><br><br><br>
+<div class="wrapper row4">
+  <footer id="footer" class="hoc clear foot"> 
+    <!-- ################################################################################################ -->
+    <div class="one_third first">
+      <h6 class="heading">Contacto</h6>
+      <ul class="nospace btmspace-30 linklist contact">
+        <li><i class="fa fa-map-marker"></i>
+          <address>
+          Street Name &amp; Number, Town, Postcode/Zip
+          </address>
+        </li>
+        <li><i class="fa fa-phone"></i> +52 744 458 0581</li>
+        <li><i class="fa fa-envelope-o"></i> pelicans@dominio.com</li>
+      </ul>
+      <ul class="faico clear">
+        <li><a class="faicon-facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+        <li><a class="faicon-twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+      </ul>
+    </div>
+    <div class="one_third">
+      <h6 class="heading">In faucibus orci luctus</h6>
+      <ul class="nospace linklist">
+        <li>
+          <article>
+            <h2 class="nospace font-x1"><a href="#">Ultrices posuere cubilia</a></h2>
+            <time class="font-xs block btmspace-10" datetime="2045-04-06">Friday, 6<sup>th</sup> April 2045</time>
+            <p class="nospace">Lorem laoreet blandit donec mollis lacinia massa tincidunt malesuada [&hellip;]</p>
+          </article>
+        </li>
+        <li>
+          <article>
+            <h2 class="nospace font-x1"><a href="#">Curae cras tincidunt eros</a></h2>
+            <time class="font-xs block btmspace-10" datetime="2045-04-05">Thursday, 5<sup>th</sup> April 2045</time>
+            <p class="nospace">In id semper turpis in tristique dui ut ac mauris magna nunc eros enim [&hellip;]</p>
+          </article>
+        </li>
+      </ul>
+    </div>
+    <div class="one_third">
+      <h6 class="heading">DUDAS O COMENTARIOS</h6>
+      <p class="nospace btmspace-30">No dudes en enviarnos dudas o comentarios a continuación.</p>
+      <form method="post" action="#">
+        <fieldset>
+          <legend>Escribe Aquí:</legend>
+        <textarea class="btmspace-15"></textarea>
+          <button type="submit" value="submit">Enviar</button>
+        </fieldset>
+      </form>
+    </div>
+    <!-- ################################################################################################ -->
+  </footer>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row5">
+  <div id="copyright" class="hoc clear"> 
+    <!-- ################################################################################################ -->
+    <p class="fl_left">Copyright &copy; 2018 - All Rights Reserved - <a href="#">Domain Name</a></p>
+    <p class="fl_right">Template by <a target="_blank" href="https://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>
+    <!-- ################################################################################################ -->
+  </div>
+</div>
     </body>
 </html>

@@ -34,3 +34,6 @@ Route::get('/logout','UsuariosController@logout');
 Route::post('/login','UsuariosController@login');
 //----------------------------------------
 
+//RUTAS PARA EL CATALOGO DE PRODUCTOS
+
+Route::post('/catalogo','VehiculosController@catalogo');
