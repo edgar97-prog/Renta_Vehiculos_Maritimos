@@ -23,4 +23,7 @@ class Usuarios extends Model
     public function Direcciones(){
         return $this->hasMany('App\Direcciones','Correo_id');
     }
+    public function Telefonos(){
+        return $this->hasMany('App\Telefonos','Usuario_id');
+    }
 }

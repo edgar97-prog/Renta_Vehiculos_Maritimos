@@ -40,7 +40,7 @@
 									<td class="col-sm-3">Nombre:</td>
 									<td class="col-sm-9">
 										<div class="form-control" style="width: 100%;text-align: center;">
-											{{$user['Nombre']}}
+											{{$user['Nombre']}} 
 										</div>
 									</td>
 									</div>
@@ -79,6 +79,58 @@
 											@endif
 										</div>
 									</td>
+									</div>
+								</tr>
+								<tr>
+									<div class="row">
+									<td class="col-sm-3">Telefono:</td>
+									<td class="col-sm-9">
+										<div class="form-control" style="width: 100%;text-align: center;">
+											{{$user['telefonos'][0]['Telefono']}}
+										</div>
+									</td>
+									</div>
+								</tr>
+								<tr>
+									<div class="row">
+										<td class="col-sm-12" colspan="2" align="center"><hr></td>
+									</div>
+								</tr>
+								@if($rol == 2)
+								<tr>
+									<div class="row">
+										<td class="col-sm-3">Calle:</td>
+										<td class="col-sm-9">
+											<div class="form-control" style="width: 100%;text-align: center;">
+												{{$user['direcciones'][0]['Calle']}}
+											</div>
+										</td>
+									</div>
+								</tr>
+								<tr>
+									<div class="row">
+										<td class="col-sm-3">Colonia:</td>
+										<td class="col-sm-9">
+											<div class="form-control" style="width: 100%;text-align: center;">
+												{{$user['direcciones'][0]['Colonia']}}
+											</div>
+										</td>
+									</div>
+								</tr>
+								<tr>
+									<div class="row">
+										<td class="col-sm-3">Colonia:</td>
+										<td class="col-sm-9">
+											<input type="text" class="form-control" style="width: 100%;text-align: center;" value="{{$user['direcciones'][0]['CP']}}">
+										</td>
+									</div>
+								</tr>
+								@endif
+								<tr>
+									<div class="row">
+										<td colspan="2" class="col-sm-12" align="center"style="padding-top: 10px;">
+											<button class="btn btn-primary" style="width: 50%;">Modificar</button>
+										</td>
 									</div>
 								</tr>
 							</tbody>

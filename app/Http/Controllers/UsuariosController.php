@@ -24,10 +24,10 @@ class UsuariosController extends Controller
         $correo = Session::get('user_session')[0];
         $rol = Session::get('user_session')[1];
         if($rol != 2)
-            $user = Usuarios::where('Correo','=',$correo)->first()->toArray();
+            $user = Usuarios::where('Correo','=',$correo)->with('Telefonos')->first()->toArray();
         else
-            $user = Usuarios::where('Correo','=',$correo)->with('Direcciones')->first()->toArray();
-            
+            $user = Usuarios::where('Correo','=',$correo)->with('Direcciones')->with('Telefonos')->first()->toArray();
+         
         return view('usuarios.cuenta',compact('user','rol'));
     }
 
