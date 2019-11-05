@@ -164,4 +164,9 @@ class VehiculosController extends Controller
         #$rol = Session::get('user_session')[1];
         return view('vehiculos.index',compact('vehiculos'));
     }
+
+    public function catalogo()
+    {
+        return "Si llega al catalogo";
+    }
 }

@@ -3,6 +3,7 @@
 <a class="nav-link btn btn-warning" href="{{ url('paneladmin') }}">PANEL ADMINISTRATIVO</a>
 </li>
  @endif @endsection @endisset @section('cuerpo')
+ <div class="cuerpo">
 <meta name="_token" content="{!!csrf_token()!!}">
 <div class="container">
 	<center>
@@ -30,6 +31,8 @@
 	<table class="footable">
 	<thead>
 	<th class="color">
+		<thead>
+
 	<th>
 		Nombre
 	</th>
@@ -71,6 +74,7 @@
 	</table>
 </div>
  @include('vehiculos.modales.agregar') @include('vehiculos.modales.modificar') @if($errors->any())
+ </div>
 <script>
 		$('#ModalAgregar').modal('show');
 </script>
