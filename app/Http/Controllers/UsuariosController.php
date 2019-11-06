@@ -89,6 +89,8 @@ class UsuariosController extends Controller
              'Sexo.regex'=>'El atributo sexo se ha modificado, intente nuevamente recargando la página.']);
         Usuarios::create($request->all());
         $clave = array($request->Correo,1);
+        $arregloTel = array('Telefono'=>$request->Telefono,'Usuario_id'=>$request->Correo);
+        Telefonos::create($arregloTel);
         $request->session()->put('user_session',$clave);
         return redirect('/');
     }
@@ -125,6 +127,17 @@ class UsuariosController extends Controller
     public function update(Request $request, Usuarios $usuarios)
     {
         //
+        if(!$request->isMethod("PUT"))
+            return redirect('/cuenta');
+        $usuario = Usuarios::where('Correo','=',Session::get('user_session')[0])->first();
+        $usuario->update($request->all());
+        $telefono = Telefonos::where('Usuario_id','=',Session::get('user_session')[0])->first();
+        $telefono->update($request->all());
+        if(Session::get('user_session')[1] == 2){
+            $direccion = Direcciones::where('Correo_id','=',Session::get('user_session')[0])->first();
+            $direccion->update($request->all());
+        }
+        return redirect()->route('usuarios.index')->with('mensaje','Modificación exitosa');
     }
 
     /**

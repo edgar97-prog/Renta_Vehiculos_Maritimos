@@ -19,8 +19,7 @@ Route::post('/nvoEmpleado','UsuariosController@storeEmpleado');
 Route::get('/paneladmin','UsuariosController@paneladmin');
 Route::get('/Empleados','UsuariosController@datosEmpleado');
 Route::post('/datosEmp','UsuariosController@infoEmpleados');
-Route::get('/cuenta','UsuariosController@index');
-
+//Route::get('/cuenta','UsuariosController@index');
 //Controlador para vehiculos
 Route::resource('/vehiculos','VehiculosController');	
 Route::post('/datos/vehiculo','VehiculosController@datos');
