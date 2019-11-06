@@ -23,4 +23,9 @@ class Usuarios extends Model
     public function Direcciones(){
         return $this->hasMany('App\Direcciones','Correo_id');
     }
+
+    public function Comentarios()
+    {
+        return $this->hasMany(Comentarios::class);
+    }
 }

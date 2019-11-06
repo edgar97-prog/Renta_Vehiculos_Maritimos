@@ -159,6 +159,7 @@
 <a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
 <!-- JAVASCRIPTS -->
 @include('modalVehiculo.oferta')
+@include('modal.modalComentario')
   <script>
     $('#ModalOferta').modal('show');
   </script>
