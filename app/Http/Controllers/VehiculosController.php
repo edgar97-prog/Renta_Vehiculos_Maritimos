@@ -73,9 +73,11 @@ class VehiculosController extends Controller
      * @param  \App\Vehiculos  $vehiculos
      * @return \Illuminate\Http\Response
      */
-    public function show(Vehiculos $vehiculos)
+    public function show(Vehiculos $vehiculos,$id)
     {
         //
+        $vehiculo = Vehiculos::where('id','=',$id)->with('Fotos')->get();
+        return view('vehiculos.vehiculodetalle',compact('vehiculo'));
     }
 
     /**

@@ -12,6 +12,15 @@
 
 @section('cuerpo')
 	<center>
+		@if($errors->actualiza->any())
+        @foreach($errors->actualiza->all() as $error)
+        <br>
+        <div class="alert alert-danger">
+          {{$error}}
+        </div>
+        @break
+        @endforeach
+        @endif
 		<table align="center" class="tbcuenta">
 			<thead align="center">
 				<tr>

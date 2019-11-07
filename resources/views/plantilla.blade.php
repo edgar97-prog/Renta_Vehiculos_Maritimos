@@ -58,7 +58,7 @@
             @yield('cuerpo')
         </div>
         @include('login_modal')
-        @if($errors->any())
+        @if($errors->login->any())
         <script>
           $('#login').modal('show');
         </script>

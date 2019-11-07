@@ -21,8 +21,8 @@
 	<h3 class="subtitle">REGISTRATE</h3>
 @endisset
 
-@if($errors->any())
-	@foreach($errors->all() as $error)
+@if($errors->registro->any())
+	@foreach($errors->registro->all() as $error)
 		<div class="alert alert-danger">
 			{{$error}}
 		</div>

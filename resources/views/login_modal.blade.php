@@ -7,8 +7,8 @@
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 			</div>
 			<div class="modal-body">
-				@if($errors->any())
-				@foreach($errors->all() as $error)
+				@if($errors->login->any())
+				@foreach($errors->login->all() as $error)
 				<div class="alert alert-danger">
 					{{$error}}
 				</div>
