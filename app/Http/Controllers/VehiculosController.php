@@ -76,8 +76,10 @@ class VehiculosController extends Controller
     public function show(Vehiculos $vehiculos,$id)
     {
         //
-        $vehiculo = Vehiculos::where('id','=',$id)->with('Fotos')->get();
-        return view('vehiculos.vehiculodetalle',compact('vehiculo'));
+        $vehiculo = Vehiculos::where('id','=',$id)->with('Fotos')->first();
+        $rol = Session::get('user_session')[1];
+        $fotos = $vehiculo['fotos'];
+        return view('vehiculos.vehiculodetalle',compact('rol','vehiculo','fotos'));
     }
 
     /**
