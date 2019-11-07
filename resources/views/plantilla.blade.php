@@ -25,7 +25,7 @@
                 <a class="nav-link active" href="{{ url('/') }}">INICIO</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">CATÁLOGO</a>
+                <a class="nav-link" href="{{url('/catalogo')}}">CATÁLOGO</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">CONTACTO</a>

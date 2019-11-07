@@ -14,7 +14,7 @@ class Vehiculos extends Model
 
     public function Fotos()
     {
-    	return $this->hasMany("App\Fotos",'Vehiculo_id');
+    	return $this->hasMany("App\Fotos");
     }
 
     public function Usuarios()

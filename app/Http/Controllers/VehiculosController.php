@@ -16,8 +16,8 @@ class VehiculosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function __construct(){
-        $this->middleware('autenticar');
-        $this->middleware('Both_user');
+        $this->middleware('autenticar',['only'=>['store','index','show','update','destroy','datos,','busqueda']]);
+        $this->middleware('Both_user',['only'=>['store','index','show','update','destroy','datos,','busqueda']]);
     }
     public function index()
     {
@@ -170,7 +170,17 @@ class VehiculosController extends Controller
     }
 
     public function catalogo()
-    {
-        return "Si llega al catalogo";
+    {   
+        $vehiculos = Vehiculos::with('Fotos')->get();
+        $rol = Session::get('user_session')[1];
+        $vehiculo = $vehiculos[0];
+        //dd($vehiculo['fotos'][0]['Foto']);
+        //dd(count($vehiculo['fotos']));
+        if(!empty($vehiculos)){
+
+            return view('vehiculos.catalogo', compact('vehiculos','rol'));
+        }else{
+            return route('/');
+        }
     }
 }
