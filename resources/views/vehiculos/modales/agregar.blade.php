@@ -31,6 +31,10 @@
                 <td>{!! Form::text('precioRenta',null,['class'=>'form form-control','required'=>'y']) !!}</td>
               </tr>
               <tr>
+                <td>{!!Form::label('¿El vehiculo tiene descuento?')!!} </td>
+                <td>{!! Form::select('descuento',['s'=>'Si','n'=>'No'],'n',['class'=>'form form-control']) !!}</td>
+              </tr>
+              <tr>
                 <td>{!!Form::label('cantidad','Cantidad:')!!}</td>
                 <td>{!!Form::text('Cantidad',null,['class'=>'form form-control','required'=>'y']) !!}</td>
               </tr>

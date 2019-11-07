@@ -59,6 +59,25 @@ $(document).ready(function(){
 		});
 		
 	});
+
+
+				$('.btnComentarios').click(function(){
+
+					var comentario = $('.coment').val();
+					$.ajax({
+						type: 'POST',
+						url: '/comentario',
+						data: {comentario: comentario},
+						success:function(mensaje)
+						{	
+							$('.coment').val('');
+							$('.comentarioModal').append('<center><label>'+ mensaje +'</label></center>');
+							$('#ModalComent').modal('show');
+						}
+					});
+
+				});
+
 	$('#frmcuenta').on('submit',function(event){
 		if($('#btnDesb').length){
 			event.preventDefault();
@@ -81,4 +100,5 @@ $(document).ready(function(){
 		event.preventDefault();
 		location.reload(true);
 	});
+
 });

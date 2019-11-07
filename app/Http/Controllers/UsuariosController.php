@@ -6,6 +6,7 @@ use App\Usuarios;
 use App\Direcciones;
 use App\Telefonos;
 use App\Vehiculos;
+use App\Comentarios;
 use Illuminate\Http\Request;
 use Session;
 use Illuminate\Support\Facades\Validator;
@@ -244,7 +245,8 @@ class UsuariosController extends Controller
     }
     public function inicio(){
         if(Session::has('user_session')){
-            $rol = Session::get('user_session')[1];
+           $rol = Session::get('user_session')[1];
+        
         }else{
             $rol = 1;
         }
@@ -334,4 +336,31 @@ class UsuariosController extends Controller
         $arreglo = array($dir[0],$tel[0]);
         return json_encode($arreglo,JSON_FORCE_OBJECT);   
     }
+
+    public function comentario(Request $request)
+    {
+       
+        $comentario = $request->comentario;
+        $email = Session::get('user_session')[0];
+        $existenciaComent = Comentarios::where('correoUser_id','=',$email)->get()->toArray();
+        if(empty($existenciaComent))
+        {
+             $datos = array('correoUser_id' => $email, 'comentario'=>$comentario );
+        if(Comentarios::create($datos))
+            return "Comentario Enviado, Gracias.";
+        else
+            return "Ha Ocurrido un Error, intetelo de nuevo.";
+        }
+        else
+        {
+           $nuevoComent = $existenciaComent[0]['comentario']." !<> ".$comentario;
+           $recursoComentario = Comentarios::where('correoUser_id','=',$email)->first();
+           $recursoComentario->comentario = $nuevoComent;
+           if($recursoComentario->save())
+             return "Comentario Enviado, Gracias.";
+        else
+            return "Ha Ocurrido un Error, intetelo de nuevo.";
+        }
+       
+   }
 }

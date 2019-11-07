@@ -36,3 +36,6 @@ Route::post('/login','UsuariosController@login');
 //RUTAS PARA EL CATALOGO DE PRODUCTOS
 
 Route::post('/catalogo','VehiculosController@catalogo');
+
+//RUTA PARA ENVIAR LOS COMENTARIOS
+Route::post('/comentario','UsuariosController@comentario');
