@@ -304,8 +304,13 @@ a:active, a:focus{background:transparent;}
 .DescProd,{font-size: 25px;word-wrap: break-word;}
 .PrecProd{
   font-size: 44px;
-  color: green;
+  color: #333;
   padding: 10px;
   padding-top: 25px;
   font-family: Proxima Nova,-apple-system,Helvetica Neue,Helvetica,Roboto,Arial,sans-serif;
+}
+.descuento{
+  font-size: 15px;
+  color: green;
+  font-style: italic;
 }

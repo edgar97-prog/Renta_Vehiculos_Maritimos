@@ -36,6 +36,7 @@
 	<div class="col-details">
 		<div class="tituloProd">
 			{{$vehiculo['Nombre']}}
+			<span class="ui-icon ui-icon-heart"></span>
 		</div>
 		<hr>
 		<div class="DescProd">
@@ -43,6 +44,12 @@
 		</div>
 		<div class="PrecProd">
 			${{$vehiculo['precioRenta']}}
+			<span class="descuento">10% OFF</span>
+		</div>
+		<div style="margin-top: 30px;">
+			<button class="btn btn-warning" style="width: 100%;">
+				¡RENTAR AHORA!
+			</button>
 		</div>
 	</div>
 </div>
