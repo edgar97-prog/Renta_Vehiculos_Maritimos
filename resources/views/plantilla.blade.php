@@ -43,7 +43,7 @@
                   <ul class="nav sublistaMenu">
                     @if(session()->has('user_session'))
                     <li class="nav-item">
-                      <a class="nav-link" href="{{ url('/cuenta') }}">CONFIGURAR CUENTA</a>
+                      <a class="nav-link" href="{{ url('/usuarios') }}">CONFIGURAR CUENTA</a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" href="{{ action('UsuariosController@logout') }}">CERRAR SESIÓN</a>
@@ -54,13 +54,13 @@
               @endif
             </ul>
         </header>
-        <div class=" cuerpo" id="cuerpo">
+        <div class="container cuerpo" id="cuerpo">
             @yield('cuerpo')
         </div>
         @include('login_modal')
-        @if($errors->any())
+        @if($errors->login->any())
         <script>
-            $('#login').modal('show');
+          $('#login').modal('show');
         </script>
         @endif
         <br><br><br><br>
@@ -105,14 +105,17 @@
     <div class="one_third">
       <h6 class="heading">DUDAS O COMENTARIOS</h6>
       <p class="nospace btmspace-30">No dudes en enviarnos dudas o comentarios a continuación.</p>
-      <form method="post" action="#">
         <fieldset>
           <legend>Escribe Aquí:</legend>
-        <textarea class="btmspace-15"></textarea>
-          <button type="submit" value="submit">Enviar</button>
+        <textarea class="btmspace-15 coment"></textarea>
+         @if(session()->has('user_session'))
+          <button type="button" value="button" class="btnComentarios">Enviar</button>
+          @else
+          <label>Inicia sesión o registrate para enviar un comentario.</label>
+          @endif
         </fieldset>
-      </form>
     </div>
+    <meta name="_token" content="{{ csrf_token() }}">
     <!-- ################################################################################################ -->
   </footer>
 </div>

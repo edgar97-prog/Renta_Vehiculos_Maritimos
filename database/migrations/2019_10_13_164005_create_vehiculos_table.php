@@ -18,6 +18,8 @@ class CreateVehiculosTable extends Migration
             $table->String('Nombre','30');
             $table->String('Descripcion','255');
             $table->Float('precioRenta')->unsigned();
+            $table->Float('precioDescuento')->unsigned()->nullable();
+            $table->String('Descuento','1');
             $table->smallInteger('Cantidad')->unsigned();
         });
     }

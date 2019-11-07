@@ -10,7 +10,10 @@
 @endisset
 
 @section('cuerpo')
-
+<script>
+  var bod = document.getElementById("cuerpo");
+  bod.classList.remove("container");
+</script>
 <div class="wrapper bgded overlay" style="background-image:url('{{asset("imagenesInicio/inicio.png")}}');">
   <div id="pageintro" class="hoc clear"> 
     <!-- ################################################################################################ -->
@@ -159,6 +162,7 @@
 <a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
 <!-- JAVASCRIPTS -->
 @include('modalVehiculo.oferta')
+@include('modal.modalComentario')
   <script>
     $('#ModalOferta').modal('show');
   </script>

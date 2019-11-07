@@ -223,15 +223,19 @@ a:active, a:focus{background:transparent;}
 }
 .tbcuenta{
   padding: 10px 0px;
-  width: 100%;
-}
-#tbbodycuenta tr div{
-  margin-top: 5px;
-  cursor: default;
-}
-.bordeestilo{
+  width: 60%;
   margin-top: 10px;
   border:1px solid #808080;
-  border-radius: 16px;
-  width: 60%;
 }
+#frmcuenta input[type='text'],#frmcuenta select{
+  margin-top: 5px;
+  cursor: default;
+  pointer-events: none;
+  text-align: center;
+}
+@media (max-width: 466px) {
+  .tbcuenta{
+    width: 100%;
+  }
+}
+#btnCancelar{display: none;}

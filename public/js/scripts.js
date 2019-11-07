@@ -59,4 +59,46 @@ $(document).ready(function(){
 		});
 		
 	});
+
+
+				$('.btnComentarios').click(function(){
+
+					var comentario = $('.coment').val();
+					$.ajax({
+						type: 'POST',
+						url: '/comentario',
+						data: {comentario: comentario},
+						success:function(mensaje)
+						{	
+							$('.coment').val('');
+							$('.comentarioModal').append('<center><label>'+ mensaje +'</label></center>');
+							$('#ModalComent').modal('show');
+						}
+					});
+
+				});
+
+	$('#frmcuenta').on('submit',function(event){
+		if($('#btnDesb').length){
+			event.preventDefault();
+			$('#frmcuenta').find("input").css('pointer-events','auto');
+			$('#frmcuenta').find("select").css('pointer-events','auto');
+			$("input[name='Nombre']").focus();
+			$('input[type="text"]').css('cursor','text');
+			$('#btnCancelar').css('display','block');
+			$('#btnDesb').attr("id","btnMod");
+			$('#btnMod').css('min-width','155px');
+			$('#btnMod').html("Guardar cambios <i class='fa fa-pencil'></i>");
+			document.getElementById("btnMod").classList.remove("btn-primary");
+			document.getElementById("btnMod").classList.add("btn-success");
+			$('#btnMod').on('click',function(){
+				//event.preventDefault();
+			});
+		}
+	});
+	$('#btnCancelar').on('click',function(){
+		event.preventDefault();
+		location.reload(true);
+	});
+
 });
