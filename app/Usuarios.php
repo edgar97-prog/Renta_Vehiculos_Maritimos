@@ -24,11 +24,15 @@ class Usuarios extends Model
         return $this->hasMany('App\Direcciones','Correo_id');
     }
 
+
     public function Comentarios()
     {
         return $this->hasMany(Comentarios::class);
     }
+
+
     public function Telefonos(){
         return $this->hasMany('App\Telefonos','Usuario_id');
+
     }
 }
