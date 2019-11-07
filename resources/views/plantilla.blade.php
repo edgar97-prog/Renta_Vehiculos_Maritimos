@@ -43,7 +43,7 @@
                   <ul class="nav sublistaMenu">
                     @if(session()->has('user_session'))
                     <li class="nav-item">
-                      <a class="nav-link" href="{{ url('/cuenta') }}">CONFIGURAR CUENTA</a>
+                      <a class="nav-link" href="{{ url('/usuarios') }}">CONFIGURAR CUENTA</a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" href="{{ action('UsuariosController@logout') }}">CERRAR SESIÓN</a>
@@ -54,13 +54,13 @@
               @endif
             </ul>
         </header>
-        <div class=" cuerpo" id="cuerpo">
+        <div class="container cuerpo" id="cuerpo">
             @yield('cuerpo')
         </div>
         @include('login_modal')
         @if($errors->any())
         <script>
-            $('#login').modal('show');
+          $('#login').modal('show');
         </script>
         @endif
         <br><br><br><br>
