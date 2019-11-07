@@ -16,7 +16,6 @@
 
 	$('.ag_foto').click(function()
 	{	contfotos++;
-		alert(contfotos);
 		$('#cont').attr('value',contfotos);
 		$('#fila').after('<tr><td> <label name="NoFoto'+contfotos+'"> Fotografia '+contfotos+': </label></td><td><input type="file" name="foto'+contfotos+'" class="form form-control"></td> </tr>');
 	});

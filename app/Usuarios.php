@@ -30,6 +30,7 @@ class Usuarios extends Model
         return $this->hasMany(Comentarios::class);
     }
 
+
     public function Telefonos(){
         return $this->hasMany('App\Telefonos','Usuario_id');
 

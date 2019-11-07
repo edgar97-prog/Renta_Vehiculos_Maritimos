@@ -9,6 +9,7 @@ use App\Vehiculos;
 use App\Comentarios;
 use Illuminate\Http\Request;
 use Session;
+use Illuminate\Support\Facades\Validator;
 
 class UsuariosController extends Controller
 {
@@ -64,7 +65,7 @@ class UsuariosController extends Controller
      */
     public function store(Request $request)
     {
-        $data = request()->validate(
+        $validator = Validator::make($request->all(),
             ['Correo'=>'required|max:50',
              'Contra'=>'required|min:8|max:30',
              'Nombre'=>'required|min:3|max:20|regex:/[a-zA-Z ñÑáéíóúÁÉÍÓÚ]/u',
@@ -88,6 +89,9 @@ class UsuariosController extends Controller
              'ApellidoM.max'=>'El apellido materno es demasiado largo',
              'ApellidoM.regex'=>'El apellido materno sólo debe contener letras',
              'Sexo.regex'=>'El atributo sexo se ha modificado, intente nuevamente recargando la página.']);
+        if($validator->fails()){
+            return redirect('/usuarios/create')->withErrors($validator,'registro');
+        }
         Usuarios::create($request->all());
         $clave = array($request->Correo,1);
         $arregloTel = array('Telefono'=>$request->Telefono,'Usuario_id'=>$request->Correo);
@@ -130,6 +134,67 @@ class UsuariosController extends Controller
         //
         if(!$request->isMethod("PUT"))
             return redirect('/cuenta');
+        if(Session::get('user_session')[1] == 2){
+        $validator = Validator::make($request->all(), 
+            ['Nombre'=>'required|min:3|max:20|regex:/[a-zA-Z ñÑáéíóúÁÉÍÓÚ]/u',
+             'ApellidoP'=>'required|min:3|max:20|regex:/[a-zA-Z ñÑáéíóúÁÉÍÓÚ]/u',
+             'ApellidoM'=>'required|min:3|max:20|regex:/[a-zA-Z ñÑáéíóúÁÉÍÓÚ]/u',
+             'Sexo'=>'min:1|max:1|regex:/[MF]/u',
+             'Telefono'=>['required','min:7','max:10','regex:/(\b[0-9]{7}$|\b[0-9]{10}$)/u'],
+             'Calle'=>'required|min:5|max:50|regex:/[a-zA-Z ñÑáéíóúÁÉÍÓÚ#]/u',
+             'Colonia'=>'required|min:5|max:50|regex:/[a-zA-Z ñÑáéíóúÁÉÍÓÚ]/u',
+             'CP'=>['required','min:5','max:5','regex:/(\b[0-9]{5}$)/u']],
+            ['Nombre.required'=>'El nombre es un campo requerido',
+             'Nombre.min'=>'El nombre debe contener al menos 3 caracteres',
+             'Nombre.max'=>'El nombre es demasiado largo',
+             'Nombre.regex'=>'El nombre sólo debe contener letras',
+             'ApellidoP.required'=>'El apellido paterno es un campo requerido',
+             'ApellidoP.min'=>'El apellido paterno debe contener al menos 3 caracteres',
+             'ApellidoP.max'=>'El apellido paterno es demasiado largo',
+             'ApellidoP.regex'=>'El apellido paterno sólo debe contener letras',
+             'ApellidoM.required'=>'El apellido materno es un campo requerido',
+             'ApellidoM.min'=>'El apellido materno debe contener al menos 3 caracteres',
+             'ApellidoM.max'=>'El apellido materno es demasiado largo',
+             'ApellidoM.regex'=>'El apellido materno sólo debe contener letras',
+             'Sexo.regex'=>'El atributo sexo se ha modificado, intente nuevamente recargando la página.',
+             'Telefono.min'=>'El telefono está incompleto.',
+             'Telefono.max'=>'El telefono contiene números de más.',
+             'Telefono.regex'=>'El campo telefono tiene un formato distinto.',
+             'Calle.min'=>'El nombre de la calle tiene pocos carácteres. min. 5',
+             'Calle.max'=>'El nombre de la calle tiene demasiados carácteres. max 50.',
+             'Colonia.min'=>'El nombre de la colonia tiene pocos carácteres. min. 5',
+             'Colonia.max'=>'El nombre de la colonia tiene demasiados carácteres. max 50.',
+             'Calle.regex'=>'El nombre de la calle contiene carácteres no válidos.',
+             'Colonia.regex'=>'El nombre de la colonia contiene carácteres no válidos.',
+             'CP.min'=>'El código postal debe contener 5 digitos.',
+             'CP.max'=>'El código postal debe contener 5 digitos.']);
+        }else{
+            $validator = Validator::make($request->all(), 
+            ['Nombre'=>'required|min:3|max:20|regex:/[a-zA-Z ñÑáéíóúÁÉÍÓÚ]/u',
+             'ApellidoP'=>'required|min:3|max:20|regex:/[a-zA-Z ñÑáéíóúÁÉÍÓÚ]/u',
+             'ApellidoM'=>'required|min:3|max:20|regex:/[a-zA-Z ñÑáéíóúÁÉÍÓÚ]/u',
+             'Sexo'=>'min:1|max:1|regex:/[MF]/u',
+             'Telefono'=>['required','min:7','max:10','regex:/(\b[0-9]{7}$|\b[0-9]{10}$)/u']],
+            ['Nombre.required'=>'El nombre es un campo requerido',
+             'Nombre.min'=>'El nombre debe contener al menos 3 caracteres',
+             'Nombre.max'=>'El nombre es demasiado largo',
+             'Nombre.regex'=>'El nombre sólo debe contener letras',
+             'ApellidoP.required'=>'El apellido paterno es un campo requerido',
+             'ApellidoP.min'=>'El apellido paterno debe contener al menos 3 caracteres',
+             'ApellidoP.max'=>'El apellido paterno es demasiado largo',
+             'ApellidoP.regex'=>'El apellido paterno sólo debe contener letras',
+             'ApellidoM.required'=>'El apellido materno es un campo requerido',
+             'ApellidoM.min'=>'El apellido materno debe contener al menos 3 caracteres',
+             'ApellidoM.max'=>'El apellido materno es demasiado largo',
+             'ApellidoM.regex'=>'El apellido materno sólo debe contener letras',
+             'Sexo.regex'=>'El atributo sexo se ha modificado, intente nuevamente recargando la página.',
+             'Telefono.min'=>'El telefono está incompleto.',
+             'Telefono.max'=>'El telefono contiene números de más.',
+             'Telefono.regex'=>'El campo telefono tiene un formato distinto.']);
+        } 
+        if($validator->fails()){
+            return redirect('/usuarios')->withErrors($validator,'actualiza');
+        }
         $usuario = Usuarios::where('Correo','=',Session::get('user_session')[0])->first();
         $usuario->update($request->all());
         $telefono = Telefonos::where('Usuario_id','=',Session::get('user_session')[0])->first();
@@ -154,13 +219,16 @@ class UsuariosController extends Controller
     }
 
     public function login(Request $request){
-        
-        $data = request()->validate(['Correo'=>'required|min:9|max:50','Contra'=>'required|max:25'],['Correo.required'=>'Es necesario que ingrese su correo','Correo.min'=>'El correo no cumple con lo requerido','Correo.max'=>'El correo excede el límite de caracteres','Contra.max'=>'La contraseña excede el límite de caracteres']);
+        $validator = Validator::make($request->all(),
+            ['Correo'=>'required|min:9|max:50','Contra'=>'required|min:6|max:25'],['Correo.required'=>'Es necesario que ingrese su correo','Correo.min'=>'El correo no cumple con lo requerido','Correo.max'=>'El correo excede el límite de caracteres','Contra.max'=>'La contraseña excede el límite de caracteres','Contra.min'=>'La contraseña debe contener más de 6 carácteres']);
+        if($validator->fails()){
+            return back()->withErrors($validator,'login');
+        }
 
         $correo = $request->Correo;
         $user = Usuarios::where('Correo','=',$correo)->get();
         if(empty($user[0])){
-            return view('welcome')->withErrors(array('message' => 'Datos incorrectos'));
+            return back()->withErrors(array('message' => 'Datos incorrectos'),'login');
         }else{
             if($user[0]->Contra == $request->Contra){
                 $rol = $user[0]->rol_id;
@@ -168,7 +236,7 @@ class UsuariosController extends Controller
                 $request->session()->put('user_session',$clave);
                 return redirect('/');
             }
-            return view('welcome')->withErrors(array('message' => 'Datos incorrectos'));
+            return back()->withErrors(array('message' => 'Datos incorrectos'),'login');
         } 
     }
     public function logout(){
@@ -194,14 +262,17 @@ class UsuariosController extends Controller
     }
     public function storeEmpleado(Request $request)
     {
-        $data = request()->validate(
+        $validator = Validator::make($request->all(),
             ['Correo'=>'required|max:50',
              'Contra'=>'required|min:8|max:30',
              'Nombre'=>'required|min:3|max:20|regex:/[a-zA-Z ñÑáéíóúÁÉÍÓÚ]/u',
              'ApellidoP'=>'required|min:3|max:20|regex:/[a-zA-Z ñÑáéíóúÁÉÍÓÚ]/u',
              'ApellidoM'=>'required|min:3|max:20|regex:/[a-zA-Z ñÑáéíóúÁÉÍÓÚ]/u',
              'Sexo'=>'min:1|max:1|regex:/[MF]/u',
-             'Telefono'=>'min:7|max:10|regex:/[0-9]/u'],
+             'Telefono'=>['required','min:7','max:10','regex:/(\b[0-9]{7}$|\b[0-9]{10}$)/u'],
+             'Calle'=>'required|min:5|max:50|regex:/[a-zA-Z ñÑáéíóúÁÉÍÓÚ#]/u',
+             'Colonia'=>'required|min:5|max:50|regex:/[a-zA-Z ñÑáéíóúÁÉÍÓÚ]/u',
+             'CP'=>['required','min:5','max:5','regex:/(\b[0-9]{5}$)/u']],
             ['Correo.required'=>'Debes ingresar un correo',
              'Contra.required'=>'Debes ingresar una contraseña',
              'Contra.min'=>'La contraseña debe tener minimo 8 caracteres',
@@ -221,7 +292,16 @@ class UsuariosController extends Controller
              'Sexo.regex'=>'El atributo sexo se ha modificado, intente nuevamente recargando la página.',
              'Telefono.min'=>'El telefono está incompleto.',
              'Telefono.max'=>'El telefono contiene números de más.',
-             'Telefono.regex'=>'El campo telefono tiene un formato distinto.']);
+             'Telefono.regex'=>'El campo telefono tiene un formato distinto.',
+             'Calle.min'=>'El nombre de la calle tiene pocos carácteres. min. 5',
+             'Calle.max'=>'El nombre de la calle tiene demasiados carácteres. max 50.',
+             'Colonia.min'=>'El nombre de la colonia tiene pocos carácteres. min. 5',
+             'Colonia.max'=>'El nombre de la colonia tiene demasiados carácteres. max 50.',
+             'Calle.regex'=>'El nombre de la calle contiene carácteres no válidos.',
+             'Colonia.regex'=>'El nombre de la colonia contiene carácteres no válidos.']);
+        if($validator->fails()){
+            return back()->withErrors($validator,'actualiza');
+        }
         $user = new Usuarios;
         $user->Correo = $request->Correo;
         $user->Contra = $request->Contra;

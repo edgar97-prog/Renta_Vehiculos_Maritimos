@@ -61,22 +61,22 @@ $(document).ready(function(){
 	});
 
 
-				$('.btnComentarios').click(function(){
+	$('.btnComentarios').click(function(){
 
-					var comentario = $('.coment').val();
-					$.ajax({
-						type: 'POST',
-						url: '/comentario',
-						data: {comentario: comentario},
-						success:function(mensaje)
-						{	
-							$('.coment').val('');
-							$('.comentarioModal').append('<center><label>'+ mensaje +'</label></center>');
-							$('#ModalComent').modal('show');
-						}
-					});
+		var comentario = $('.coment').val();
+		$.ajax({
+			type: 'POST',
+			url: '/comentario',
+			data: {comentario: comentario},
+			success:function(mensaje)
+			{	
+				$('.coment').val('');
+				$('.comentarioModal').append('<center><label>'+ mensaje +'</label></center>');
+				$('#ModalComent').modal('show');
+			}
+		});
 
-				});
+	});
 
 	$('#frmcuenta').on('submit',function(event){
 		if($('#btnDesb').length){
@@ -100,5 +100,11 @@ $(document).ready(function(){
 		event.preventDefault();
 		location.reload(true);
 	});
-
+	$('.listImgs').on('mouseover','li',function(e){
+		$src = $(this).children('img').attr('src');
+		$('#imgCurrent').attr('src',$src);
+		$(this).parent('ul').find('li').children('img').attr('class','img-fluid');
+		$(this).children('img').addClass('imgselected');
+		//$(this).children('img').removeClass('imgselected');
+	});
 });

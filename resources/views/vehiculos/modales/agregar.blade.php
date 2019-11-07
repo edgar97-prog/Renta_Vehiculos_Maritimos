@@ -32,7 +32,7 @@
               </tr>
               <tr>
                 <td>{!!Form::label('¿El vehiculo tiene descuento?')!!} </td>
-                <td>{!! Form::select('descuento',['s'=>'Si','n'=>'No'],'n',['class'=>'form form-control']) !!}</td>
+                <td>{!! Form::select('Descuento',['s'=>'Si','n'=>'No'],'n',['class'=>'form form-control']) !!}</td>
               </tr>
               <tr>
                 <td>{!!Form::label('cantidad','Cantidad:')!!}</td>
