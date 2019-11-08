@@ -19,7 +19,8 @@
 		<h4>{{session()->get('mensaje')}}</h4>
 		</center>
 	</div>
-	 @endif <span>
+	 @endif
+	  <span>
 	<form id="busqueda" method="POST" action="/busqueda/especifica">
 		 @csrf <label>Nombre del vehiculo</label><input type="text" name="nombre"><button type="submit" class="btn btn-primary">Buscar</button>
 	</form>

@@ -99,4 +99,24 @@ var elimFot = [];
 			$('#idfot').attr('value',elimFot);
 		}
 	});
+
+//OCULTAR CAMPO DE DESCUENTO AL CARGAR EL DOCUMENTO
+	$('#desc').hide();
+	$('.montodesc').attr('value','0');	
+
+	$('.sltdesc').on('change',function()
+	{
+		let option = $('.sltdesc option:selected').text();
+		if(option == 'Si')
+		{
+			$('#desc').show();
+
+		}
+		else
+		{
+			$('#desc').hide();
+			$('.montodesc').attr('value','0');
+		}
+
+	});
 });
