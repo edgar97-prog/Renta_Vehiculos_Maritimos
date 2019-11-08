@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Vehiculos;
 use App\Fotos;
 use App\Usuarios;
+use App\TipoVehiculos;
 use Session;
 use Illuminate\Http\Request;
 
@@ -23,10 +24,9 @@ class VehiculosController extends Controller
     {
         //
         $vehiculos = Vehiculos::with('Fotos')->get();
-      /*  $user = Usuarios::where('Correo','=',Session::get('user_session'))->first();
-        $rol = $user->rol_id;*/
+        $tipoVehiculos = TipoVehiculos::all();
         $rol = Session::get('user_session')[1];
-        return view('vehiculos.index',compact('vehiculos','rol'));
+        return view('vehiculos.index',compact('vehiculos','rol','tipoVehiculos'));
     }
 
     /**
@@ -46,9 +46,17 @@ class VehiculosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {  
         $data = request()->validate(['Nombre'=>'required|min:3|max:25','Cantidad'=>'required'],['Nombre.required'=>'El nombre es requerido','Nombre.min'=>'El nombre debe contener al menos 3 caracteres','Nombre.max'=>'El nombre es demasiado largo']);
-        $vehiculo = Vehiculos::create($request->all());
+
+        $precioDescuento =$request->precioRenta - (($request->precioRenta * ($request->Descuento * 0.01)));
+
+        $datos = array('Nombre'=>$request->Nombre,'Descripcion'=>$request->Descripcion,
+                    'precioRenta'=>$request->precioRenta,'precioDescuento'=>$precioDescuento,
+                    'Descuento'=>$request->Descuento,'Cantidad'=>$request->Cantidad,
+                    'tipoVehiculos_id'=>$request->tipoVehiculos_id);
+
+        $vehiculo = Vehiculos::create($datos);
         $imagen = $request->file('Foto');
         $nameImage = $imagen->getClientOriginalName();
         $arrFotos = array('Foto'=>$nameImage,'vehiculos_id'=>$vehiculo->id);
@@ -64,6 +72,7 @@ class VehiculosController extends Controller
             Fotos::create($arrFotos);
             $imagen->move('fotos',$nameImage);
         }
+
         return redirect()->route('vehiculos.index')->with('mensaje','El Vehiculo se Agrego Correctamente');
     }
 

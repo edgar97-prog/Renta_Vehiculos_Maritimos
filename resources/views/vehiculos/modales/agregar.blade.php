@@ -32,11 +32,26 @@
               </tr>
               <tr>
                 <td>{!!Form::label('¿El vehiculo tiene descuento?')!!} </td>
-                <td>{!! Form::select('Descuento',['s'=>'Si','n'=>'No'],'n',['class'=>'form form-control']) !!}</td>
+                <td>{!! Form::select('desc',['s'=>'Si','n'=>'No'],'n',['class'=>'form form-control sltdesc']) !!}</td>
+              </tr>
+              <tr id="desc">
+                <td> {!!Form::label('Descuento (%):')!!} </td>
+                <td>{!! Form::text('Descuento',null,['class'=>'form form-control montodesc']) !!}
+                </td>
               </tr>
               <tr>
                 <td>{!!Form::label('cantidad','Cantidad:')!!}</td>
                 <td>{!!Form::text('Cantidad',null,['class'=>'form form-control','required'=>'y']) !!}</td>
+              </tr>
+              <tr>
+                <td>{!!Form::label('tipoVehiculo','Tipo:')!!}</td>
+                <td>
+                    <select name="tipoVehiculos_id" class="form-control">
+                      @foreach($tipoVehiculos as $tipo)
+                      <option value="{{$tipo->id}}">{{$tipo->tipo}}</option>
+                      @endforeach
+                    </select> 
+                </td>
               </tr>
               <tr id="fila">
                 <td>{!!Form::label('foto','Foto Principal:')!!}</td>
