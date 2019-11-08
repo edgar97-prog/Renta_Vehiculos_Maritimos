@@ -16,8 +16,8 @@ class VehiculosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function __construct(){
-        $this->middleware('autenticar',['only'=>['store','index','show','update','destroy','datos,','busqueda']]);
-        $this->middleware('Both_user',['only'=>['store','index','show','update','destroy','datos,','busqueda']]);
+        $this->middleware('autenticar',['only'=>['store','index','update','destroy','datos,','busqueda']]);
+        $this->middleware('Both_user',['only'=>['store','index','update','destroy','datos,','busqueda']]);
     }
     public function index()
     {
