@@ -100,15 +100,6 @@ var elimFot = [];
 		}
 	});
 
-<<<<<<< HEAD
-	var precioRenta;
-	$('#1').on('click',function(){
-		alert("epa");
-
-	});
-});
-
-=======
 //OCULTAR CAMPO DE DESCUENTO AL CARGAR EL DOCUMENTO
 	$('#desc').hide();
 	$('.montodesc').attr('value','0');	
@@ -129,4 +120,3 @@ var elimFot = [];
 
 	});
 });
->>>>>>> origin/Proyecto
