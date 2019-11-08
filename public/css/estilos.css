@@ -309,3 +309,72 @@ a:active, a:focus{background:transparent;}
   padding-top: 25px;
   font-family: Proxima Nova,-apple-system,Helvetica Neue,Helvetica,Roboto,Arial,sans-serif;
 }
+
+.TablaVehiculo{
+  border-radius: 150px;
+  height: 100%;
+  max-height: 30%;
+  margin-top: 2%;
+  margin-bottom: 0.5%;
+  margin-left: 1%;
+  margin-right: 1%;
+  width: 30%;
+  display: inline-block;
+  transition: transform 1s;
+  -webkit-box-shadow: 9px 19px 35px -26px rgba(0,0,0,0.67);
+  -moz-box-shadow: 9px 19px 35px -26px rgba(0,0,0,0.67);
+  box-shadow: 9px 19px 35px -26px rgba(0,0,0,0.67);
+  background: white;
+}
+.TablaVehiculo:hover{
+   transform: scale(1.15);
+   -webkit-box-shadow: -20px 25px 35px -23px rgba(0,0,0,0.67);
+   -moz-box-shadow: -20px 25px 35px -23px rgba(0,0,0,0.67);
+   box-shadow: -20px 25px 35px -23px rgba(0,0,0,0.67);
+}
+
+.Img{
+  width: 100%;
+  height: 200px;
+}
+
+.TablaVehiculo td div{
+  font-family: 'Roboto Slab Bold', arial;
+  font-size: 16px;
+  text-align: center;
+  margin-top: 4px;
+}
+.precioRenta{
+  font-size: 12px;
+  text-decoration: line-through;
+  color: #929090;
+}
+
+.precioDescuento{
+  font-size: 18px;
+  color: #030303;
+}
+
+.Descuento{
+  font-size: 14px;
+  color: #71DB71;
+}
+
+#mg{
+  z-index: 999;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  outline: none;
+  background: transparent;
+
+}
+
+.botonMG{
+  z-index: 999;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  position: absolute;
+  cursor: pointer;
+}

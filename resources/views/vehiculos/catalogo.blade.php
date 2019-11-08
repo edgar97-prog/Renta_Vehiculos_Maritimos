@@ -8,40 +8,96 @@
 @endsection
 
 @section('cuerpo')
+<div style="text-align: right;">
+	{!!Form::label('l','MX:')!!}  {!!Form::radio('precio','1',true)!!}
+	{!!Form::label('l','USD:')!!} {!!Form::radio('precio','0',false)!!}
+</div>
 
+<script>
+	let body = document.getElementById('body');
+	body.style.background = '#ebebeb';
+</script>
 @foreach($vehiculos as $vehiculo)
-<table style="width: 30%; height: 600px; display: inline; border-style: solid;">
+<table class="TablaVehiculo">
 	<tr>
-		<td>
-			<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-			  <div class="carousel-inner">
-			  	@for($i = 0; $i< count($vehiculo['fotos']); $i++)
-					<div class="carousel-item active">
-				      <img class="d-block w-100" src="" alt="First slide">
-				    </div>
-				@endfor
-			  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-			    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-			    <span class="sr-only">Previous</span>
-			  </a>
-			  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-			    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-			    <span class="sr-only">Next</span>
-			  </a>
+		<td colspan="2">
+			<div class="botonMG">
+				{!! Form::open(['url' => '/','method' => 'get']) !!}
+				{!!Form::token()!!}
+				{!!Form::submit('me-gusta',['id' => $vehiculo['id']])!!}
+				{!! Form::close() !!}
+				<span><i class="fa fa-heart-o icoFav" aria-hidden="true" title="Agregar a favoritos"></i></span>
+			</div>
+			<div style="padding: 6px">
+				<div id="carouselExampleControls{{$vehiculo['id']}}" class="carousel slide" data-ride="carousel">
+				  <div class="carousel-inner">
+				  	@if(count($vehiculo['fotos']) !=0)
+				  	<div class="carousel-item active">
+					 	<img class="d-block w-100 Img" src="{{asset("fotos")}}/{{$vehiculo["Fotos"][0]["Foto"]}}" alt="First slide">
+					</div>
+				  	@for($i = 1; $i< count($vehiculo['fotos']); $i++)
+					    <div class="carousel-item">
+					      <img class="d-block w-100 Img" src="{{asset("fotos")}}/{{$vehiculo["Fotos"][$i]["Foto"]}}" alt="Second slide">
+					    </div>
+					@endfor
+					@endif
+				  <a class="carousel-control-prev" href="#carouselExampleControls{{$vehiculo['id']}}" role="button" data-slide="prev">
+				    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				    <span class="sr-only">Anterior</span>
+				  </a>
+				  <a class="carousel-control-next" href="#carouselExampleControls{{$vehiculo['id']}}" role="button" data-slide="next">
+				    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+				    <span class="sr-only">Siguiente</span>
+				  </a>
+				</div>
 			</div>
 		</td>
 	</tr>
-	<tr class="table-info">
-		<td >
-			{{$vehiculo['Nombre']}}
+	<tr>
+		<td colspan="2">
+			<div>
+				{{$vehiculo['Nombre']}}
+			</div>
+		</td>
+	</tr >
+	<tr >
+		<td colspan="2">
+			<div>
+				<span>
+					Disponibles: {{$vehiculo['Cantidad']}}
+				</span>
+			</div>
 		</td>
 	</tr>
-	<tr class="table-info">
-		<td >
-			{{$vehiculo['Cantidad']}}
+	<tr style="height: 85px;">
+		<td style="width: 40%">
+			<div id="precioRenta">
+					Precio de renta:
+			</div>
+		</td>
+		<td>
+			<div id="precioRenta">
+				@if($vehiculo['precioDescuento'] !=0)
+				<div >
+					<i class="precioRenta">${{$vehiculo['precioRenta']}}</i> <br>
+				</div>
+				<div style="display: inline-block;">
+					<i class="precioDescuento">${{$vehiculo['precioDescuento']}}</i> 
+				</div>
+				<div style="display: inline-block;">
+					<i class="Descuento">{{$vehiculo['Descuento']}}% desc.</i>
+				</div>
+				@else
+					<i class="precioDescuento">${{$vehiculo['precioRenta']}}</i> <br>
+				@endif
+			</div>
 		</td>
 	</tr>
-
+	<tr >
+		<td colspan="2">
+			 
+		</td>
+	</tr>
 </table>
 	
 @endforeach

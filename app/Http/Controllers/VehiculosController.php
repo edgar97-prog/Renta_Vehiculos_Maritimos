@@ -174,7 +174,7 @@ class VehiculosController extends Controller
         $vehiculos = Vehiculos::with('Fotos')->get();
         $rol = Session::get('user_session')[1];
         $vehiculo = $vehiculos[0];
-        //dd($vehiculo['fotos'][0]['Foto']);
+        //dd($vehiculo["Fotos"][0]["Foto"]);
         //dd(count($vehiculo['fotos']));
         if(!empty($vehiculos)){
 

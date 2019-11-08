@@ -99,4 +99,11 @@ var elimFot = [];
 			$('#idfot').attr('value',elimFot);
 		}
 	});
+
+	var precioRenta;
+	$('#1').on('click',function(){
+		alert("epa");
+
+	});
 });
+
