@@ -17,8 +17,8 @@ class VehiculosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function __construct(){
-        $this->middleware('autenticar',['only'=>['store','index','show','update','destroy','datos,','busqueda']]);
-        $this->middleware('Both_user',['only'=>['store','index','show','update','destroy','datos,','busqueda']]);
+        $this->middleware('autenticar',['only'=>['store','index','update','destroy','datos,','busqueda']]);
+        $this->middleware('Both_user',['only'=>['store','index','update','destroy','datos,','busqueda']]);
     }
     public function index()
     {
@@ -188,10 +188,11 @@ class VehiculosController extends Controller
 
     public function catalogo()
     {   
-        $vehiculos = Vehiculos::with('Fotos')->get();
+        $vehiculos = Vehiculos::with('Fotos')->with('TipoVehiculo')->get();
+        //$tipoVehiculos = TipoVehiculos::all();
         $rol = Session::get('user_session')[1];
         $vehiculo = $vehiculos[0];
-        //dd($vehiculo["Fotos"][0]["Foto"]);
+        //dd($vehiculos[0]['tipoVehiculo']['tipo']);
         //dd(count($vehiculo['fotos']));
         if(!empty($vehiculos)){
 
