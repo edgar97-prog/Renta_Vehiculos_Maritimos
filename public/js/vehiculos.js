@@ -141,7 +141,15 @@ var elimFot = [];
 	}
 	let precioRenta = $('.precioDescuento');
 	//let valor = $('.precioDescuento')[0].innerText;
-	console.log(valor);
+	$.ajax({
+		url: 'http://www.google.com/finance/converter?a=1&from=RUB&to=USD',
+		dataType: 'json',
+		success: function(data){
+			console.log(data);
+		}
+
+	});
+	//console.log(valor);
 
 	/*(i === 0){
 		for(var i =0; i<precioRenta.legth;i++){
