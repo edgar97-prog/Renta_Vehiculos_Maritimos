@@ -180,10 +180,11 @@ class VehiculosController extends Controller
 
     public function catalogo()
     {   
-        $vehiculos = Vehiculos::with('Fotos')->get();
+        $vehiculos = Vehiculos::with('Fotos')->with('TipoVehiculo')->get();
+        //$tipoVehiculos = TipoVehiculos::all();
         $rol = Session::get('user_session')[1];
         $vehiculo = $vehiculos[0];
-        //dd($vehiculo["Fotos"][0]["Foto"]);
+        //dd($vehiculos[0]['tipoVehiculo']['tipo']);
         //dd(count($vehiculo['fotos']));
         if(!empty($vehiculos)){
 

@@ -311,7 +311,6 @@ a:active, a:focus{background:transparent;}
 }
 
 .TablaVehiculo{
-  border-radius: 150px;
   height: 100%;
   max-height: 30%;
   margin-top: 2%;
@@ -326,7 +325,7 @@ a:active, a:focus{background:transparent;}
   box-shadow: 9px 19px 35px -26px rgba(0,0,0,0.67);
   background: white;
 }
-.TablaVehiculo:hover{
+ .TablaVehiculo:hover {
    transform: scale(1.15);
    -webkit-box-shadow: -20px 25px 35px -23px rgba(0,0,0,0.67);
    -moz-box-shadow: -20px 25px 35px -23px rgba(0,0,0,0.67);
@@ -360,21 +359,71 @@ a:active, a:focus{background:transparent;}
   color: #71DB71;
 }
 
-#mg{
-  z-index: 999;
-  width: 50px;
-  height: 50px;
-  border-radius: 100%;
-  outline: none;
-  background: transparent;
-
+.TablaVehiculo:hover .botonMG{
+  display: block;
 }
+
+
 
 .botonMG{
   z-index: 999;
   width: 50px;
   height: 50px;
   border-radius: 100%;
+  color: red;
+  display: none;
   position: absolute;
   cursor: pointer;
+  margin-left: 85%;
+}
+.iconoFa{
+  padding-top: 32%;
+  align-self: right;
+}
+
+@media (max-width: 1200px) {
+  .botonMG{
+    margin-left: 85%;
+  }
+}
+@media (max-width: 900px) {
+  .botonMG{
+    margin-left: 80%;
+  }
+  .TablaVehiculo{
+    margin-right: 10%;
+  }
+}
+@media (max-width: 800px) {
+  .botonMG{
+    margin-left: 70%;
+  }
+  .TablaVehiculo{
+    margin-right: 20%;
+  }
+}
+@media (max-width: 700px) {
+  .TablaVehiculo{
+    margin-right: 30%;
+  }
+}
+.btnTrans{
+  padding-top: 20%;
+  padding-right: 50%;
+  margin-left: 0%;
+}
+.btnAction{
+  position: absolute;
+  border:solid;
+  z-index: 999;
+  width: 25px;
+  height: 25px;
+  border-radius: 100%;
+  color: transparent;
+  background: transparent;
+  border: none;
+  outline:none;
+}
+.textboxHidden{
+  visibility: hidden;
 }

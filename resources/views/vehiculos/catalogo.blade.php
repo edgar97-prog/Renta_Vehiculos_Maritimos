@@ -9,8 +9,8 @@
 
 @section('cuerpo')
 <div style="text-align: right;">
-	{!!Form::label('l','MX:')!!}  {!!Form::radio('precio','1',true)!!}
-	{!!Form::label('l','USD:')!!} {!!Form::radio('precio','0',false)!!}
+	{!!Form::label('l','MX:')!!}  {!!Form::radio('precio','1',true,['class' => 'rdPrecio'])!!}
+	{!!Form::label('l','USD:')!!} {!!Form::radio('precio','0',false,['class' => 'rdPrecio'])!!}
 </div>
 
 <script>
@@ -21,12 +21,15 @@
 <table class="TablaVehiculo">
 	<tr>
 		<td colspan="2">
-			<div class="botonMG">
-				{!! Form::open(['url' => '/','method' => 'get']) !!}
-				{!!Form::token()!!}
-				{!!Form::submit('me-gusta',['id' => $vehiculo['id']])!!}
-				{!! Form::close() !!}
-				<span><i class="fa fa-heart-o icoFav" aria-hidden="true" title="Agregar a favoritos"></i></span>
+			<div class="botonMG" >
+				<span>
+					<div class="botonMG btnTrans">
+						{!! Form::open(['url' => '/','method' => 'GET']) !!}
+						{!!Form::submit('MG',['class'=>'btnAction','title' =>'Agregar a favoritos'])!!}
+						
+					</div>
+					<i class="fa fa-heart-o icoFav iconoFa" title="Agregar a favoritos"></i>
+				</span>
 			</div>
 			<div style="padding: 6px">
 				<div id="carouselExampleControls{{$vehiculo['id']}}" class="carousel slide" data-ride="carousel">
@@ -79,23 +82,24 @@
 			<div id="precioRenta">
 				@if($vehiculo['precioDescuento'] !=0)
 				<div >
-					<i class="precioRenta">${{$vehiculo['precioRenta']}}</i> <br>
+					$<i class="precioRenta">{{$vehiculo['precioRenta']}}</i> <br>
 				</div>
 				<div style="display: inline-block;">
-					<i class="precioDescuento">${{$vehiculo['precioDescuento']}}</i> 
+					$<i class="precioDescuento">{{$vehiculo['precioDescuento']}}</i> 
 				</div>
 				<div style="display: inline-block;">
 					<i class="Descuento">{{$vehiculo['Descuento']}}% desc.</i>
 				</div>
 				@else
-					<i class="precioDescuento">${{$vehiculo['precioRenta']}}</i> <br>
+					$<i class="precioDescuento">{{$vehiculo['precioRenta']}}</i> <br>
 				@endif
 			</div>
 		</td>
 	</tr>
 	<tr >
 		<td colspan="2">
-			 
+			 {!! Form::text('vehiculo', $vehiculo['id'],['class' => 'textboxHidden']) !!}
+			 {!! Form::close() !!}
 		</td>
 	</tr>
 </table>

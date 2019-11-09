@@ -119,4 +119,27 @@ var elimFot = [];
 		}
 
 	});
+
+// CAMBIO DE DIVISA
+	let rdBtns = $('.rdPrecio');
+	let rd = new Array();
+	var checked;
+	console.log(rdBtns);
+	for(var i=0; i<rdBtns.length; i++){
+		if(rdBtns[i]['checked'] ===true){
+			checked = i;
+		}
+		//alert(rdBtns[i]['checked']);
+	}
+	let precioRenta = $('.precioDescuento');
+	//let valor = $('.precioDescuento')[0].innerText;
+	console.log(valor);
+
+	/*(i === 0){
+		for(var i =0; i<precioRenta.legth;i++){
+			let valor = $('.precioDescuento')[i].innerText;
+		}
+	}*/
+
+
 });

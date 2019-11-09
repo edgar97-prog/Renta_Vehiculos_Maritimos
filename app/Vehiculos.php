@@ -24,6 +24,6 @@ class Vehiculos extends Model
 
     public function TipoVehiculo()
     {
-        return $this->belongsTo(TipoVehiculos::class);
+        return $this->belongsTo(TipoVehiculos::class,'tipoVehiculos_id');
     }
 }
