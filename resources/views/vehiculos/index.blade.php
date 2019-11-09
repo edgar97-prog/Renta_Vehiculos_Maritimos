@@ -29,10 +29,8 @@
 	</form>
 	<button class="let nvo_vehiculo" style="cursor: pointer;">+</button>
 	</span>
-	<table class="footable">
-	<thead>
-	<th class="color">
-		<thead>
+	<table class="table table-hover">
+	
 
 	<th>
 		Nombre
@@ -44,7 +42,13 @@
 		Precio de Renta
 	</th>
 	<th>
-		Cantidad
+		Precio Descuento
+	</th>
+	<th>
+		Tipo
+	</th>
+	<th>
+		Hora min. Renta
 	</th>
 	<th>
 		Fotografías
@@ -64,7 +68,13 @@
 			{{$vehiculo->precioRenta}}
 		</td>
 		<td>
-			{{$vehiculo->Cantidad}}
+			{{$vehiculo->precioDescuento}}
+		</td>
+		<td>
+			{{$vehiculo['TipoVehiculo']['tipo']}}
+		</td>
+		<td>
+			{{$vehiculo->horasRenta}}
 		</td>
 		<td>
 			 @foreach($vehiculo->Fotos as $foto) <img width="90" height="90" src="{{asset("fotos/$foto->Foto")}}"> @endforeach

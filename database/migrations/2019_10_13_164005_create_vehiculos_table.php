@@ -20,7 +20,7 @@ class CreateVehiculosTable extends Migration
             $table->Float('precioRenta')->unsigned();
             $table->Float('precioDescuento')->unsigned()->nullable();
             $table->String('Descuento','5');
-            $table->smallInteger('Cantidad')->unsigned();
+            $table->smallInteger('horasRenta')->unsigned();
             $table->bigInteger('tipoVehiculos_id')->unsigned();
             $table->foreign('tipoVehiculos_id')->references('id')->on('tipoVehiculos');
         });

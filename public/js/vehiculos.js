@@ -65,7 +65,7 @@
 					$('.nombre').attr('value',datos[0]['nombre']);	
 					$('.descr').attr('value',datos[0]['descripcion']);
 					$('.renta').attr('value',datos[0]['renta']);
-					$('.cant').attr('value',datos[0]['cantidad']);
+					$('.horas').attr('value',datos[0]['horas']);
 					$('#form_elim').attr('action',datos[0]['urlElim']);
 					$('.formod').attr('action',datos[0]['urlMod']);
 					$('#idv').attr('value',id);
@@ -87,6 +87,21 @@
 				}
 		});
 	
+	});
+
+	$('.descuento').on('change',function()
+	{
+		let option = $('.descuento option:selected').text();
+		if(option == 'Si')
+		{
+			$('#muestra').show();
+
+		}
+		else
+		{
+			$('#muestra').hide();
+			$('.desc').attr('value','0');
+		}
 	});
 var elimFot = [];
 	$('#fot').on('click','.imagen',function()

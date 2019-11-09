@@ -32,15 +32,15 @@
               </tr>
               <tr>
                 <td>{!!Form::label('descuento','¿El vehiculo tiene descuento?')!!}</td>
-                <td>{!!Form::select('desc',['s'=>'Si','n'=>'No'],'s',['class'=> 'form-control'])!!}</td>
+                <td>{!!Form::select('desc',['s'=>'Si','n'=>'No'],'s',['class'=> 'form-control  descuento'])!!}</td>
               </tr>
-              <tr>
+              <tr id="muestra">
                 <td>{!!Form::label('Descuento','Descuento (%):')!!}</td>
                 <td>{!!Form::text('Descuento',null,['class'=>'form form-control desc']) !!}</td>
               </tr>
               <tr>
-                  <td>{!!Form::label('cantidad','Cantidad:')!!}</td>
-                  <td>{!!Form::text('Cantidad',null,['class'=>'form form-control cant','required'=>'y']) !!}</td>
+                  <td>{!!Form::label('horasRenta','Horas min. Renta:')!!}</td>
+                  <td>{!!Form::number('horasRenta',null,['class'=>'form form-control horas','required'=>'y']) !!}</td>
               </tr>
               <tr>
                 <td>{!!Form::label('tipo','Tipo de vehiculo:')!!}</td>

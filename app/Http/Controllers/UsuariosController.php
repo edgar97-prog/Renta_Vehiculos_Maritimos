@@ -259,7 +259,11 @@ class UsuariosController extends Controller
            $foto = $vehiculos[$numFoto]->fotos[0]['Foto'];
            array_push($Fotos,$foto);
         }
-            return view('welcome',compact('rol','Fotos'));
+
+        $vehiculosOferta = Vehiculos::where('Descuento','<>',0)->get('id');
+        $vehiculoRandom = rand(0,count($vehiculosOferta)-1);
+        $vehiculoMostrado = Vehiculos::where('id','=',$vehiculosOferta[$vehiculoRandom]['id'])->with('Fotos')->with('TipoVehiculo')->get();
+            return view('welcome',compact('rol','Fotos','vehiculoMostrado'));
         }
         return view('welcome',compact('rol'));
     }
