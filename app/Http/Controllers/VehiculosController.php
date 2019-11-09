@@ -17,8 +17,8 @@ class VehiculosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function __construct(){
-        $this->middleware('autenticar',['only'=>['store','index','show','update','destroy','datos,','busqueda']]);
-        $this->middleware('Both_user',['only'=>['store','index','show','update','destroy','datos,','busqueda']]);
+        $this->middleware('autenticar',['only'=>['store','index','update','destroy','datos,','busqueda']]);
+        $this->middleware('Both_user',['only'=>['store','index','update','destroy','datos,','busqueda']]);
     }
     public function index()
     {
@@ -112,8 +112,14 @@ class VehiculosController extends Controller
     public function update(Request $request, Vehiculos $vehiculos)
     {
         //
+           $precioDescuento =$request->precioRenta - (($request->precioRenta * ($request->Descuento * 0.01)));
+
+        $datos = array('Nombre'=>$request->Nombre,'Descripcion'=>$request->Descripcion,
+                    'precioRenta'=>$request->precioRenta,'precioDescuento'=>$precioDescuento,
+                    'Descuento'=>$request->Descuento,'Cantidad'=>$request->Cantidad,
+                    'tipoVehiculos_id'=>$request->tipoVehiculos_id);
         $vehiculo = Vehiculos::find($request->idv);
-        $vehiculo->update($request->all());
+        $vehiculo->update($datos);
         $arregloEliminaFoto = explode(',', $request->idfot);
         foreach ($arregloEliminaFoto as $foto ) {
             Fotos::destroy($foto);
@@ -151,10 +157,11 @@ class VehiculosController extends Controller
      if($request->isMethod('post'))
         {
         $vehiculos = Vehiculos::find($request->id);
+        $tipos = TipoVehiculos::all();
 
             $i=0;
             $datos = array('id'=>$vehiculos->id,'nombre'=>$vehiculos->Nombre,'urlElim'=>route('vehiculos.destroy',$vehiculos->id),'urlMod'=>route('vehiculos.update',$vehiculos->id),
-            'descripcion'=>$vehiculos->Descripcion,'renta'=>$vehiculos->precioRenta,'cantidad'=>$vehiculos->Cantidad);
+            'descripcion'=>$vehiculos->Descripcion,'renta'=>$vehiculos->precioRenta,'precioDescuento'=>$vehiculos->precioDescuento,'descuento'=>$vehiculos->Descuento,'cantidad'=>$vehiculos->Cantidad,'tipo'=>$vehiculos->tipoVehiculos_id);
             $fotos = array();
         foreach ($vehiculos->fotos as $foto) {
             
@@ -163,7 +170,7 @@ class VehiculosController extends Controller
             $i++;
         }
 
-      $data = array($datos,$fotos);
+      $data = array($datos,$fotos,$tipos);
 
       //  return $data[1][1]['id'];
         return json_encode($data,JSON_FORCE_OBJECT);
@@ -172,10 +179,10 @@ class VehiculosController extends Controller
 
     public function busqueda(Request $request)
     {
-
+        $tipoVehiculos = TipoVehiculos::all();
         $vehiculos = Vehiculos::where('Nombre','LIKE','%'.$request->nombre.'%')->with('Fotos')->get();
         #$rol = Session::get('user_session')[1];
-        return view('vehiculos.index',compact('vehiculos'));
+        return view('vehiculos.index',compact('vehiculos','tipoVehiculos'));
     }
 
     public function catalogo()

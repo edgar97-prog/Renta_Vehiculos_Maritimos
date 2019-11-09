@@ -107,4 +107,27 @@ $(document).ready(function(){
 		$(this).children('img').addClass('imgselected');
 		//$(this).children('img').removeClass('imgselected');
 	});
+	$('#calendar').datepicker({
+        inline: true,
+        firstDay: 1,
+        showOtherMonths: true,
+        dayNamesMin: ['Do', 'Lu', 'Ma', 'MI', 'Ju', 'Vi', 'Sá'],
+        monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+					'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+		dateFormat: 'dd/mm/yy',
+		onSelect: function (date) {
+			//alert(date);
+			$('#showCalendar').html(date);
+		}
+    });
+    var calendarioMostrado = false;
+    $('#showCalendar').on('click',function(){
+    	if(!calendarioMostrado){
+    		calendarioMostrado = true;
+    		$('#calendar').css('display','block');
+    	}else{
+    		calendarioMostrado = false;
+    		$('#calendar').css('display','none');
+    	}
+    });
 });

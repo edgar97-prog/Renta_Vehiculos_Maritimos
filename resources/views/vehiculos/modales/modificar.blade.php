@@ -31,8 +31,21 @@
                   <td>{!! Form::text('precioRenta',null,['class'=>'form form-control renta','required'=>'y']) !!}</td>
               </tr>
               <tr>
+                <td>{!!Form::label('descuento','¿El vehiculo tiene descuento?')!!}</td>
+                <td>{!!Form::select('desc',['s'=>'Si','n'=>'No'],'s',['class'=> 'form-control'])!!}</td>
+              </tr>
+              <tr>
+                <td>{!!Form::label('Descuento','Descuento (%):')!!}</td>
+                <td>{!!Form::text('Descuento',null,['class'=>'form form-control desc']) !!}</td>
+              </tr>
+              <tr>
                   <td>{!!Form::label('cantidad','Cantidad:')!!}</td>
                   <td>{!!Form::text('Cantidad',null,['class'=>'form form-control cant','required'=>'y']) !!}</td>
+              </tr>
+              <tr>
+                <td>{!!Form::label('tipo','Tipo de vehiculo:')!!}</td>
+                <td><select name="tipoVehiculos_id" class="form-control tipos">
+                </select></td>
               </tr>
             </table>
             <input type="hidden" name="idfot" id="idfot">
