@@ -69,7 +69,15 @@
 					$('#form_elim').attr('action',datos[0]['urlElim']);
 					$('.formod').attr('action',datos[0]['urlMod']);
 					$('#idv').attr('value',id);
-				var i = 0;
+					$('.desc').attr('value',datos[0]['descuento']);
+					var i = 0;
+					$.each(datos[2],function(index,element)
+					{	
+						$('.tipos').prepend('<option value='+datos[2][i]['id']+'>'+datos[2][i]['tipo']+'</option>');
+						i++;
+					});
+					$('.tipos option[value='+datos[0]['tipo']+']').attr("selected",true);
+				 i = 0;
 					 $.each(datos[1], function(index, element){
  					
 				$("#fot").append("<td class='imagen' data-id='"+datos[1][i]['id']+"'><img name='fot"+i+"' width='90' height='90' src='fotos/"+datos[1][i]['nombre']+"'></td></input>"); i++;},'json');
