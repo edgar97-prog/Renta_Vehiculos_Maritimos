@@ -40,8 +40,8 @@
                 </td>
               </tr>
               <tr>
-                <td>{!!Form::label('cantidad','Cantidad:')!!}</td>
-                <td>{!!Form::text('Cantidad',null,['class'=>'form form-control','required'=>'y']) !!}</td>
+                <td>{!!Form::label('horasRenta','Horas min. Renta:')!!}</td>
+                <td>{!!Form::number('horasRenta',null,['class'=>'form form-control','required'=>'y']) !!}</td>
               </tr>
               <tr>
                 <td>{!!Form::label('tipoVehiculo','Tipo:')!!}</td>

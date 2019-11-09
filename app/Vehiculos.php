@@ -9,7 +9,7 @@ class Vehiculos extends Model
     //
     protected $primaryKey = "id";
     protected $table = "Vehiculos";
-    protected $fillable = ["Nombre","Descripcion","precioRenta","precioDescuento","Descuento","Cantidad","tipoVehiculos_id"];
+    protected $fillable = ["Nombre","Descripcion","precioRenta","precioDescuento","Descuento","tipoVehiculos_id","horasRenta"];
     public $timestamps = false;
 
     public function Fotos()
@@ -24,6 +24,6 @@ class Vehiculos extends Model
 
     public function TipoVehiculo()
     {
-        return $this->belongsTo(TipoVehiculos::class);
+        return $this->belongsTo(TipoVehiculos::class,'tipoVehiculos_id');
     }
 }
