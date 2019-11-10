@@ -18,6 +18,7 @@
 	body.style.background = '#ebebeb';
 </script>
 @foreach($vehiculos as $vehiculo)
+<a href="{{route('vehiculos.show',$vehiculo['id'])}}">
 <table class="TablaVehiculo">
 	<tr>
 		<td colspan="2">
@@ -103,7 +104,7 @@
 		</td>
 	</tr>
 </table>
-	
+</a>
 @endforeach
 
 @endsection
