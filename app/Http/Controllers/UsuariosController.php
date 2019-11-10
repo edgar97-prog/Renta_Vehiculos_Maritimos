@@ -388,4 +388,9 @@ class UsuariosController extends Controller
         $mensajes = explode("!<>",$datos["comentario"]);
         return json_encode($mensajes,JSON_FORCE_OBJECT);   
     }
+    public function datosCliente(Request $request)
+    {
+        $datos = Usuarios::where('Correo','=',$request->id)->with("Telefonos")->first()->toArray();
+        return json_encode($datos,JSON_FORCE_OBJECT);
+    }
 }

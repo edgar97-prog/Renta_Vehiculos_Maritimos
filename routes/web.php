@@ -21,6 +21,7 @@ Route::get('/Empleados','UsuariosController@datosEmpleado');
 Route::post('/datosEmp','UsuariosController@infoEmpleados');
 Route::post('/comentarios','UsuariosController@muestraComentarios');
 Route::post('/getMsjs','UsuariosController@obtenerMensajes');
+Route::post('/datosCliente','UsuariosController@datosCliente');
 //Route::get('/cuenta','UsuariosController@index');
 //Controlador para vehiculos
 Route::resource('/vehiculos','VehiculosController');	
