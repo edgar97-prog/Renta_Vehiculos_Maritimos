@@ -201,4 +201,27 @@ class VehiculosController extends Controller
             return route('/');
         }
     }
+
+    public function BusquedaVehiculos(Request $request){
+        $tipoVehiculos = TipoVehiculos::all();
+        $idtipoVehiculo=0;
+        foreach ($tipoVehiculos as $tipoVehiculo) {
+            if($tipoVehiculo['tipo'] == $request->nombre)
+                $idtipoVehiculo = $tipoVehiculo['id'];
+        }
+
+        $Vehiculos = Vehiculos::where('tipoVehiculos_id','=',$idtipoVehiculo)->with('Fotos')->with('TipoVehiculo')->get();
+        //$vehiculos = Vehiculos::where('Nombre','LIKE','%'.$request->nombre.'%')->with('Fotos')->with('TipoVehiculo')->get();
+        /*    $data = 4;
+            if($request->isMethod('post')){
+                $data = 0;
+            }
+            else{
+                if($request->nombre == 'misael')
+                    $data = 1;
+                else
+                    $data = 5;
+            }*/
+        return json_encode($Vehiculos,JSON_FORCE_OBJECT);
+    }
 }

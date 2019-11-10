@@ -8,9 +8,25 @@
 @endsection
 
 @section('cuerpo')
-<div style="text-align: right;">
-	{!!Form::label('l','MX:')!!}  {!!Form::radio('precio','1',true,['class' => 'rdPrecio'])!!}
-	{!!Form::label('l','USD:')!!} {!!Form::radio('precio','0',false,['class' => 'rdPrecio'])!!}
+<div align="center">
+	<table style="border: solid; width: 50%;">
+		<tr>
+			<td>
+				<div style="text-align: right; background-color: #ebebeb;">
+					{!!Form::label('l','MX:')!!}  {!!Form::radio('precio','1',true,['class' => 'rdPrecio'])!!}
+					{!!Form::label('l','USD:')!!} {!!Form::radio('precio','0',false,['class' => 'rdPrecio'])!!}
+				</div>
+			</td>
+			<td>
+				<div align="right" style="background-color: #ebebeb;">
+					<form class="form-inline my-2 my-lg-0">
+				      <input id="nombreVehiculoBuscar" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+				      <button id="btBuscar" class="btn btn-outline-success my-2 my-sm-0" type="button">Search</button>
+				    </form>
+				</div>
+			</td>
+		</tr>
+	</table>
 </div>
 
 <script>
