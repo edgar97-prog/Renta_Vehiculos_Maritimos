@@ -17,7 +17,8 @@ class Comentarios extends Migration
          Schema::create('comentarios', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->String('correoUser_id','50');
-            $table->String('comentario','250');
+            $table->longText('comentario');
+            $table->timestamps();
             $table->foreign('correoUser_id')->references('Correo')->on('Usuarios')
             ->onDelete('cascade')
             ->onUpdate('cascade');

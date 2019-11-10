@@ -107,3 +107,6 @@
 @endforeach
 
 @endsection
+@section('footers')
+@include('modal.modalComentario')
+@endsection

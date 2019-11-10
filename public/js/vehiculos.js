@@ -156,7 +156,7 @@ var elimFot = [];
 	}
 	let precioRenta = $('.precioDescuento');
 	//let valor = $('.precioDescuento')[0].innerText;
-	console.log(valor);
+	//console.log(valor);
 
 	/*(i === 0){
 		for(var i =0; i<precioRenta.legth;i++){

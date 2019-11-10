@@ -27,7 +27,7 @@ class Usuarios extends Model
 
     public function Comentarios()
     {
-        return $this->hasMany(Comentarios::class);
+        return $this->hasMany(Comentarios::class,'correoUser_id');
     }
 
 

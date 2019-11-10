@@ -10,6 +10,7 @@
         <script type="text/javascript" src="{{asset('js/bootstrap.min.js')}}"></script>
         <script type="text/javascript" src="{{asset('js/vehiculos.js')}}"></script>
         <script type="text/javascript" src="{{asset('js/login.js')}}"></script>
+        <script type="text/javascript" src="{{asset('js/dateformat.js')}}"></script>
         <script type="text/javascript" src="{{asset('js/scripts.js')}}"></script>
         <link rel="stylesheet" type="text/css" href="{{asset('css/estilos.css')}}">
         <link rel="stylesheet" type="text/css" href="{{asset('css/layout.css')}}">

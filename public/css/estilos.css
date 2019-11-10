@@ -43,8 +43,12 @@ a:active, a:focus{background:transparent;}
 	text-align: center;
 	padding: 5px 0px;
 }
+.tablaReg2{
+  width: 90%;
+  margin-top: 10px;
+}
 .tablaReg{
-	width: 80%;
+	width: 60%;
 	margin-top: 10px;
 }
 .subtitle{
@@ -153,6 +157,61 @@ a:active, a:focus{background:transparent;}
   display: none;
   overflow-y: auto;
 }
+.col-Users{
+  border-right: 1px solid #ddd;
+  height: 420px;
+  background: white;
+  overflow-y: auto;
+}
+.fechaComment{
+  font-style: italic;
+  font-size: 9px;
+  display: block;
+  text-align: right;
+}
+.listaUsers{
+  font-size: 15px;
+  font-family: inherit;
+  color:#606770;
+  list-style: none;
+  text-align: left;
+  line-height: 1.4;
+  margin-left: -15px;
+  position: absolute;
+  width: 100%;
+}
+.listaUsers li{
+  margin-top: 5px;
+  border:1px solid #ddd;
+  border-radius: 2px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+.mensajes{
+  padding: 10px;
+  padding-right: 0px;
+  width: 100%;
+  padding-left: 55%;
+  height: 420px;
+  overflow-y: auto;
+  float: right;
+}
+.msjDer{
+  width: 100%;
+  font-family: inherit;
+  font-size: 15px;
+  float: right;
+  
+  margin-top: 5px;
+  text-align: left;
+}
+.msjDer span{
+  background: #ddd;
+  word-wrap: break-word;
+  float: right;
+  padding: 10px;
+  border-radius: 10px;
+}
 .listaPanel{
   margin-left: -13px;
   list-style: none;
@@ -177,7 +236,7 @@ a:active, a:focus{background:transparent;}
   margin-left: 264px;
   margin-top: -34px;
   list-style: none;
-  width: 100px;
+  width: 130px;
   z-index: 1;
 }
 .sublistaPanel li{cursor: pointer;}
@@ -331,6 +390,7 @@ a:active, a:focus{background:transparent;}
     margin-left: 0px;
     margin-top: -9px;
   }
+  .tablaReg{width: 80%;}
 }
 .icoFav,#addedFav{
   float: right;
@@ -431,6 +491,11 @@ a:active, a:focus{background:transparent;}
     margin-right: 10%;
   }
 }
+@media (max-width: 968px){
+  #subcuerpoComments{
+    width: 100%;
+  }
+}
 @media (max-width: 800px) {
   .botonMG{
     margin-left: 70%;
@@ -464,3 +529,4 @@ a:active, a:focus{background:transparent;}
 .textboxHidden{
   visibility: hidden;
 }
+#btnVerComentarios{cursor: pointer;}
