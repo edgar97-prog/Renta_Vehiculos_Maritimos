@@ -162,11 +162,11 @@ var elimFot = [];
 			console.log(precioRenta);
 			for(var i=0; i<precioRenta.length;i++){
 				let precio =$('.precioDescuento')[i].innerText;
-				$('.precioDescuento')[i].innerHTML= parseFloat(precio) / 20;
+				$('.precioDescuento')[i].innerHTML= parseFloat(precio) / 20 + ' USD';
 			}
 			for(var i=0; i<precioRentaAnterior.length;i++){
 				let precio =$('.precioRenta')[i].innerText;
-				$('.precioRenta')[i].innerHTML= parseFloat(precio) / 20;
+				$('.precioRenta')[i].innerHTML= parseFloat(precio) / 20 + ' USD';
 			}
 		}
 		else{
@@ -175,28 +175,40 @@ var elimFot = [];
 			console.log(precioRenta);
 			for(var i=0; i<precioRenta.length;i++){
 				let precio =$('.precioDescuento')[i].innerText;
-				$('.precioDescuento')[i].innerHTML= parseFloat(precio) * 20;
+				$('.precioDescuento')[i].innerHTML= parseFloat(precio) * 20 + ' MXN';
 			}
 			for(var i=0; i<precioRentaAnterior.length;i++){
 				let precio =$('.precioRenta')[i].innerText;
-				$('.precioRenta')[i].innerHTML= parseFloat(precio) * 20;
+				$('.precioRenta')[i].innerHTML= parseFloat(precio) * 20 + ' MXN';
 			}
 		}
 	});
 
-	$('#btBuscar').on('click',function(){
-		let nombreVehiculo = $('#nombreVehiculoBuscar');
-		console.log(nombreVehiculo[0]['value']);
+	$('.formAction').on('submit',function(event){
+		//console.log(event);
+		event.preventDefault();
+		console.log(event.currentTarget.id)
+		var Vehiculo_id = event.currentTarget.id;
 		$.ajax({
-			type: 'get',
-			url: '/catalogo/'+nombreVehiculo[0]['value'],
-			data: {nombre: nombreVehiculo[0]['value']},
-		success:function(datos)
-		{
-		  var datos = JSON.parse(datos);
-		  console.log(datos);
-		} 
+			type:'post',
+			url: '/fav',
+			data:{
+				Vehiculo_id: Vehiculo_id
+			},
+			success: function(data){
+				if(data ===0){
+					alert('Agregado');
+				}
+				else{
+					alert('No');
+				}
+			},
+			error: function(){
+				alert('error pej');
+			}
 		});
+		//alert(event.elements);
+		
 	});
 
 

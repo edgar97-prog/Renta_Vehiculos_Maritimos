@@ -36,13 +36,17 @@
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img class="d-block w-100" src="{{asset("fotos/$Fotos[0]")}}" alt="First slide">
+      @if(!empty($Fotos))
+        <img class="d-block w-100" src="{{asset("fotos/$Fotos[0]")}}" alt="First slide">
+      @endif
     </div>
-     @for($i = 1; $i<3; $i++)
-    <div class="carousel-item">
-      <img class="d-block w-100" src="{{asset("fotos/$Fotos[$i]")}}" alt="Second slide">
-    </div>
-    @endfor
+      @if(!empty($Fotos))
+        @for($i = 1; $i<3; $i++)
+          <div class="carousel-item">
+            <img class="d-block w-100" src="{{asset("fotos/$Fotos[$i]")}}" alt="Second slide">
+          </div>
+        @endfor
+      @endif
   </div>
     <a class="carousel-control-prev" href="#carouselVehiculos" role="button" data-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>

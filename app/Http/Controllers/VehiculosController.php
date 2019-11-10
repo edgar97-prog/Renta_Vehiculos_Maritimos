@@ -186,42 +186,38 @@ class VehiculosController extends Controller
         return view('vehiculos.index',compact('vehiculos','tipoVehiculos'));
     }
 
-    public function catalogo()
+    public function catalogo(Request $request)
     {   
-        $vehiculos = Vehiculos::with('Fotos')->with('TipoVehiculo')->get();
-        //$tipoVehiculos = TipoVehiculos::all();
         $rol = Session::get('user_session')[1];
-        $vehiculo = $vehiculos[0];
-        //dd($vehiculos[0]['tipoVehiculo']['tipo']);
-        //dd(count($vehiculo['fotos']));
-        if(!empty($vehiculos)){
-
-            return view('vehiculos.catalogo', compact('vehiculos','rol'));
-        }else{
-            return route('/');
-        }
-    }
-
-    public function BusquedaVehiculos(Request $request){
-        $tipoVehiculos = TipoVehiculos::all();
-        $idtipoVehiculo=0;
-        foreach ($tipoVehiculos as $tipoVehiculo) {
-            if($tipoVehiculo['tipo'] == $request->nombre)
-                $idtipoVehiculo = $tipoVehiculo['id'];
-        }
-
-        $Vehiculos = Vehiculos::where('tipoVehiculos_id','=',$idtipoVehiculo)->with('Fotos')->with('TipoVehiculo')->get();
-        //$vehiculos = Vehiculos::where('Nombre','LIKE','%'.$request->nombre.'%')->with('Fotos')->with('TipoVehiculo')->get();
-        /*    $data = 4;
-            if($request->isMethod('post')){
-                $data = 0;
+        if(isset($request->nombreVehiculoBuscar)){
+            $vehiculos = Vehiculos::where('Nombre','LIKE','%'.$request->nombreVehiculoBuscar.'%')->with('Fotos')->with('TipoVehiculo')->get();
+            if(count($vehiculos) == 0){
+                $vehiculos = Vehiculos::with('Fotos')->with('TipoVehiculo')->get();
+                if(!empty($vehiculos)){
+                    return view('vehiculos.catalogo', compact('vehiculos','rol'));
+                }else{
+                    return route('/');
+                }
             }
             else{
-                if($request->nombre == 'misael')
-                    $data = 1;
-                else
-                    $data = 5;
-            }*/
-        return json_encode($Vehiculos,JSON_FORCE_OBJECT);
+                if(!empty($vehiculos)){
+
+                    return view('vehiculos.catalogo', compact('vehiculos','rol'));
+                }else{
+                    return route('/');
+                }
+            }
+        }
+        else{
+            $vehiculos = Vehiculos::with('Fotos')->with('TipoVehiculo')->get();
+            //$tipoVehiculos = TipoVehiculos::all();
+            //dd($vehiculos[0]['tipoVehiculo']['tipo']);
+            //dd(count($vehiculo['fotos']));
+            if(!empty($vehiculos)){
+                return view('vehiculos.catalogo', compact('vehiculos','rol'));
+            }else{
+                return route('/');
+            }
+        }
     }
 }

@@ -2,6 +2,7 @@
   <div class="modal-dialog">
 
     <!-- Modal content-->
+    @if(!empty($vehiculoMostrado))
     <div class="modal-content">
       <div class="modal-header header-modal">
         <h4 class="modal-title">¡No te lo puedes perder!</h4>
@@ -16,11 +17,14 @@
             <div class="carousel-item active">
 <img class="d-block w-100 Img" src="{{asset("fotos")}}/{{$vehiculoMostrado[0]["Fotos"][0]["Foto"]}}" alt="First slide">
           </div>
+          
+          
             @for($i = 0; $i< (count($vehiculoMostrado[0]['Fotos'][0]->toArray())-1)-1; $i++)
               <div class="carousel-item">
                 <img class="d-block w-100 Img" src="{{asset("fotos")}}/{{$vehiculoMostrado[0]["Fotos"][$i]["Foto"]}}" alt="Second slide">
               </div>
           @endfor
+
           <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only">Anterior</span>
@@ -38,6 +42,6 @@
         <button type="button" class="btn btn-danger" data-dismiss="modal">No, gracias</button>
       </div>
     </div>
-
+    @endif
   </div>
 </div>
