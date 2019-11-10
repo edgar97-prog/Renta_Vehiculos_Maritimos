@@ -65,6 +65,7 @@
 	<input type="hidden" id="token" value="{{csrf_token()}}">
 </div>
 @include('usuarios.modales.datos')
+@include('usuarios.modales.datoscliente')
 @endsection
 @section('footers')
 @include('modal.modalComentario')

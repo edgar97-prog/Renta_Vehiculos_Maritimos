@@ -75,18 +75,25 @@ $(document).ready(function(){
 				$.each(datos,function(index,element){
 					var FechaMsj = new Date(datos[i]["updated_at"]);
 					if(Fhoy === FechaMsj.format("d/mm/yyyy")){
-						$('.listaUsers').append("<li data-id='"+datos[i]["usuario"]["Correo"]+"'>"
-						+datos[i]["usuario"]["Nombre"]+" "+datos[i]["usuario"]["ApellidoP"]+" "+
-						datos[i]["usuario"]["ApellidoM"]+"<span class='fechaComment'>Hoy a las "+FechaMsj.format("h:MM")+"</span>"+"</li>");
+						$('.listaUsers').append("<li data-id='"+datos[i]["usuario"]["Correo"]+
+							"'><span class='icoInfo' title='Ver datos del cliente'><i class='fa fa-info-circle' aria-hidden='true'></i></span>"
+							+datos[i]["usuario"]["Nombre"]+" "+datos[i]["usuario"]["ApellidoP"]+" "+
+							datos[i]["usuario"]["ApellidoM"]+"<span class='fechaComment'>Hoy a las "+FechaMsj.format("h:MM")+"</span>"+"</li>");
 					}else{
-					$('.listaUsers').append("<li data-id='"+datos[i]["usuario"]["Correo"]+"'>"
-						+datos[i]["usuario"]["Nombre"]+" "+datos[i]["usuario"]["ApellidoP"]+" "+
-						datos[i]["usuario"]["ApellidoM"]+"<span class='fechaComment'>"+FechaMsj.format("m/dd/yyyy h:MM")+"</span>"+"</li>");
+					$('.listaUsers').append("<li data-id='"+datos[i]["usuario"]["Correo"]+
+							"'><span class='icoInfo' title='Ver datos del cliente'><i class='fa fa-info-circle' aria-hidden='true'></i></span>"
+							+datos[i]["usuario"]["Nombre"]+" "+datos[i]["usuario"]["ApellidoP"]+" "+
+							datos[i]["usuario"]["ApellidoM"]+"<span class='fechaComment'>"+FechaMsj.format("m/dd/yyyy h:MM")+"</span>"+"</li>");
 					}
 					i++;
 				},'json');
 				$('#mensajes').html("");
+				var clickhijo = false;
 				$('.listaUsers').on('click','li',function(){
+					if(clickhijo){
+						clickhijo = false;
+						return;
+					}
 					$.ajax({
 						type:'POST',
 						url:'/getMsjs',
@@ -103,6 +110,25 @@ $(document).ready(function(){
 								i++;
 							},'json');
 							document.getElementById("mensajes").scrollTop = document.getElementById("mensajes").scrollHeight;
+						}
+					});
+				});
+				$('.icoInfo').on('click',function(){
+					clickhijo = true;
+					//$(this).parent("li").data('id');
+					$.ajax({
+						type:'POST',
+						url:'/datosCliente',
+						data:{
+							'token':$('#token').val(),
+							'id':$(this).parent("li").data('id')
+						},
+						success:function(data){
+							var datos = JSON.parse(data);
+							console.log(datos);
+							$('#_correo').html(datos['Correo']);
+							$('#_telefono').html(datos['telefonos'][0]['Telefono']);
+							$("#ModalDatosCli").modal('show');
 						}
 					});
 				});

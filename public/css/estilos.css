@@ -169,6 +169,13 @@ a:active, a:focus{background:transparent;}
   display: block;
   text-align: right;
 }
+.icoInfo{
+  cursor: default;
+  font-size: 20px;
+  cursor: help;
+  display: none;
+  float: right;
+}
 .listaUsers{
   font-size: 15px;
   font-family: inherit;
@@ -186,6 +193,9 @@ a:active, a:focus{background:transparent;}
   border-radius: 2px;
   padding: 5px 10px;
   cursor: pointer;
+}
+.listaUsers li:hover > .icoInfo{
+  display: inline-block;
 }
 .mensajes{
   padding: 10px;
