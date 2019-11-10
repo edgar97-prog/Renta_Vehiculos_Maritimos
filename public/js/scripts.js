@@ -5,7 +5,7 @@ $(document).ready(function(){
 	}
 	});
 	$('#btnVerTodo').click(function(){
-		document.getElementById("subcuerpo").style.display = 'block';
+		$('#subcuerpoComments').css('display','none');
 		$.ajax({
 			type:'GET',
 			url:'/Empleados',
@@ -20,6 +20,7 @@ $(document).ready(function(){
 						+datos[i]['Sexo']+"</td><td><button class='btn btn-danger btnEliminar' title='Eliminar empleado' data-id='"+datos[i]['Correo']+"'>Eliminar</button></td></tr>");
 					i++;
 				},'json');
+				document.getElementById("subcuerpo").style.display = 'block';
 				$('.rowEmp').dblclick(function(){
 					var id = this.parentElement.dataset.id;
 					var token = document.getElementById("token").value;
@@ -57,25 +58,77 @@ $(document).ready(function(){
 				});
 			}
 		});
-		
 	});
-
+	$('#btnVerComentarios').click(function(){
+		$('#subcuerpo').css('display','none');
+		$.ajax({
+			type:'POST',
+			url:'/comentarios',
+			data:{
+				'token':$('#token').val()
+			},
+			success:function(data){
+				var datos = JSON.parse(data);
+				$('.listaUsers').html("");
+				var i = 0;
+				var Fhoy = new Date().format("d/mm/yyyy");
+				$.each(datos,function(index,element){
+					var FechaMsj = new Date(datos[i]["updated_at"]);
+					if(Fhoy === FechaMsj.format("d/mm/yyyy")){
+						$('.listaUsers').append("<li data-id='"+datos[i]["usuario"]["Correo"]+"'>"
+						+datos[i]["usuario"]["Nombre"]+" "+datos[i]["usuario"]["ApellidoP"]+" "+
+						datos[i]["usuario"]["ApellidoM"]+"<span class='fechaComment'>Hoy a las "+FechaMsj.format("h:MM")+"</span>"+"</li>");
+					}else{
+					$('.listaUsers').append("<li data-id='"+datos[i]["usuario"]["Correo"]+"'>"
+						+datos[i]["usuario"]["Nombre"]+" "+datos[i]["usuario"]["ApellidoP"]+" "+
+						datos[i]["usuario"]["ApellidoM"]+"<span class='fechaComment'>"+FechaMsj.format("m/dd/yyyy h:MM")+"</span>"+"</li>");
+					}
+					i++;
+				},'json');
+				$('#mensajes').html("");
+				$('.listaUsers').on('click','li',function(){
+					$.ajax({
+						type:'POST',
+						url:'/getMsjs',
+						data:{
+							'token':$('#token').val(),
+							'id':$(this).data('id')
+						},
+						success:function(data){
+							$('#mensajes').html("");
+							var datos = JSON.parse(data);
+							var i = 0;
+							$.each(datos,function(index,element){
+								$('#mensajes').append("<div class='msjDer'><span>"+datos[i]+"</span></div>");
+								i++;
+							},'json');
+							document.getElementById("mensajes").scrollTop = document.getElementById("mensajes").scrollHeight;
+						}
+					});
+				});
+				$('#subcuerpoComments').css('display','block');
+			}
+		});
+	});
 
 	$('.btnComentarios').click(function(){
 
 		var comentario = $('.coment').val();
-		$.ajax({
-			type: 'POST',
-			url: '/comentario',
-			data: {comentario: comentario},
-			success:function(mensaje)
-			{	
-				$('.coment').val('');
-				$('.comentarioModal').append('<center><label>'+ mensaje +'</label></center>');
-				$('#ModalComent').modal('show');
-			}
-		});
-
+		if(comentario == "")
+			alert("Necesita rellenar el campo comentario");
+		else{
+			$.ajax({
+				type: 'POST',
+				url: '/comentario',
+				data: {comentario: comentario},
+				success:function(mensaje)
+				{	
+					$('.coment').val('');
+					$('.comentarioModal').html('<center><label>'+ mensaje +'</label></center>');
+					$('#ModalComent').modal('show');
+				}
+			});
+		}
 	});
 
 	$('#frmcuenta').on('submit',function(event){

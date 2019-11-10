@@ -347,7 +347,6 @@ class UsuariosController extends Controller
 
     public function comentario(Request $request)
     {
-       
         $comentario = $request->comentario;
         $email = Session::get('user_session')[0];
         $existenciaComent = Comentarios::where('correoUser_id','=',$email)->get()->toArray();
@@ -361,14 +360,24 @@ class UsuariosController extends Controller
         }
         else
         {
-           $nuevoComent = $existenciaComent[0]['comentario']." !<> ".$comentario;
+           $nuevoComent = $existenciaComent[0]['comentario']."!<>".$comentario;
            $recursoComentario = Comentarios::where('correoUser_id','=',$email)->first();
            $recursoComentario->comentario = $nuevoComent;
            if($recursoComentario->save())
-             return "Comentario Enviado, Gracias.";
-        else
-            return "Ha Ocurrido un Error, intetelo de nuevo.";
+                return "Comentario Enviado, Gracias.";
+            else
+                return "Ha Ocurrido un Error, intetelo de nuevo.";
         }
-       
-   }
+    }
+    public function muestraComentarios()
+    {
+        $datos = Comentarios::with('Usuario')->select("correoUser_id","updated_at")->orderByRaw('updated_at DESC')->get()->toArray();
+        return json_encode($datos,JSON_FORCE_OBJECT);
+    }
+    public function obtenerMensajes(Request $request)
+    {
+        $datos = Comentarios::where('correoUser_id','=',$request->id)->select("comentario")->first()->toArray();
+        $mensajes = explode("!<>",$datos["comentario"]);
+        return json_encode($mensajes,JSON_FORCE_OBJECT);   
+    }
 }

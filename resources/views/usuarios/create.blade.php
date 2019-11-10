@@ -55,31 +55,37 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td>{!!Form::label('correo','Correo:')!!}</td>
+				<td><i class="fa fa-envelope-o" aria-hidden="true"></i>
+				{!!Form::label('correo','Correo:')!!}</td>
 				<td>{!! Form::email('Correo',null,['placeholder'=>'example@example.com','class'=>'form form-control','required'=>'y']) !!}</td>
 			</tr>
 			<tr>
-				<td>{!!Form::label('clave','Clave:')!!}</td>
+				<td><i class="fa fa-key" aria-hidden="true"></i>{!!Form::label('clave','Clave:')!!}</td>
 				<td>{!! Form::password('Contra',['placeholder'=>'********','class'=>'form form-control','required'=>'y','max'=>'30','min'=>'8']) !!}</td>
 			</tr>
 			<tr>
-				<td>{!!Form::label('Nombre','Nombre:')!!}</td>
+				<td><i class="fa fa-user" aria-hidden="true"></i>
+				{!!Form::label('Nombre','Nombre:')!!}</td>
 				<td>{!! Form::text('Nombre',null,['class'=>'form form-control','required'=>'y','pattern'=>'[a-zA-Z ñÑáéíóúÁÉÍÓÚ]{3,20}','autocomplete'=>'off']) !!}</td>
 			</tr>
 			<tr>
-				<td>{!!Form::label('Ap','Apellido Paterno:')!!}</td>
+				<td><i class="fa fa-user" aria-hidden="true"></i>
+				{!!Form::label('Ap','Apellido Paterno:')!!}</td>
 				<td>{!! Form::text('ApellidoP',null,['class'=>'form form-control','required'=>'y','pattern'=>'[a-zA-Z ñÑáéíóúÁÉÍÓÚ]{3,20}','autocomplete'=>'off']) !!}</td>
 			</tr>
 			<tr>
-				<td>{!!Form::label('Am','Apellido Materno:')!!}</td>
+				<td><i class="fa fa-user" aria-hidden="true"></i>
+				{!!Form::label('Am','Apellido Materno:')!!}</td>
 				<td>{!! Form::text('ApellidoM',null,['class'=>'form form-control','required'=>'y','pattern'=>'[a-zA-Z ñÑáéíóúÁÉÍÓÚ]{3,20}','autocomplete'=>'off']) !!}</td>
 			</tr>
 			<tr>
-				<td>{!!Form::label('sexo','Sexo:')!!}</td>
+				<td><i class="fa fa-male" aria-hidden="true"></i>
+				{!!Form::label('sexo','Sexo:')!!}</td>
 				<td>{!! Form::select('Sexo',['M'=>'Masculino','F'=>'Femenino'],'M',['class'=>'form form-control','required'=>'y']) !!}</td>
 			</tr>
 			<tr>
-				<td>{!!Form::label('tel','Telefono / Celular:')!!}</td>
+				<td><i class="fa fa-mobile" aria-hidden="true"></i>
+				{!!Form::label('tel','Telefono / Celular:')!!}</td>
 				<td>{!! Form::text('Telefono',null,['class'=>'form form-control','required'=>'y','pattern'=>'[0-9]{7,10}','autocomplete'=>'off']) !!}</td>
 			</tr>
 			@isset($rol)
@@ -91,15 +97,18 @@
 						</td>
 					</tr>
 					<tr>
-						<td>{!!Form::label('calle','Calle:')!!}</td>
+						<td><i class="fa fa-location-arrow" aria-hidden="true"></i>
+ {!!Form::label('calle','Calle:')!!}</td>
 						<td>{!! Form::text('Calle',null,['class'=>'form form-control','required'=>'y','pattern'=>'[a-zA-Z0-9 ñÑáéíóúÁÉÍÓÚ#]{5,50}','autocomplete'=>'off']) !!}</td>
 					</tr>
 					<tr>
-						<td>{!!Form::label('colonia','Colonia:')!!}</td>
+						<td><i class="fa fa-location-arrow" aria-hidden="true"></i>
+ {!!Form::label('colonia','Colonia:')!!}</td>
 						<td>{!! Form::text('Colonia',null,['class'=>'form form-control','required'=>'y','pattern'=>'[a-zA-Z0-9 ñÑáéíóúÁÉÍÓÚ]{5,30}','autocomplete'=>'off']) !!}</td>
 					</tr>
 					<tr>
-						<td>{!!Form::label('cp','Código Postal:')!!}</td>
+						<td><i class="fa fa-map-marker" aria-hidden="true"></i>
+ {!!Form::label('cp','Código Postal:')!!}</td>
 						<td>{!! Form::text('CP',null,['class'=>'form form-control','required'=>'y','pattern'=>'[0-9]{5,5}','autocomplete'=>'off']) !!}</td>
 					</tr>
 				@endif

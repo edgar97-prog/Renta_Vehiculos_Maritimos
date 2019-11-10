@@ -78,3 +78,7 @@
 	</div>
 </div>
 @endsection
+
+@section('footers')
+@include('modal.modalComentario')
+@endsection

@@ -17,7 +17,7 @@
         @endif
        {!!Form::open(['route'=>'vehiculos.store','method'=>'POST','enctype'=>'multipart/form-data'])!!}
 
-            <table class="tablaReg">
+            <table class="tablaReg2">
               <tr>
                 <td>{!!Form::label('nombre','Nombre:')!!}</td>
                 <td>{!! Form::text('Nombre',null,['class'=>'form form-control','required'=>'y']) !!}</td>
