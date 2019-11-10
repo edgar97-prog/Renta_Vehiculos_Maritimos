@@ -144,33 +144,60 @@ var elimFot = [];
 	});
 
 // CAMBIO DE DIVISA
-	let rdBtns = $('.rdPrecio');
-	let rd = new Array();
-	var checked;
-	console.log(rdBtns);
-	for(var i=0; i<rdBtns.length; i++){
-		if(rdBtns[i]['checked'] ===true){
-			checked = i;
+	$('.rdPrecio').on('change',function(){
+		let rdBtns = $('.rdPrecio');
+		let rd = new Array();
+		var checked;
+		//console.log(rdBtns);
+		for(var i=0; i<rdBtns.length; i++){
+			if(rdBtns[i]['checked'] ===true){
+				checked = i;
+			}
+			//alert(rdBtns[i]['checked']);
 		}
-		//alert(rdBtns[i]['checked']);
-	}
-	let precioRenta = $('.precioDescuento');
-	//let valor = $('.precioDescuento')[0].innerText;
-	$.ajax({
-		url: 'http://www.google.com/finance/converter?a=1&from=RUB&to=USD',
-		dataType: 'json',
-		success: function(data){
-			console.log(data);
+		//alert(checked);
+		if(checked === 1){
+			let precioRenta = $('.precioDescuento');
+			let precioRentaAnterior = $('.precioRenta');
+			console.log(precioRenta);
+			for(var i=0; i<precioRenta.length;i++){
+				let precio =$('.precioDescuento')[i].innerText;
+				$('.precioDescuento')[i].innerHTML= parseFloat(precio) / 20;
+			}
+			for(var i=0; i<precioRentaAnterior.length;i++){
+				let precio =$('.precioRenta')[i].innerText;
+				$('.precioRenta')[i].innerHTML= parseFloat(precio) / 20;
+			}
 		}
-
+		else{
+			let precioRenta = $('.precioDescuento');
+			let precioRentaAnterior = $('.precioRenta');
+			console.log(precioRenta);
+			for(var i=0; i<precioRenta.length;i++){
+				let precio =$('.precioDescuento')[i].innerText;
+				$('.precioDescuento')[i].innerHTML= parseFloat(precio) * 20;
+			}
+			for(var i=0; i<precioRentaAnterior.length;i++){
+				let precio =$('.precioRenta')[i].innerText;
+				$('.precioRenta')[i].innerHTML= parseFloat(precio) * 20;
+			}
+		}
 	});
-	//console.log(valor);
 
-	/*(i === 0){
-		for(var i =0; i<precioRenta.legth;i++){
-			let valor = $('.precioDescuento')[i].innerText;
-		}
-	}*/
+	$('#btBuscar').on('click',function(){
+		let nombreVehiculo = $('#nombreVehiculoBuscar');
+		console.log(nombreVehiculo[0]['value']);
+		$.ajax({
+			type: 'get',
+			url: '/catalogo/'+nombreVehiculo[0]['value'],
+			data: {nombre: nombreVehiculo[0]['value']},
+		success:function(datos)
+		{
+		  var datos = JSON.parse(datos);
+		  console.log(datos);
+		} 
+		});
+	});
 
 
 });

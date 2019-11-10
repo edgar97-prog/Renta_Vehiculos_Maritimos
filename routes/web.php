@@ -39,6 +39,7 @@ Route::post('/login','UsuariosController@login');
 //RUTAS PARA EL CATALOGO DE PRODUCTOS
 
 Route::get('/catalogo','VehiculosController@catalogo');
+Route::get('/catalogo/{nombre?}','VehiculosController@BusquedaVehiculos');
 
 //RUTA PARA ENVIAR LOS COMENTARIOS
 Route::post('/comentario','UsuariosController@comentario');
