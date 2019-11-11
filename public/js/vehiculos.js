@@ -187,13 +187,13 @@ var elimFot = [];
 	$('.formAction').on('submit',function(event){
 		//console.log(event);
 		event.preventDefault();
-		console.log(event.currentTarget.id)
 		var Vehiculo_id = event.currentTarget.id;
 		$.ajax({
-			type:'post',
+			type:'POST',
 			url: '/fav',
 			data:{
-				Vehiculo_id: Vehiculo_id
+				Vehiculo_id: Vehiculo_id,
+				'token':$('#token').val()
 			},
 			success: function(datos){
 				if(datos ==1){

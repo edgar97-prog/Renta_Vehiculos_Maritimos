@@ -42,6 +42,7 @@
 	let body = document.getElementById('body');
 	body.style.background = '#ebebeb';
 </script>
+@csrf
 @foreach($vehiculos as $vehiculo)
 <a href="{{route('vehiculos.show',$vehiculo['id'])}}">
 <table class="TablaVehiculo">

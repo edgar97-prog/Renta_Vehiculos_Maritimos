@@ -46,8 +46,10 @@ class FavoritosController extends Controller
             $Vehiculo_id = $request->Vehiculo_id;
             $id = Session::get('user_session')[0];
             $datos = array('Vehiculo_id' => $Vehiculo_id, 'Correo_id' => $id);
-            Favoritos::create($datos);
-            return $datos;
+            if(Favoritos::create($datos))
+                return '1';
+            else
+                return '2';
         }
         
     }
