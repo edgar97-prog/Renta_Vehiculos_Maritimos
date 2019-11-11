@@ -44,4 +44,4 @@ Route::get('/catalogo','VehiculosController@catalogo');
 Route::post('/comentario','UsuariosController@comentario');
 
 //FAVORITOS
-//Route::post('/fav','FavoritosController');
+Route::resource('/fav','FavoritosController');

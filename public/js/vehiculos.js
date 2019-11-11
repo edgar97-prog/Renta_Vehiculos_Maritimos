@@ -195,12 +195,14 @@ var elimFot = [];
 			data:{
 				Vehiculo_id: Vehiculo_id
 			},
-			success: function(data){
-				if(data ===0){
+			success: function(datos){
+				if(datos ==1){
+					console.log(datos);
 					alert('Agregado');
 				}
 				else{
 					alert('No');
+					console.log(datos);
 				}
 			},
 			error: function(){

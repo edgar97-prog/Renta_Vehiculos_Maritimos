@@ -106,7 +106,7 @@
 		</td>
 		<td>
 			<div id="precioRenta">
-				@if($vehiculo['precioDescuento'] !=0)
+				@if($vehiculo['Descuento'] !=0)
 				<div >
 					$<i class="precioRenta">{{$vehiculo['precioRenta']}} MXN</i> <br>
 				</div>

@@ -11,4 +11,15 @@ class Favoritos extends Model
     protected $table = "Favoritos";
     protected $fillable = ["Vehiculo_id","Correo_id"];
 
+    public function Usuario()
+    {
+    	return $this->belongsTo(Usuarios::class,'Correo_id','Correo');
+    }
+
+
+    public function Vehiculos()
+    {
+    	return $this->belongsTo(Vehiculos::class,'Vehiculo_id','id');
+    }
+
 }

@@ -26,4 +26,9 @@ class Vehiculos extends Model
     {
         return $this->belongsTo(TipoVehiculos::class,'tipoVehiculos_id');
     }
+
+    public function Favoritos()
+    {
+        return $this->hasMany(Favoritos::class,'Vehiculo_id');
+    }
 }

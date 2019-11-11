@@ -561,6 +561,8 @@ a:active, a:focus{background:transparent;}
   width: 25px;
   height: 25px;
   border-radius: 100%;
+  background: transparent;
+  color: transparent;
   border: none;
   outline:none;
 }

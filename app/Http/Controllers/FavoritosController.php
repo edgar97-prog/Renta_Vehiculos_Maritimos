@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Favoritos;
 use Illuminate\Http\Request;
+use Session;
 
 class FavoritosController extends Controller
 {
@@ -15,6 +16,8 @@ class FavoritosController extends Controller
     public function index()
     {
         //
+         //return redirect()->route('vehiculos.index')->with('mensaje','El Vehiculo se Agrego Correctamente');
+        return redirect('/catalogo');
     }
 
     /**
@@ -36,6 +39,17 @@ class FavoritosController extends Controller
     public function store(Request $request)
     {
         //
+        if(!Session::has('user_session')){
+            return 0;
+        }
+        else{
+            $Vehiculo_id = $request->Vehiculo_id;
+            $id = Session::get('user_session')[0];
+            $datos = array('Vehiculo_id' => $Vehiculo_id, 'Correo_id' => $id);
+            Favoritos::create($datos);
+            return $datos;
+        }
+        
     }
 
     /**
