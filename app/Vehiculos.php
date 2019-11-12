@@ -31,4 +31,8 @@ class Vehiculos extends Model
     {
         return $this->hasMany(Favoritos::class,'Vehiculo_id');
     }
+    public function Rentas()
+    {
+        return $this->hasMany(Rentas::class,'Correo_id');
+    }
 }

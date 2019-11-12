@@ -27,6 +27,6 @@ class TipoVehiculos extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('tipovehiculos');
     }
 }
