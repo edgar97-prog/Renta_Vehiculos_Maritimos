@@ -187,28 +187,66 @@ var elimFot = [];
 	$('.formAction').on('submit',function(event){
 		//console.log(event);
 		event.preventDefault();
+		/*var valor = event.currentTarget[2].value;
+		console.log(valor);
+		$('#Ocu1').val(3000);
+		var tb = $('#Ocu1');
+		console.log(tb);*/
 		var Vehiculo_id = event.currentTarget.id;
-		$.ajax({
-			type:'POST',
-			url: '/fav',
-			data:{
-				Vehiculo_id: Vehiculo_id,
-				'token':$('#token').val()
-			},
-			success: function(datos){
-				if(datos ==1){
-					console.log(datos);
-					alert('Agregado');
+		var mgValor = $('#Ocu'+Vehiculo_id).val();
+		console.log(mgValor);
+		if(mgValor == 1) //SI YA ESTÁ EN MG
+		{
+			$.ajax({
+				type:'POST',
+				url: '/fav/eliminar',
+				data:{
+						Vehiculo_id: Vehiculo_id,
+						'token':$('#token').val()
+					},
+				success: function(datos){
+					if(datos ==1){
+						//console.log(datos);
+						//alert('Agregado');
+						$('#span'+Vehiculo_id).html('<i class="fa fa-heart-o icoFav iconoFa" title="Agregar a favoritos"></i>');
+						$('#Ocu'+Vehiculo_id).val(0);
+					}
+					else{
+						//alert('No');
+						console.log(datos);
+					}
+				},
+				error: function(){
+					alert('ERROR');
 				}
-				else{
-					alert('No');
-					console.log(datos);
+			});
+		}
+		else
+		{
+			$.ajax({
+				type:'POST',
+				url: '/fav',
+				data:{
+						Vehiculo_id: Vehiculo_id,
+						'token':$('#token').val()
+					},
+				success: function(datos){
+					if(datos ==1){
+						console.log(datos);
+						//alert('Agregado');
+						$('#span'+Vehiculo_id).html('<i class="fa fa-heart icoFav iconoFa" aria-hidden="true">');
+						$('#Ocu'+Vehiculo_id).val(1);
+					}
+					else{
+						//alert('No');
+						console.log(datos);
+					}
+				},
+				error: function(){
+					alert('ERROR');
 				}
-			},
-			error: function(){
-				alert('error pej');
-			}
-		});
+			});
+		}
 		//alert(event.elements);
 		
 	});

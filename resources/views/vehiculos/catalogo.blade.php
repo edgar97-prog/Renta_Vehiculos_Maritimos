@@ -55,7 +55,11 @@
 						{!!Form::submit('MG',['class'=>'btnAction','title' =>'Agregar a favoritos','type' =>'button'])!!}
 						
 					</div>
-					<i class="fa fa-heart-o icoFav iconoFa" title="Agregar a favoritos"></i>
+					@if(count($vehiculo['favoritos'])== 0)
+					<span id="span{{$vehiculo['id']}}"><i class="fa fa-heart-o icoFav iconoFa" title="Agregar a favoritos"></i></span>
+					@else
+					<span id="span{{$vehiculo['id']}}"><i class="fa fa-heart icoFav iconoFa" aria-hidden="true"></i></span>
+					@endif
 				</span>
 			</div>
 			<div style="padding: 6px">
@@ -125,7 +129,7 @@
 	</tr>
 	<tr >
 		<td colspan="2">
-			 {!! Form::text('vehiculo', $vehiculo['id'],['class' => 'textboxHidden']) !!}
+			 {!! Form::text('vehiculo',count($vehiculo['favoritos']),['class' => 'textboxHidden','id'=>'Ocu'.$vehiculo['id']]) !!}
 			 {!! Form::close() !!}
 		</td>
 	</tr>

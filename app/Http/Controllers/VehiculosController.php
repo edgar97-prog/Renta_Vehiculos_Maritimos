@@ -6,6 +6,7 @@ use App\Vehiculos;
 use App\Fotos;
 use App\Usuarios;
 use App\TipoVehiculos;
+use App\Favoritos;
 use Session;
 use Illuminate\Http\Request;
 
@@ -189,10 +190,12 @@ class VehiculosController extends Controller
     public function catalogo(Request $request)
     {   
         $rol = Session::get('user_session')[1];
+        //$vehiculos = Vehiculos::with('Fotos')->with('TipoVehiculo')->with('Favoritos')->get();
+        //dd(count($vehiculos[1]['Favoritos']));
         if(isset($request->nombreVehiculoBuscar)){
             $vehiculos = Vehiculos::where('Nombre','LIKE','%'.$request->nombreVehiculoBuscar.'%')->with('Fotos')->with('TipoVehiculo')->get();
             if(count($vehiculos) == 0){
-                $vehiculos = Vehiculos::with('Fotos')->with('TipoVehiculo')->get();
+                $vehiculos = Vehiculos::with('Fotos')->with('TipoVehiculo')->with('Favoritos')->get();
                 if(!empty($vehiculos)){
                     return view('vehiculos.catalogo', compact('vehiculos','rol'));
                 }else{
@@ -209,7 +212,7 @@ class VehiculosController extends Controller
             }
         }
         else{
-            $vehiculos = Vehiculos::with('Fotos')->with('TipoVehiculo')->get();
+            $vehiculos = Vehiculos::with('Fotos')->with('TipoVehiculo')->with('Favoritos')->get();
             //$tipoVehiculos = TipoVehiculos::all();
             //dd($vehiculos[0]['tipoVehiculo']['tipo']);
             //dd(count($vehiculo['fotos']));

@@ -74,6 +74,7 @@ class FavoritosController extends Controller
     public function edit(Favoritos $favoritos)
     {
         //
+
     }
 
     /**
@@ -97,5 +98,23 @@ class FavoritosController extends Controller
     public function destroy(Favoritos $favoritos)
     {
         //
+        
+        //dd(Favoritos::where('Vehiculo_id','=','1'));
+    }
+
+    public function eliminar(Request $request)
+    {
+        if(!Session::has('user_session')){
+            return 0;
+        }
+        else{
+            $Vehiculo_id = $request->Vehiculo_id;
+            $id = Session::get('user_session')[0];
+            Favoritos::where([
+                ['Vehiculo_id','=',$Vehiculo_id],
+                ['Correo_id','=',$id]
+            ])->delete();
+            return 1;
+        }
     }
 }
