@@ -240,7 +240,8 @@ class UsuariosController extends Controller
         } 
     }
     public function logout(){
-        session()->forget('user_session');
+        Session::flush();
+        //session()->forget('user_session');
         return redirect('/');
     }
 

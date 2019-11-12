@@ -55,10 +55,14 @@
 						{!!Form::submit('MG',['class'=>'btnAction','title' =>'Agregar a favoritos','type' =>'button'])!!}
 						
 					</div>
-					@if(count($vehiculo['favoritos'])== 0)
-					<span id="span{{$vehiculo['id']}}"><i class="fa fa-heart-o icoFav iconoFa" title="Agregar a favoritos"></i></span>
+					@if(Session::has('user_session'))
+						@if(count($vehiculo['Favoritos'])== 0)
+						<span id="span{{$vehiculo['id']}}"><i class="fa fa-heart-o icoFav iconoFa" title="Agregar a favoritos"></i></span>
+						@else
+						<span id="span{{$vehiculo['id']}}"><i class="fa fa-heart icoFav iconoFa" aria-hidden="true"></i></span>
+						@endif
 					@else
-					<span id="span{{$vehiculo['id']}}"><i class="fa fa-heart icoFav iconoFa" aria-hidden="true"></i></span>
+						<span id="span{{$vehiculo['id']}}"><i class="fa fa-heart-o icoFav iconoFa" title="Agregar a favoritos"></i></span>
 					@endif
 				</span>
 			</div>
@@ -129,7 +133,7 @@
 	</tr>
 	<tr >
 		<td colspan="2">
-			 {!! Form::text('vehiculo',count($vehiculo['favoritos']),['class' => 'textboxHidden','id'=>'Ocu'.$vehiculo['id']]) !!}
+			 {!! Form::text('vehiculo',count($vehiculo['Favoritos']),['class' => 'textboxHidden','id'=>'Ocu'.$vehiculo['id']]) !!}
 			 {!! Form::close() !!}
 		</td>
 	</tr>

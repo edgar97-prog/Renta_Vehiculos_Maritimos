@@ -190,12 +190,22 @@ class VehiculosController extends Controller
     public function catalogo(Request $request)
     {   
         $rol = Session::get('user_session')[1];
-        //$vehiculos = Vehiculos::with('Fotos')->with('TipoVehiculo')->with('Favoritos')->get();
-        //dd(count($vehiculos[1]['Favoritos']));
+        /*$vehiculos = Vehiculos::with('Fotos')->with('TipoVehiculo')
+            ->with(['Favoritos'=> function($q){$q->where('Correo_id',Session::get('user_session')[0]);}])->get();
+        dd($vehiculos);*/
+        /*if(Session::has('user_session')){
+          $vehiculos = Vehiculos::with('Fotos')->with('TipoVehiculo')
+            ->with(['Favoritos'=> function($q){$q->where('Correo_id',Session::get('user_session')[0]);}])->get(); dd($vehiculos);
+        }*/
+       
+
         if(isset($request->nombreVehiculoBuscar)){
-            $vehiculos = Vehiculos::where('Nombre','LIKE','%'.$request->nombreVehiculoBuscar.'%')->with('Fotos')->with('TipoVehiculo')->get();
+            $vehiculos = Vehiculos::where('Nombre','LIKE','%'.$request->nombreVehiculoBuscar.'%')->with('Fotos')->with('TipoVehiculo')
+              ->with(['Favoritos'=> function($q){$q->where('Correo_id',Session::get('user_session')[0]);}])->get();//SI ENCUENTRA ALGO PARECIDO
+
             if(count($vehiculos) == 0){
-                $vehiculos = Vehiculos::with('Fotos')->with('TipoVehiculo')->with('Favoritos')->get();
+                $vehiculos = Vehiculos::with('Fotos')->with('TipoVehiculo')
+                ->with(['Favoritos'=> function($q){$q->where('Correo_id',Session::get('user_session')[0]);}])->get();
                 if(!empty($vehiculos)){
                     return view('vehiculos.catalogo', compact('vehiculos','rol'));
                 }else{
@@ -212,10 +222,12 @@ class VehiculosController extends Controller
             }
         }
         else{
-            $vehiculos = Vehiculos::with('Fotos')->with('TipoVehiculo')->with('Favoritos')->get();
+            $vehiculos = Vehiculos::with('Fotos')->with('TipoVehiculo')
+            ->with(['Favoritos'=> function($q){$q->where('Correo_id',Session::get('user_session')[0]);}])->get();
             //$tipoVehiculos = TipoVehiculos::all();
             //dd($vehiculos[0]['tipoVehiculo']['tipo']);
             //dd(count($vehiculo['fotos']));
+            //dd($vehiculos);
             if(!empty($vehiculos)){
                 return view('vehiculos.catalogo', compact('vehiculos','rol'));
             }else{

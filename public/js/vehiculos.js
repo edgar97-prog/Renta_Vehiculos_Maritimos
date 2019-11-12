@@ -217,7 +217,7 @@ var elimFot = [];
 					}
 				},
 				error: function(){
-					alert('ERROR');
+					alert('ERROR QUITAR FAVORITOS');
 				}
 			});
 		}
@@ -238,12 +238,15 @@ var elimFot = [];
 						$('#Ocu'+Vehiculo_id).val(1);
 					}
 					else{
+						if(datos == 0){
+							$("#login").modal('show');
+						}
 						//alert('No');
 						console.log(datos);
 					}
 				},
 				error: function(){
-					alert('ERROR');
+					alert('ERROR AGREGAR FAVORITOS');
 				}
 			});
 		}
