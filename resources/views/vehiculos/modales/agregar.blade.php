@@ -32,7 +32,7 @@
               </tr>
               <tr>
                 <td>{!!Form::label('¿El vehiculo tiene descuento?')!!} </td>
-                <td>{!! Form::select('desc',['s'=>'Si','n'=>'No'],'n',['class'=>'form form-control sltdesc']) !!}</td>
+                <td>{!! Form::select('desc',['s'=>'Si','n'=>'No'],'s',['class'=>'form form-control sltdesc', 'required'=>'y']) !!}</td>
               </tr>
               <tr id="desc">
                 <td> {!!Form::label('Descuento (%):')!!} </td>

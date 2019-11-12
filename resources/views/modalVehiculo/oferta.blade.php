@@ -16,11 +16,14 @@
             <div class="carousel-item active">
 <img class="d-block w-100 Img" src="{{asset("fotos")}}/{{$vehiculoMostrado[0]["Fotos"][0]["Foto"]}}" alt="First slide">
           </div>
+         
+        @if(count($vehiculoMostrado[0]['Fotos']->toArray())>1)
             @for($i = 1; $i <= (count($vehiculoMostrado[0]['Fotos'][0]->toArray())-1); $i++)
               <div class="carousel-item">
                 <img class="d-block w-100 Img" src="{{asset("fotos")}}/{{$vehiculoMostrado[0]["Fotos"][$i]["Foto"]}}" alt="Second slide">
               </div>
           @endfor
+        @endif
           <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only">Anterior</span>

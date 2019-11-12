@@ -124,9 +124,7 @@ var elimFot = [];
 	});
 
 //OCULTAR CAMPO DE DESCUENTO AL CARGAR EL DOCUMENTO
-	$('#desc').hide();
-	$('.montodesc').attr('value','0');	
-
+		
 	$('.sltdesc').on('change',function()
 	{
 		let option = $('.sltdesc option:selected').text();
@@ -137,7 +135,6 @@ var elimFot = [];
 		}
 		else
 		{
-			$('#desc').hide();
 			$('.montodesc').attr('value','0');
 		}
 

@@ -48,7 +48,14 @@ class VehiculosController extends Controller
      */
     public function store(Request $request)
     {  
-        $data = request()->validate(['Nombre'=>'required|min:3|max:25','horasRenta'=>'required'],['Nombre.required'=>'El nombre es requerido','Nombre.min'=>'El nombre debe contener al menos 3 caracteres','Nombre.max'=>'El nombre es demasiado largo']);
+        $data = request()->validate(['Nombre'=>'required','horasRenta'=>'required',
+          'Foto'=>'required','Descripcion'=>'required','precioRenta'=>'required',
+          'horasRenta'=>'required','tipoVehiculos_id'=>'required'],['Nombre.required'=>'El nombre es requerido',
+          'Foto.required'=>'Debe elegir por lo menos una imagen para mostrar a los clientes',
+          'Descripcion.required'=>'Necesita agregar una descripción',
+          'horasRenta.required'=>'Debe agregar la(s) hora(s) minima(s) de renta',
+          'precioRenta.required'=>'Debe agregar un precio de renta',
+          'tipoVehiculos_id.required'=>'Debe seleccionar un tipo de vehiculo']);
 
         $precioDescuento =$request->precioRenta - (($request->precioRenta * ($request->Descuento * 0.01)));
 

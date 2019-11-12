@@ -3,6 +3,17 @@
   height: 100px;
   width:  1200px;
 }
+
+
+#carouselVehiculos, .carousel-inner img {
+    width: 100%;
+    max-height: 460px;
+}
+
+#carouselVehiculos, .carousel-inner{
+ height: 10%;
+}
+
 body{background: #f7f7f7;}
 *{
 	margin:0px;
@@ -569,3 +580,16 @@ a:active, a:focus{background:transparent;}
   visibility: hidden;
 }
 #btnVerComentarios{cursor: pointer;}
+
+/* ERROR */
+
+#error
+{
+      -webkit-background-size: cover;
+   -moz-background-size: cover;
+   -o-background-size: cover;
+   background-size: cover;
+   height: 100%;
+   width: 100% ;
+   text-align: center;
+}

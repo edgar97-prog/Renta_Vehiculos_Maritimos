@@ -27,7 +27,7 @@
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
-<br><br><br><br>
+<br><br><br><br> 
  <center> <div id="carouselVehiculos" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
     <li data-target="#carouselVehiculos" data-slide-to="0" class="active"></li>
@@ -36,13 +36,15 @@
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
+    @if(count($Fotos)>0)
       <img class="d-block w-100" src="{{asset("fotos/$Fotos[0]")}}" alt="First slide">
     </div>
-     @for($i = 1; $i<3; $i++)
+     @for($i = 1; $i<=(count($Fotos)-1) ; $i++)
     <div class="carousel-item">
       <img class="d-block w-100" src="{{asset("fotos/$Fotos[$i]")}}" alt="Second slide">
     </div>
     @endfor
+    @endif
   </div>
     <a class="carousel-control-prev" href="#carouselVehiculos" role="button" data-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
