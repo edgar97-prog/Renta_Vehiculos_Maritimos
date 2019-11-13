@@ -240,7 +240,8 @@ class UsuariosController extends Controller
         } 
     }
     public function logout(){
-        session()->forget('user_session');
+        Session::flush();
+        //session()->forget('user_session');
         return redirect('/');
     }
 
@@ -252,19 +253,27 @@ class UsuariosController extends Controller
             $rol = 1;
         }
         $vehiculos = Vehiculos::with('Fotos')->get();
-        if(!is_null($vehiculos)){
-        $Fotos = array();
-        for ($i=0; $i < 3; $i++) { 
-           $numFoto = rand(0,(count($vehiculos)-1));
-           $foto = $vehiculos[$numFoto]->fotos[0]['Foto'];
-           array_push($Fotos,$foto);
-        }
-
-        $vehiculosOferta = Vehiculos::where('Descuento','<>',0)->get('id');
-        $vehiculoRandom = rand(0,count($vehiculosOferta)-1);
-        $vehiculoMostrado = Vehiculos::where('id','=',$vehiculosOferta[$vehiculoRandom]['id'])->with('Fotos')->with('TipoVehiculo')->get();
+        if(count($vehiculos) == 0){
+            $Fotos = array();
+            $vehiculoMostrado = array();
             return view('welcome',compact('rol','Fotos','vehiculoMostrado'));
         }
+        else{
+            if(!is_null($vehiculos)){
+            $Fotos = array();
+            for ($i=0; $i < 3; $i++) { 
+               $numFoto = rand(0,(count($vehiculos)-1));
+               $foto = $vehiculos[$numFoto]->fotos[0]['Foto'];
+               array_push($Fotos,$foto);
+            }
+
+            $vehiculosOferta = Vehiculos::where('Descuento','<>',0)->get('id');
+            $vehiculoRandom = rand(0,count($vehiculosOferta)-1);
+            $vehiculoMostrado = Vehiculos::where('id','=',$vehiculosOferta[$vehiculoRandom]['id'])->with('Fotos')->with('TipoVehiculo')->get();
+                return view('welcome',compact('rol','Fotos','vehiculoMostrado'));
+            }
+        }
+        
         return view('welcome',compact('rol'));
     }
     

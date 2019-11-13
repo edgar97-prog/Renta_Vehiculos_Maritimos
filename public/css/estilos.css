@@ -561,7 +561,8 @@ a:active, a:focus{background:transparent;}
 
 .btnTrans{
   padding-top: 20%;
-  padding-right: 50%;
+  padding-right: 0%;
+  padding-left: 30%;
   margin-left: 0%;
 }
 .btnAction{
@@ -571,8 +572,8 @@ a:active, a:focus{background:transparent;}
   width: 25px;
   height: 25px;
   border-radius: 100%;
-  color: transparent;
   background: transparent;
+  color: transparent;
   border: none;
   outline:none;
 }
@@ -580,6 +581,7 @@ a:active, a:focus{background:transparent;}
   visibility: hidden;
 }
 #btnVerComentarios{cursor: pointer;}
+
 
 /* ERROR */
 
@@ -592,4 +594,15 @@ a:active, a:focus{background:transparent;}
    height: 100%;
    width: 100% ;
    text-align: center;
+}
+.colBG{
+  background: #ebebeb;
+}
+.center{
+  text-align: center;
+}
+.center table {
+   margin: 0 auto;
+   text-align: left;
+   width: 50%;
 }

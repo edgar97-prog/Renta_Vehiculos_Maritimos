@@ -15,11 +15,11 @@
 		<ul class="listaPanel">
 			@if($rol == 3)
 				<li><i class="fa fa-users" aria-hidden="true"></i>
- EMPLEADOS
+ 				EMPLEADOS
 				<ul class="sublistaPanel">
 					<a href="{{action('UsuariosController@create')}}">
 						<li><i class="fa fa-user-plus" aria-hidden="true"></i>
- AGREGAR</li>
+ 				AGREGAR</li>
 					</a>
 					<li id="btnVerTodo"><i class="fa fa-users" aria-hidden="true"></i> VER TODO</li>
 				</ul>
@@ -27,14 +27,14 @@
 			@endif
 				<a href="{{action('VehiculosController@index')}}">
 					<li style="cursor: pointer;"><i class="fa fa-ship" aria-hidden="true"></i>
- VEHÍCULOS</li>
+ 					VEHÍCULOS</li>
 				</a>
 		</ul>
 		<h4>COMENTARIOS</h4>
 		<hr style="background: gray;">
 		<ul class="listaPanel">
 			<li id="btnVerComentarios"><i class="fa fa-envelope-o" aria-hidden="true"></i>
- BANDEJA DE ENTRADA</li>
+ 			BANDEJA DE ENTRADA</li>
 		</ul>
 	</div>
 	<div class="col-sm-8 subcuerpo" id="subcuerpo">

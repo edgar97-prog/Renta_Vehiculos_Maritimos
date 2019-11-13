@@ -159,11 +159,11 @@ var elimFot = [];
 			console.log(precioRenta);
 			for(var i=0; i<precioRenta.length;i++){
 				let precio =$('.precioDescuento')[i].innerText;
-				$('.precioDescuento')[i].innerHTML= parseFloat(precio) / 20;
+				$('.precioDescuento')[i].innerHTML= parseFloat(precio) / 20 + ' USD';
 			}
 			for(var i=0; i<precioRentaAnterior.length;i++){
 				let precio =$('.precioRenta')[i].innerText;
-				$('.precioRenta')[i].innerHTML= parseFloat(precio) / 20;
+				$('.precioRenta')[i].innerHTML= parseFloat(precio) / 20 + ' USD';
 			}
 		}
 		else{
@@ -172,28 +172,83 @@ var elimFot = [];
 			console.log(precioRenta);
 			for(var i=0; i<precioRenta.length;i++){
 				let precio =$('.precioDescuento')[i].innerText;
-				$('.precioDescuento')[i].innerHTML= parseFloat(precio) * 20;
+				$('.precioDescuento')[i].innerHTML= parseFloat(precio) * 20 + ' MXN';
 			}
 			for(var i=0; i<precioRentaAnterior.length;i++){
 				let precio =$('.precioRenta')[i].innerText;
-				$('.precioRenta')[i].innerHTML= parseFloat(precio) * 20;
+				$('.precioRenta')[i].innerHTML= parseFloat(precio) * 20 + ' MXN';
 			}
 		}
 	});
 
-	$('#btBuscar').on('click',function(){
-		let nombreVehiculo = $('#nombreVehiculoBuscar');
-		console.log(nombreVehiculo[0]['value']);
-		$.ajax({
-			type: 'get',
-			url: '/catalogo/'+nombreVehiculo[0]['value'],
-			data: {nombre: nombreVehiculo[0]['value']},
-		success:function(datos)
+	$('.formAction').on('submit',function(event){
+		//console.log(event);
+		event.preventDefault();
+		/*var valor = event.currentTarget[2].value;
+		console.log(valor);
+		$('#Ocu1').val(3000);
+		var tb = $('#Ocu1');
+		console.log(tb);*/
+		var Vehiculo_id = event.currentTarget.id;
+		var mgValor = $('#Ocu'+Vehiculo_id).val();
+		console.log(mgValor);
+		if(mgValor == 1) //SI YA ESTÁ EN MG
 		{
-		  var datos = JSON.parse(datos);
-		  console.log(datos);
-		} 
-		});
+			$.ajax({
+				type:'POST',
+				url: '/fav/eliminar',
+				data:{
+						Vehiculo_id: Vehiculo_id,
+						'token':$('#token').val()
+					},
+				success: function(datos){
+					if(datos ==1){
+						//console.log(datos);
+						//alert('Agregado');
+						$('#span'+Vehiculo_id).html('<i class="fa fa-heart-o icoFav iconoFa" title="Agregar a favoritos"></i>');
+						$('#Ocu'+Vehiculo_id).val(0);
+					}
+					else{
+						//alert('No');
+						console.log(datos);
+					}
+				},
+				error: function(){
+					alert('ERROR QUITAR FAVORITOS');
+				}
+			});
+		}
+		else
+		{
+			$.ajax({
+				type:'POST',
+				url: '/fav',
+				data:{
+						Vehiculo_id: Vehiculo_id,
+						'token':$('#token').val()
+					},
+				success: function(datos){
+					if(datos ==1){
+						console.log(datos);
+						//alert('Agregado');
+						$('#span'+Vehiculo_id).html('<i class="fa fa-heart icoFav iconoFa" aria-hidden="true">');
+						$('#Ocu'+Vehiculo_id).val(1);
+					}
+					else{
+						if(datos == 0){
+							$("#login").modal('show');
+						}
+						//alert('No');
+						console.log(datos);
+					}
+				},
+				error: function(){
+					alert('ERROR AGREGAR FAVORITOS');
+				}
+			});
+		}
+		//alert(event.elements);
+		
 	});
 
 

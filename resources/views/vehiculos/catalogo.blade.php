@@ -8,31 +8,41 @@
 @endsection
 
 @section('cuerpo')
-<div align="center">
-	<table style="border: solid; width: 50%;">
+<div class="center">
+	{!! Form::open(['url' => '/catalogo','method' => 'GET', 'class'=>'form-inline my-2 my-lg-0']) !!}
+	<table >
 		<tr>
-			<td>
-				<div style="text-align: right; background-color: #ebebeb;">
-					{!!Form::label('l','MX:')!!}  {!!Form::radio('precio','1',true,['class' => 'rdPrecio'])!!}
+			<td class="colBG">
+				<div style="text-align: center; ">
+					{!!Form::label('l','MXN:')!!}  {!!Form::radio('precio','1',true,['class' => 'rdPrecio'])!!}
+				</div>
+			</td>
+			<td class="colBG">
+				<div style="text-align: center; ">
 					{!!Form::label('l','USD:')!!} {!!Form::radio('precio','0',false,['class' => 'rdPrecio'])!!}
 				</div>
 			</td>
-			<td>
-				<div align="right" style="background-color: #ebebeb;">
-					<form class="form-inline my-2 my-lg-0">
-				      <input id="nombreVehiculoBuscar" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-				      <button id="btBuscar" class="btn btn-outline-success my-2 my-sm-0" type="button">Search</button>
-				    </form>
+			<td class="colBG">
+				<div align="right" style="">
+					{!!Form::text('nombreVehiculoBuscar','',['class' => 'form-control mr-sm-2','id' =>'nombreVehiculoBuscar', 'type' => 'search', 'placeholder' => 'Buscar', 'aria-label' => 'Search'])!!}
+				    
+				</div>
+			</td>
+			<td class="colBG">
+				<div align="left" style="background-color: #ebebeb;">
+					{!!Form::submit('Buscar',['id'=>'btBuscar','class' =>'btn btn-outline-success my-2 my-sm-0'])!!}
 				</div>
 			</td>
 		</tr>
 	</table>
+	{!! Form::close() !!}
 </div>
 
 <script>
 	let body = document.getElementById('body');
 	body.style.background = '#ebebeb';
 </script>
+@csrf
 @foreach($vehiculos as $vehiculo)
 <a href="{{route('vehiculos.show',$vehiculo['id'])}}">
 <table class="TablaVehiculo">
@@ -41,11 +51,19 @@
 			<div class="botonMG" >
 				<span>
 					<div class="botonMG btnTrans">
-						{!! Form::open(['url' => '/','method' => 'GET']) !!}
-						{!!Form::submit('MG',['class'=>'btnAction','title' =>'Agregar a favoritos'])!!}
+						{!! Form::open(['id'=>$vehiculo['id'], 'class'=>'formAction']) !!}
+						{!!Form::submit('MG',['class'=>'btnAction','title' =>'Agregar a favoritos','type' =>'button'])!!}
 						
 					</div>
-					<i class="fa fa-heart-o icoFav iconoFa" title="Agregar a favoritos"></i>
+					@if(Session::has('user_session'))
+						@if(count($vehiculo['Favoritos'])== 0)
+						<span id="span{{$vehiculo['id']}}"><i class="fa fa-heart-o icoFav iconoFa" title="Agregar a favoritos"></i></span>
+						@else
+						<span id="span{{$vehiculo['id']}}"><i class="fa fa-heart icoFav iconoFa" aria-hidden="true"></i></span>
+						@endif
+					@else
+						<span id="span{{$vehiculo['id']}}"><i class="fa fa-heart-o icoFav iconoFa" title="Agregar a favoritos"></i></span>
+					@endif
 				</span>
 			</div>
 			<div style="padding: 6px">
@@ -97,25 +115,25 @@
 		</td>
 		<td>
 			<div id="precioRenta">
-				@if($vehiculo['precioDescuento'] !=0)
+				@if($vehiculo['Descuento'] !=0)
 				<div >
-					$<i class="precioRenta">{{$vehiculo['precioRenta']}}</i> <br>
+					$<i class="precioRenta">{{$vehiculo['precioRenta']}} MXN</i> <br>
 				</div>
 				<div style="display: inline-block;">
-					$<i class="precioDescuento">{{$vehiculo['precioDescuento']}}</i> 
+					$<i class="precioDescuento">{{$vehiculo['precioDescuento']}} MXN</i>  
 				</div>
 				<div style="display: inline-block;">
-					<i class="Descuento">{{$vehiculo['Descuento']}}% desc.</i>
+					<i class="Descuento">{{$vehiculo['Descuento']}}% desc.</i> 
 				</div>
 				@else
-					$<i class="precioDescuento">{{$vehiculo['precioRenta']}}</i> <br>
+					$<i class="precioDescuento">{{$vehiculo['precioRenta']}} MXN</i> <br>
 				@endif
 			</div>
 		</td>
 	</tr>
 	<tr >
 		<td colspan="2">
-			 {!! Form::text('vehiculo', $vehiculo['id'],['class' => 'textboxHidden']) !!}
+			 {!! Form::text('vehiculo',count($vehiculo['Favoritos']),['class' => 'textboxHidden','id'=>'Ocu'.$vehiculo['id']]) !!}
 			 {!! Form::close() !!}
 		</td>
 	</tr>

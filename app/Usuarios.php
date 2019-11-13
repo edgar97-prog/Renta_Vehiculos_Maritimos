@@ -35,4 +35,13 @@ class Usuarios extends Model
         return $this->hasMany('App\Telefonos','Usuario_id');
 
     }
+
+    public function Favoritos()
+    {
+        return $this->hasMany(Favoritos::class,'Correo_id');
+    }
+    public function Rentas()
+    {
+        return $this->hasMany(Rentas::class,'Correo_id');
+    }
 }
