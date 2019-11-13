@@ -43,6 +43,6 @@
         <button type="button" class="btn btn-danger" data-dismiss="modal">No, gracias</button>
       </div>
     </div>
-    @endif
+  @endif
   </div>
 </div>
