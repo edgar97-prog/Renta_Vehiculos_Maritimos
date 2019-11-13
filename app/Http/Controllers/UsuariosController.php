@@ -71,7 +71,7 @@ class UsuariosController extends Controller
              'Nombre'=>'required|min:3|max:20|regex:/[a-zA-Z ñÑáéíóúÁÉÍÓÚ]/u',
              'ApellidoP'=>'required|min:3|max:20|regex:/[a-zA-Z ñÑáéíóúÁÉÍÓÚ]/u',
              'ApellidoM'=>'required|min:3|max:20|regex:/[a-zA-Z ñÑáéíóúÁÉÍÓÚ]/u',
-             'Sexo'=>'min:1|max:1|regex:/[MF]/u'],
+             'Sexo'=>'min:1|max:1|regex:/[MFI]/u'],
             ['Correo.required'=>'Debes ingresar un correo',
              'Contra.required'=>'Debes ingresar una contraseña',
              'Contra.min'=>'La contraseña debe tener minimo 8 caracteres',
@@ -139,7 +139,7 @@ class UsuariosController extends Controller
             ['Nombre'=>'required|min:3|max:20|regex:/[a-zA-Z ñÑáéíóúÁÉÍÓÚ]/u',
              'ApellidoP'=>'required|min:3|max:20|regex:/[a-zA-Z ñÑáéíóúÁÉÍÓÚ]/u',
              'ApellidoM'=>'required|min:3|max:20|regex:/[a-zA-Z ñÑáéíóúÁÉÍÓÚ]/u',
-             'Sexo'=>'min:1|max:1|regex:/[MF]/u',
+             'Sexo'=>'min:1|max:1|regex:/[MFI]/u',
              'Telefono'=>['required','min:7','max:10','regex:/(\b[0-9]{7}$|\b[0-9]{10}$)/u'],
              'Calle'=>'required|min:5|max:50|regex:/[a-zA-Z ñÑáéíóúÁÉÍÓÚ#]/u',
              'Colonia'=>'required|min:5|max:50|regex:/[a-zA-Z ñÑáéíóúÁÉÍÓÚ]/u',
@@ -173,7 +173,7 @@ class UsuariosController extends Controller
             ['Nombre'=>'required|min:3|max:20|regex:/[a-zA-Z ñÑáéíóúÁÉÍÓÚ]/u',
              'ApellidoP'=>'required|min:3|max:20|regex:/[a-zA-Z ñÑáéíóúÁÉÍÓÚ]/u',
              'ApellidoM'=>'required|min:3|max:20|regex:/[a-zA-Z ñÑáéíóúÁÉÍÓÚ]/u',
-             'Sexo'=>'min:1|max:1|regex:/[MF]/u',
+             'Sexo'=>'min:1|max:1|regex:/[MFI]/u',
              'Telefono'=>['required','min:7','max:10','regex:/(\b[0-9]{7}$|\b[0-9]{10}$)/u']],
             ['Nombre.required'=>'El nombre es un campo requerido',
              'Nombre.min'=>'El nombre debe contener al menos 3 caracteres',
@@ -261,12 +261,15 @@ class UsuariosController extends Controller
         else{
             if(!is_null($vehiculos)){
             $Fotos = array();
+     
+        if(count($vehiculos[0]->fotos)>0){
             for ($i=0; $i < 3; $i++) { 
                $numFoto = rand(0,(count($vehiculos)-1));
-               $foto = $vehiculos[$numFoto]->fotos[0]['Foto'];
+              $foto = $vehiculos[$numFoto]->fotos[0]['Foto'];
                array_push($Fotos,$foto);
-            }
-
+        }
+            
+        }
             $vehiculosOferta = Vehiculos::where('Descuento','<>',0)->get('id');
             $vehiculoRandom = rand(0,count($vehiculosOferta)-1);
             $vehiculoMostrado = Vehiculos::where('id','=',$vehiculosOferta[$vehiculoRandom]['id'])->with('Fotos')->with('TipoVehiculo')->get();

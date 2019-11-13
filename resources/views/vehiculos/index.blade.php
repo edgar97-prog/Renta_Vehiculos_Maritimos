@@ -22,7 +22,7 @@
 	 @endif
 	  <span>
 	<form id="busqueda" method="POST" action="/busqueda/especifica">
-		 @csrf <label>Nombre del vehiculo</label><input type="text" name="nombre"><button type="submit" class="btn btn-primary">Buscar</button>
+		 @csrf <label>Nombre del vehiculo</label><input type="text" name="nombre" autocomplete="off"><button type="submit" class="btn btn-primary">Buscar</button>
 	</form>
 	<form method="GET" action="{{route('vehiculos.index')}}">
 		<button type="submit" id="btn_general" class="btn btn-success">Consultar Todo</button>

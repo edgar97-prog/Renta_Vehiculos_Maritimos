@@ -1,6 +1,5 @@
 <div id="ModalOferta" class="modal fade" role="dialog">
   <div class="modal-dialog">
-
     <!-- Modal content-->
     @if(!empty($vehiculoMostrado))
     <div class="modal-content">
@@ -14,9 +13,13 @@
        <label>Ahorras un {{$vehiculoMostrado[0]['Descuento']}}%</label><br>
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
           <div class="carousel-inner">
+  @if(count($vehiculoMostrado[0]['Fotos']->toArray())>0)
             <div class="carousel-item active">
 <img class="d-block w-100 Img" src="{{asset("fotos")}}/{{$vehiculoMostrado[0]["Fotos"][0]["Foto"]}}" alt="First slide">
           </div>
+          @else
+            <center><h1>Por el momento no contamos con fotografías.</h1></center>
+  @endif
          
         @if(count($vehiculoMostrado[0]['Fotos']->toArray())>1)
             @for($i = 1; $i <= (count($vehiculoMostrado[0]['Fotos'][0]->toArray())-1); $i++)

@@ -20,15 +20,15 @@
             <table class="tablaReg">
               <tr>
                   <td>{!!Form::label('nombre','Nombre:')!!}</td>
-                  <td>{!! Form::text('Nombre',null,['class'=>'form form-control nombre','required'=>'y']) !!}</td>
+                  <td>{!! Form::text('Nombre',null,['class'=>'form form-control nombre','required'=>'y','autocomplete'=>'off']) !!}</td>
               </tr>
               <tr>
                 <td>{!!Form::label('Descripcion','Descripción:')!!}</td>
-                 <td>{!! Form::text('Descripcion',null,['class'=>'form form-control descr','required'=>'y']) !!}</td>
+                 <td>{!! Form::text('Descripcion',null,['class'=>'form form-control descr','required'=>'y','autocomplete'=>'off']) !!}</td>
               </tr>
               <tr>
                   <td>{!!Form::label('precioRenta','Precio de Renta:')!!}</td>
-                  <td>{!! Form::text('precioRenta',null,['class'=>'form form-control renta','required'=>'y']) !!}</td>
+                  <td>{!! Form::text('precioRenta',null,['class'=>'form form-control renta','required'=>'y','autocomplete'=>'off']) !!}</td>
               </tr>
               <tr>
                 <td>{!!Form::label('descuento','¿El vehiculo tiene descuento?')!!}</td>
@@ -36,11 +36,11 @@
               </tr>
               <tr id="muestra">
                 <td>{!!Form::label('Descuento','Descuento (%):')!!}</td>
-                <td>{!!Form::text('Descuento',null,['class'=>'form form-control desc']) !!}</td>
+                <td>{!!Form::text('Descuento',null,['class'=>'form form-control desc','autocomplete'=>'off']) !!}</td>
               </tr>
               <tr>
                   <td>{!!Form::label('horasRenta','Horas min. Renta:')!!}</td>
-                  <td>{!!Form::number('horasRenta',null,['class'=>'form form-control horas','required'=>'y']) !!}</td>
+                  <td>{!!Form::number('horasRenta',null,['class'=>'form form-control horas','required'=>'y','autocomplete'=>'off']) !!}</td>
               </tr>
               <tr>
                 <td>{!!Form::label('tipo','Tipo de vehiculo:')!!}</td>

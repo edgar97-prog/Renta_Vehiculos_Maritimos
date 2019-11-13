@@ -81,7 +81,7 @@
 			<tr>
 				<td><i class="fa fa-male" aria-hidden="true"></i>
 				{!!Form::label('sexo','Sexo:')!!}</td>
-				<td>{!! Form::select('Sexo',['M'=>'Masculino','F'=>'Femenino'],'M',['class'=>'form form-control','required'=>'y']) !!}</td>
+				<td>{!! Form::select('Sexo',['M'=>'Masculino','F'=>'Femenino','I'=>'Indistinto'],'M',['class'=>'form form-control','required'=>'y']) !!}</td>
 			</tr>
 			<tr>
 				<td><i class="fa fa-mobile" aria-hidden="true"></i>

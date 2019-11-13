@@ -36,8 +36,7 @@
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
-
-  @if(count($Fotos)>0)
+  @if(count($Fotos)>1)
       <img class="d-block w-100" src="{{asset("fotos/$Fotos[0]")}}" alt="First slide">
     </div>
      @for($i = 1; $i<=(count($Fotos)-1) ; $i++)
@@ -45,6 +44,8 @@
       <img class="d-block w-100" src="{{asset("fotos/$Fotos[$i]")}}" alt="Second slide">
     </div>
     @endfor
+    @else
+    <center><h1>Por el momento no contamos con fotografías.</h1></center>
   @endif
   </div>
     <a class="carousel-control-prev" href="#carouselVehiculos" role="button" data-slide="prev">
@@ -57,7 +58,7 @@
   </a>
   
 </div><br>
-<form method="POST" action="{{url("/catalogo")}}">
+<form method="GET" action="{{url("/catalogo")}}">
   @csrf
 <button class="btn btn-primary">
       Ver catálogo

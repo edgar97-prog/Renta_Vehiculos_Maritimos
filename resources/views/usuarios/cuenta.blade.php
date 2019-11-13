@@ -63,9 +63,15 @@
 									@if($user['Sexo'] == 'M')
 									<option value="M" selected>Masculino</option>
 									<option value="F">Femenino</option>
-									@else
+									<option value="I">Indistinto</option>
+									@elseif($user['Sexo'] == 'F')
 									<option value="M">Masculino</option>
 									<option value="F" selected>Femenino</option>
+									<option value="I" >Indistinto</option>
+									@else
+									<option value="M">Masculino</option>
+									<option value="F">Femenino</option>
+									<option value="I" selected>Indistinto</option>
 									@endif
 								</select>
 							</div>
