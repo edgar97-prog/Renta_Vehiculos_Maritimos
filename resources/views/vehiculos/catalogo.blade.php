@@ -13,13 +13,17 @@
 	<table >
 		<tr>
 			<td class="colBG">
-				<div style="text-align: center; ">
-					{!!Form::label('l','MXN:')!!}  {!!Form::radio('precio','1',true,['class' => 'rdPrecio'])!!}
+				<div style="text-align: center; " class="radio">
+					{!!Form::radio('precio','1',true,['class' => 'rdPrecio','id' => 'mxn'])!!}
+					{!!Form::label('mxn','MXN')!!}  
+
+					{!!Form::radio('precio','0',false,['class' => 'rdPrecio','id' => 'usd'])!!}
+					{!!Form::label('usd','USD')!!} 
 				</div>
 			</td>
 			<td class="colBG">
 				<div style="text-align: center; ">
-					{!!Form::label('l','USD:')!!} {!!Form::radio('precio','0',false,['class' => 'rdPrecio'])!!}
+					
 				</div>
 			</td>
 			<td class="colBG">
