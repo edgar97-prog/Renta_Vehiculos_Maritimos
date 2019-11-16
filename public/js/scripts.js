@@ -197,7 +197,9 @@ $(document).ready(function(){
 		onSelect: function (date) {
 			//alert(date);
 			$('#showCalendar').html(date);
-		}
+		},
+		minDate: new Date(),
+		maxDate: "+3d"
     });
     var calendarioMostrado = false;
     $('#showCalendar').on('click',function(){
@@ -208,5 +210,21 @@ $(document).ready(function(){
     		calendarioMostrado = false;
     		$('#calendar').css('display','none');
     	}
+    });
+    $('.listHrs').on('click','li',function(){
+    	var opc = $(this).parent("ul").find('.active');
+    	$("#listaHrsIni").html("");
+    	$('.HrInicio').html("");
+    	$('.listHrs').html("");
+    	for (var i = 9; i < 18-opc.html(); i++) {
+    		if(i > 11)
+    			$('#listaHrsIni').append("<option value='"+i+"'>"+i+":00 pm</option>");
+    		else
+    			$('#listaHrsIni').append("<option value='"+i+"'>"+i+":00 am</option>");
+    	}
+    	crear_select();
+    });
+    $('.HrInicio').on('click','li',function(){
+    	var opc = $(this).parent("ul").find('.active');
     });
 });

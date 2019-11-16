@@ -46,16 +46,13 @@
 			<span class="available">Disponibles {{$vehiculo['Cantidad']}}</span>
 		</div>
 		<div class="caract">
-			<span>Selecciona las horas</span>
+			<span>Selecciona las horas de renta</span>
 			<div class="row">
 				<div class="select_mate" data-mate-select="active" >
 					<select name="Horas" onclick="return false;" id="">
-					  <option value="1" selected>1</option>
-					  <option value="3">2</option>
-					  <option value="3">3</option>
-					  <option value="3">4</option>
-					  <option value="3">5</option>
-					  <option value="3">6</option>
+					  @for($i = $vehiculo['horasRenta']; $i < 9; $i+=$vehiculo['horasRenta'])
+					  <option value="{{$i}}">{{$i}}</option>
+					  @endfor
 					</select>
 				    <p class="selecionado_opcion"  onclick="open_select(this)" ></p>
 				    <span onclick="open_select(this)" class="icon_select_mate">
@@ -65,12 +62,36 @@
 				  	  </svg>
 				  	</span>
 				  <div class="cont_list_select_mate">
-				    <ul class="cont_select_int">  </ul> 
+				    <ul class="cont_select_int listHrs" >  </ul> 
 				  </div>
 				</div>
 			</div>
 			<p>Seleccionar fecha: <button class="btn" id="showCalendar">--/--/----</button></p>
-			<div class="calendar" id="calendar"></div>
+			<span>Selecciona la hora de inicio de apartado</span>
+			<div class="row">
+				<div class="calendar" id="calendar"></div>
+				<div class="select_mate" data-mate-select="active" >
+					<select name="HrInicio" onclick="return false;" id="listaHrsIni">
+					  @for($i = 9; $i < 18-$vehiculo['horasRenta']; $i++)
+					  @if($i > 11)
+					  <option value="{{$i}}">{{$i}}:00 pm</option>
+					  @else
+					  <option value="{{$i}}">{{$i}}:00 am</option>
+					  @endif
+					  @endfor
+					</select>
+				    <p class="selecionado_opcion"  onclick="open_select(this)" ></p>
+				    <span onclick="open_select(this)" class="icon_select_mate">
+				      <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+				      <path d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"/>
+				      <path d="M0-.75h24v24H0z" fill="none"/>
+				  	  </svg>
+				  	</span>
+				  <div class="cont_list_select_mate">
+				    <ul class="cont_select_int HrInicio">  </ul> 
+				  </div>
+				</div>
+			</div>
 		</div>
 		<button class="btn btn-warning" style="margin-top: 30px;width: 100%;margin-left: 5px;">
 			¡RENTAR AHORA!
