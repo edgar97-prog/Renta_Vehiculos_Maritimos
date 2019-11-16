@@ -48,24 +48,7 @@
 <table class="TablaVehiculo">
 	<tr>
 		<td colspan="2">
-			<div class="botonMG" >
-				<span>
-					<div class="botonMG btnTrans">
-						{!! Form::open(['id'=>$vehiculo['id'], 'class'=>'formAction']) !!}
-						{!!Form::submit('MG',['class'=>'btnAction','title' =>'Agregar a favoritos','type' =>'button'])!!}
-						
-					</div>
-					@if(Session::has('user_session'))
-						@if(count($vehiculo['Favoritos'])== 0)
-						<span id="span{{$vehiculo['id']}}"><i class="fa fa-heart-o icoFav iconoFa" title="Agregar a favoritos"></i></span>
-						@else
-						<span id="span{{$vehiculo['id']}}"><i class="fa fa-heart icoFav iconoFa" aria-hidden="true"></i></span>
-						@endif
-					@else
-						<span id="span{{$vehiculo['id']}}"><i class="fa fa-heart-o icoFav iconoFa" title="Agregar a favoritos"></i></span>
-					@endif
-				</span>
-			</div>
+			
 			<div style="padding: 6px">
 				<div id="carouselExampleControls{{$vehiculo['id']}}" class="carousel slide" data-ride="carousel">
 				  <div class="carousel-inner">
@@ -100,9 +83,22 @@
 	</tr >
 	<tr >
 		<td colspan="2">
-			<div>
+			<div class="botonMG" >
 				<span>
-					Disponibles: {{$vehiculo['Cantidad']}}
+					<div class="botonMG btnTrans">
+						{!! Form::open(['id'=>$vehiculo['id'], 'class'=>'formAction']) !!}
+						{!!Form::submit('MG',['class'=>'btnAction','title' =>'Agregar a favoritos','type' =>'button'])!!}
+						
+					</div>
+					@if(Session::has('user_session'))
+						@if(count($vehiculo['Favoritos'])== 0)
+						<span id="span{{$vehiculo['id']}}"><i class="fa fa-heart-o fa-lg iconoFa" title="Agregar a favoritos"></i></span>
+						@else
+						<span id="span{{$vehiculo['id']}}"><i class="fa fa-heart fa-lg iconoFa" aria-hidden="true"></i></span>
+						@endif
+					@else
+						<span id="span{{$vehiculo['id']}}"><i class="fa fa-heart-o fa-lg iconoFa" title="Agregar a favoritos"></i></span>
+					@endif
 				</span>
 			</div>
 		</td>
