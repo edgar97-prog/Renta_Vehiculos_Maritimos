@@ -490,27 +490,27 @@ a:active, a:focus{background:transparent;}
   display: none;
   position: absolute;
   cursor: pointer;
-  margin-left: 80%;
+  margin-left: 43%;
   float: right;
 }
 .iconoFa{
-  padding-top: 32%;
-  align-self: right;
+  padding-top: 15%;
+  float: center;
 }
 
 @media (max-width: 1200px) {
   .botonMG{
-    margin-left: 80%;
+    margin-left: 40%;
   }
 }
 @media (max-width: 990px) {
   .botonMG{
-    margin-left: 69%;
+    margin-left: 32%;
   }
 }
 @media (max-width: 900px) {
   .botonMG{
-    margin-left: 70%;
+    margin-left: 32%;
   }
 }
 @media (max-width: 830px) {
@@ -518,7 +518,7 @@ a:active, a:focus{background:transparent;}
     margin-right: 10%;
   }
   .botonMG{
-    margin-left: 70%;
+    margin-left: 38%;
   }
 }
 @media (max-width: 968px){
@@ -531,12 +531,12 @@ a:active, a:focus{background:transparent;}
     margin-right: 10%;
   }
   .botonMG{
-    margin-left: 70%;
+    margin-left: 38%;
   }
 }
 @media (max-width: 770px) {
   .botonMG{
-    margin-left: 80%;
+    margin-left: 45%;
   }
   .TablaVehiculo{
     margin-right: 10%;
@@ -544,7 +544,7 @@ a:active, a:focus{background:transparent;}
 }
 @media (max-width: 550px) {
   .botonMG{
-    margin-left: 120px;
+    margin-left: 70px;
   }
   .TablaVehiculo{
     margin-right: 15%;
@@ -552,7 +552,7 @@ a:active, a:focus{background:transparent;}
 }
 @media (max-width: 450px) {
   .botonMG{
-    margin-left: 120px;
+    margin-left: 60px;
   }
   .TablaVehiculo{
     margin-right: 20%;
@@ -560,20 +560,20 @@ a:active, a:focus{background:transparent;}
 }
 
 .btnTrans{
-  padding-top: 20%;
-  padding-right: 0%;
-  padding-left: 30%;
+  padding-top: 0%;
+  padding-right: 50%;
+  padding-left: 0%;
   margin-left: 0%;
 }
 .btnAction{
   position: absolute;
   border:solid;
   z-index: 999;
-  width: 25px;
-  height: 25px;
+  width: 26px;
+  height: 26px;
   border-radius: 100%;
-  background: transparent;
   color: transparent;
+  background: transparent;
   border: none;
   outline:none;
 }

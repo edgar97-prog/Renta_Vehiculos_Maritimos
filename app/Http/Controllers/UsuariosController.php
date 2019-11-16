@@ -234,7 +234,7 @@ class UsuariosController extends Controller
                 $rol = $user[0]->rol_id;
                 $clave = array($correo,$rol);
                 $request->session()->put('user_session',$clave);
-                return redirect('/');
+                return redirect()->back();
             }
             return back()->withErrors(array('message' => 'Datos incorrectos'),'login');
         } 

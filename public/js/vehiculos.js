@@ -205,7 +205,7 @@ var elimFot = [];
 					if(datos ==1){
 						//console.log(datos);
 						//alert('Agregado');
-						$('#span'+Vehiculo_id).html('<i class="fa fa-heart-o icoFav iconoFa" title="Agregar a favoritos"></i>');
+						$('#span'+Vehiculo_id).html('<i class="fa fa-heart-o fa-lg iconoFa" title="Agregar a favoritos"></i>');
 						$('#Ocu'+Vehiculo_id).val(0);
 					}
 					else{
@@ -231,7 +231,7 @@ var elimFot = [];
 					if(datos ==1){
 						console.log(datos);
 						//alert('Agregado');
-						$('#span'+Vehiculo_id).html('<i class="fa fa-heart icoFav iconoFa" aria-hidden="true">');
+						$('#span'+Vehiculo_id).html('<i class="fa fa-heart fa-lg iconoFa" aria-hidden="true"></i>');
 						$('#Ocu'+Vehiculo_id).val(1);
 					}
 					else{
