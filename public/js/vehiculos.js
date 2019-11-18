@@ -70,6 +70,7 @@
 					$('.formod').attr('action',datos[0]['urlMod']);
 					$('#idv').attr('value',id);
 					$('.desc').attr('value',datos[0]['descuento']);
+					$('.num_personas').attr('value',datos[0]['num_personas']);
 					var i = 0;
 					$.each(datos[2],function(index,element)
 					{	

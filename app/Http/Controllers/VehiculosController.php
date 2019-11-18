@@ -51,19 +51,20 @@ class VehiculosController extends Controller
     {  
         $data = request()->validate(['Nombre'=>'required','horasRenta'=>'required',
           'Foto'=>'required','Descripcion'=>'required','precioRenta'=>'required',
-          'horasRenta'=>'required','tipoVehiculos_id'=>'required'],['Nombre.required'=>'El nombre es requerido',
+          'horasRenta'=>'required','tipoVehiculos_id'=>'required','num_personas'=>'required'],['Nombre.required'=>'El nombre es requerido',
           'Foto.required'=>'Debe elegir por lo menos una imagen para mostrar a los clientes',
           'Descripcion.required'=>'Necesita agregar una descripción',
           'horasRenta.required'=>'Debe agregar la(s) hora(s) minima(s) de renta',
           'precioRenta.required'=>'Debe agregar un precio de renta',
-          'tipoVehiculos_id.required'=>'Debe seleccionar un tipo de vehiculo']);
+          'tipoVehiculos_id.required'=>'Debe seleccionar un tipo de vehiculo',
+          'num_personas.required'=>'El número de personas es requerido']);
 
         $precioDescuento =$request->precioRenta - (($request->precioRenta * ($request->Descuento * 0.01)));
 
         $datos = array('Nombre'=>$request->Nombre,'Descripcion'=>$request->Descripcion,
                     'precioRenta'=>$request->precioRenta,'precioDescuento'=>$precioDescuento,
                     'Descuento'=>$request->Descuento,'horasRenta'=>$request->horasRenta,
-                    'tipoVehiculos_id'=>$request->tipoVehiculos_id);
+                    'tipoVehiculos_id'=>$request->tipoVehiculos_id,'num_personas'=>$request->num_personas);
 
         $vehiculo = Vehiculos::create($datos);
         $imagen = $request->file('Foto');
@@ -126,7 +127,7 @@ class VehiculosController extends Controller
         $datos = array('Nombre'=>$request->Nombre,'Descripcion'=>$request->Descripcion,
                     'precioRenta'=>$request->precioRenta,'precioDescuento'=>$precioDescuento,
                     'Descuento'=>$request->Descuento,'horasRenta'=>$request->horasRenta,
-                    'tipoVehiculos_id'=>$request->tipoVehiculos_id);
+                    'tipoVehiculos_id'=>$request->tipoVehiculos_id,'num_personas'=>$request->num_personas);
         $vehiculo = Vehiculos::find($request->idv);
         $vehiculo->update($datos);
         $arregloEliminaFoto = explode(',', $request->idfot);
@@ -170,7 +171,8 @@ class VehiculosController extends Controller
 
             $i=0;
             $datos = array('id'=>$vehiculos->id,'nombre'=>$vehiculos->Nombre,'urlElim'=>route('vehiculos.destroy',$vehiculos->id),'urlMod'=>route('vehiculos.update',$vehiculos->id),
-            'descripcion'=>$vehiculos->Descripcion,'renta'=>$vehiculos->precioRenta,'precioDescuento'=>$vehiculos->precioDescuento,'descuento'=>$vehiculos->Descuento,'horas'=>$vehiculos->horasRenta,'tipo'=>$vehiculos->tipoVehiculos_id);
+            'descripcion'=>$vehiculos->Descripcion,'renta'=>$vehiculos->precioRenta,'precioDescuento'=>$vehiculos->precioDescuento,'descuento'=>$vehiculos->Descuento,'horas'=>$vehiculos->horasRenta,'tipo'=>$vehiculos->tipoVehiculos_id,
+            'num_personas'=>$vehiculos->num_personas);
             $fotos = array();
         foreach ($vehiculos->fotos as $foto) {
             
