@@ -9,7 +9,7 @@ class Vehiculos extends Model
     //
     protected $primaryKey = "id";
     protected $table = "Vehiculos";
-    protected $fillable = ["Nombre","Descripcion","precioRenta","precioDescuento","Descuento","tipoVehiculos_id","horasRenta"];
+    protected $fillable = ["Nombre","Descripcion","precioRenta","precioDescuento","Descuento","tipoVehiculos_id","horasRenta","num_personas"];
     public $timestamps = false;
 
     public function Fotos()

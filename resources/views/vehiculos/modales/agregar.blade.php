@@ -44,6 +44,10 @@
                 <td>{!!Form::number('horasRenta',null,['class'=>'form form-control','required'=>'y','autocomplete'=>'off']) !!}</td>
               </tr>
               <tr>
+                <td>{!!Form::label('numPersonas','Número de personas:')!!}</td>
+                <td>{!!Form::number('num_personas',null,['class'=>'form form-control','required'=>'y','autocomplete'=>'off']) !!}</td>
+              </tr>
+              <tr>
                 <td>{!!Form::label('tipoVehiculo','Tipo:')!!}</td>
                 <td>
                     <select name="tipoVehiculos_id" class="form-control">
