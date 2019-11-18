@@ -24,7 +24,7 @@ class VehiculosController extends Controller
     public function index()
     {
         //
-        $vehiculos = Vehiculos::with('Fotos')->with('TipoVehiculo')->get();
+        $vehiculos = Vehiculos::with('Fotos')->with('TipoVehiculo')->paginate(8);
   
         $tipoVehiculos = TipoVehiculos::all();
         $rol = Session::get('user_session')[1];
@@ -189,7 +189,7 @@ class VehiculosController extends Controller
     public function busqueda(Request $request)
     {
         $tipoVehiculos = TipoVehiculos::all();
-        $vehiculos = Vehiculos::where('Nombre','LIKE','%'.$request->nombre.'%')->with('Fotos')->get();
+        $vehiculos = Vehiculos::where('Nombre','LIKE','%'.$request->nombre.'%')->with('Fotos')->paginate(8);
         #$rol = Session::get('user_session')[1];
         return view('vehiculos.index',compact('vehiculos','tipoVehiculos'));
     }
@@ -242,4 +242,29 @@ class VehiculosController extends Controller
             }
         }
     }
+
+
+    public function obtenDivisa($cantidad,$de,$a)
+    {
+      $key = '29a42c8782196b433c76';
+      $de = urlencode($de);
+      $a = urlencode($a);
+      $query = "{$de}_{$a}";
+      $json = file_get_contents("https://free.currconv.com/api/v7/convert?q={$query}&compact=ultra&apiKey={$key}");
+      $obj = json_decode($json,true);
+      $val = floatval($obj["$query"]);
+
+      $total = $val * $cantidad;
+
+      return number_format($total, 2, '.', '');
+    }
+    public function pruebaDolar()
+    {
+
+        
+        echo self::obtenDivisa(1,'USD','MXN');
+      
+
+    }
+
 }

@@ -46,3 +46,4 @@ Route::post('/comentario','UsuariosController@comentario');
 //FAVORITOS
 Route::resource('/fav','FavoritosController');
 Route::post('fav/eliminar','FavoritosController@eliminar');
+Route::get('/pruebaDolar','VehiculosController@pruebaDolar');

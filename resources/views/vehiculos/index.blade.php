@@ -83,6 +83,7 @@
 	 @endforeach
 	</tbody>
 	</table>
+	<center>{{$vehiculos->links()}} </center>
 </div>
  @include('vehiculos.modales.agregar') @include('vehiculos.modales.modificar') @if($errors->any())
  </div>
