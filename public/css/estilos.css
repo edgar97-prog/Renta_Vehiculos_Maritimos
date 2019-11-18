@@ -328,16 +328,19 @@ a:active, a:focus{background:transparent;}
 .subcuerpoestilo{
   clear: both;
   min-width: 537px;
+  min-height: 530px;
 }
 .col-img{
   width: 65%;
-  height: 530px;
+  min-height: 530px;
   float: left;
+  display: inline-block;
   border-right: 2px solid #F4F4F4;
 }
 .col-details{
   width: 35%;
-  float: right;
+  display: inline-block;
+  min-height: 530px;
 }
 .col-imgs{
   width: 19%;
@@ -412,6 +415,7 @@ a:active, a:focus{background:transparent;}
     margin-top: -9px;
   }
   .tablaReg{width: 80%;}
+  .btnSC{width: 100%;}
 }
 .icoFav,#addedFav{
   float: right;
@@ -421,11 +425,11 @@ a:active, a:focus{background:transparent;}
 #addedFav{display: none;}
 
 #calendar{
-  display: none;
   position: absolute;
   z-index: 2;
   margin-top: -130px;
   margin-left: -200px;
+  display: none;
 }
 
 /*CATALOGO*/
@@ -504,6 +508,11 @@ a:active, a:focus{background:transparent;}
     margin-left: 40%;
   }
 }
+@media (max-width: 750px){
+  .subcuerpoestilo{
+    min-width: 90%;
+  }
+}
 @media (max-width: 990px) {
   .botonMG{
     margin-left: 32%;
@@ -549,6 +558,22 @@ a:active, a:focus{background:transparent;}
   }
   .TablaVehiculo{
     margin-right: 15%;
+  }
+  .subcuerpoestilo > .col-details{
+    display: block;
+    width: 100%;
+    margin-top: 30px;
+  }
+  .subcuerpoestilo > .col-img{
+    width: 100%;
+  }
+  .subcuerpoestilo{
+    min-width: 347px;
+  }
+  body{min-width: 350px;}
+  #calendar{
+    margin-left: 25px;
+    margin-top: -425px;
   }
 }
 @media (max-width: 450px) {

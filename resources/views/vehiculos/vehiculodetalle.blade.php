@@ -50,7 +50,7 @@
 			<div class="row">
 				<div class="select_mate" data-mate-select="active" >
 					<select name="Horas" onclick="return false;" id="">
-					  @for($i = $vehiculo['horasRenta']; $i < 9; $i+=$vehiculo['horasRenta'])
+					  @for($i = $vehiculo['horasRenta']; $i < 9; $i++)
 					  <option value="{{$i}}">{{$i}}</option>
 					  @endfor
 					</select>
@@ -66,7 +66,7 @@
 				  </div>
 				</div>
 			</div>
-			<p>Seleccionar fecha: <button class="btn" id="showCalendar">--/--/----</button></p>
+			<p>Seleccionar fecha:<button class="btn btnSC" id="showCalendar">--/--/----</button></p>
 			<span>Selecciona la hora de inicio de apartado</span>
 			<div class="row">
 				<div class="calendar" id="calendar"></div>
