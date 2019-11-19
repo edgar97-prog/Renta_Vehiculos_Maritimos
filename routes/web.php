@@ -26,6 +26,7 @@ Route::post('/datosCliente','UsuariosController@datosCliente');
 //Controlador para vehiculos
 Route::resource('/vehiculos','VehiculosController');	
 Route::post('/datos/vehiculo','VehiculosController@datos');
+Route::post('/rentas','VehiculosController@rentas');
 #BUSQUEDA ESPECIFICA
 Route::post('/busqueda/especifica','VehiculosController@busqueda');
 

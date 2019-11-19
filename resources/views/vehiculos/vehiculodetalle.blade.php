@@ -33,8 +33,24 @@
 	<div class="col-details">
 		<div class="tituloProd">
 			{{$vehiculo['Nombre']}}
-			<i class="fa fa-heart-o icoFav" aria-hidden="true" title="Agregar a favoritos"></i>
-			<i class="fa fa-heart" id="addedFav" title="Quitar de favoritos" aria-hidden="true"></i>
+			<span>
+			<div class="botonMG2">
+			{!! Form::open(['id'=>$vehiculo['id'], 'class'=>'formAction']) !!}
+			@if(count($vehiculo['Favoritos']) == 0)
+			{!!Form::submit('MG',['class'=>'btnAction2','type' =>'button','title'=>'Agregar a favoritos'])!!}
+			@else
+			{!!Form::submit('MG',['class'=>'btnAction2','type' =>'button','title'=>'Quitar de favoritos'])!!}
+			@endif
+			{!! Form::close() !!}
+			{!! Form::text('vehiculo',count($vehiculo['Favoritos']),['class' => 'textboxHidden','id'=>'Ocu'.$vehiculo['id']]) !!}
+			 {!! Form::close() !!}
+			</div>
+			@if(count($vehiculo['Favoritos']) == 0)
+			<span id="span{{$vehiculo['id']}}" class="icoFav"><i class="fa fa-heart-o fa-lg" title="Agregar a favoritos"></i></span>
+			@else
+			<span id="span{{$vehiculo['id']}}" class="icoFav"><i class="fa fa-heart fa-lg" aria-hidden="true" title="Eliminar de favoritos"></i></span>
+			@endif
+			</span>
 		</div>
 		<hr width="100">
 		<div class="DescProd">
@@ -42,8 +58,12 @@
 		</div>
 		<div class="PrecProd">
 			${{$vehiculo['precioRenta']}}
-			<span class="descuento">10% OFF</span>
-			<span class="available">Disponibles {{$vehiculo['Cantidad']}}</span>
+			@if($vehiculo['Descuento'] != 0)
+			<span class="descuento">{{$vehiculo['Descuento']}}% Desc</span>
+			@else
+			<span class="descuento">&nbsp; &nbsp; . &nbsp; &nbsp; . &nbsp; &nbsp;</span>
+			@endif
+			<span class="available">Personas max. {{$vehiculo['num_personas']}}</span>
 		</div>
 		<div class="caract">
 			<span>Selecciona las horas de renta</span>
@@ -73,11 +93,7 @@
 				<div class="select_mate" data-mate-select="active" >
 					<select name="HrInicio" onclick="return false;" id="listaHrsIni">
 					  @for($i = 9; $i < 18-$vehiculo['horasRenta']; $i++)
-					  @if($i > 11)
-					  <option value="{{$i}}">{{$i}}:00 pm</option>
-					  @else
-					  <option value="{{$i}}">{{$i}}:00 am</option>
-					  @endif
+					  <option value="{{$i}}">{{$i}}:00</option>
 					  @endfor
 					</select>
 				    <p class="selecionado_opcion"  onclick="open_select(this)" ></p>
@@ -93,9 +109,12 @@
 				</div>
 			</div>
 		</div>
-		<button class="btn btn-warning" style="margin-top: 30px;width: 100%;margin-left: 5px;">
+		<button class="btn btn-warning" data-id="{{$vehiculo['id']}}" id="btnRenta" style="margin-top: 30px;width: 100%;margin-left: 5px;margin-bottom: 5px;">
 			¡RENTAR AHORA!
 		</button>
+		<div class="alert alert-danger" style="margin-left: 5px;display: none;text-align: center;" id="errRenta">
+			Debes seleccionar una fecha.
+		</div>
 	</div>
 </div>
 @endsection

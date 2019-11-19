@@ -17,8 +17,9 @@ class CreateRentasTable extends Migration
             $table->bigIncrements('id');
             $table->String('Correo_id','50');
             $table->bigInteger('Vehiculo_id')->unsigned();
-            $table->date("fechaFin");
-            $table->String('estatus','1');
+            $table->dateTime("fechaIni");
+            $table->smallInteger("hrsRenta");
+            $table->String('estatus','1')->default("E");
             $table->timestamps();
 
             $table->foreign('Vehiculo_id')->references('id')->on('Vehiculos')
