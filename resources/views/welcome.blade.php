@@ -59,11 +59,11 @@
   </a>
   
 </div><br>
-<form method="GET" action="{{url("/catalogo")}}">
-  @csrf
+<a href="{{url("/catalogo")}}">
 <button class="btn btn-primary">
       Ver catálogo
 </button>
+</a>
 </form>
 </center>
 <br><br><br><br>

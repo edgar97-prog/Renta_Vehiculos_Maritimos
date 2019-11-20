@@ -27,7 +27,7 @@
                  <td>{!! Form::text('Descripcion',null,['class'=>'form form-control descr','required'=>'y','autocomplete'=>'off']) !!}</td>
               </tr>
               <tr>
-                  <td>{!!Form::label('precioRenta','Precio de Renta:')!!}</td>
+                  <td>{!!Form::label('precioRenta','Precio de Renta (USD):')!!}</td>
                   <td>{!! Form::text('precioRenta',null,['class'=>'form form-control renta','required'=>'y','autocomplete'=>'off']) !!}</td>
               </tr>
               <tr>
