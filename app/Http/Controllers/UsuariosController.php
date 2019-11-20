@@ -264,10 +264,12 @@ class UsuariosController extends Controller
      
         if(count($vehiculos[0]->fotos)>0){
             for ($i=0; $i < 3; $i++) { 
-               $numFoto = rand(0,(count($vehiculos)-1));
-              $foto = $vehiculos[$numFoto]->fotos[0]['Foto'];
+               $numvehiculo = rand(0,(count($vehiculos)-1));
+               $numfoto = rand(0,count($vehiculos[$numvehiculo]->fotos)-1);
+              $foto = $vehiculos[$numvehiculo]->fotos[$numfoto]['Foto'];
                array_push($Fotos,$foto);
         }
+            
             
         }
             $vehiculosOferta = Vehiculos::where('Descuento','<>',0)->get('id');
