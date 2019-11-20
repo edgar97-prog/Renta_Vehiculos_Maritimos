@@ -623,6 +623,9 @@ a:active, a:focus{background:transparent;}
    width: 100% ;
    text-align: center;
 }
+/*ERROR*/
+
+/* TABLA NAVEGACIÓN CATALOGO*/
 .colBG{
   background: #ebebeb;
 }
@@ -632,8 +635,10 @@ a:active, a:focus{background:transparent;}
 .center table {
    margin: 0 auto;
    text-align: left;
-   width: 50%;
+   width: 60%;
 }
+
+/* TABLA NAVEGACIÓN CATALOGO*/
 
 /*RADIO BUTTONS CATALOGO*/
 .radio input[type = 'radio']{

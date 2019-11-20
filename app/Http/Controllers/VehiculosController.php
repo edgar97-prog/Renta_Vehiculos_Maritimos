@@ -199,6 +199,7 @@ class VehiculosController extends Controller
     public function catalogo(Request $request)
     {   
         $rol = Session::get('user_session')[1];
+        $TipoVehiculos = TipoVehiculos::all();
         /*$vehiculos = Vehiculos::with('Fotos')->with('TipoVehiculo')
             ->with(['Favoritos'=> function($q){$q->where('Correo_id',Session::get('user_session')[0]);}])->get();
         dd($vehiculos);*/
@@ -216,7 +217,7 @@ class VehiculosController extends Controller
                 $vehiculos = Vehiculos::with('Fotos')->with('TipoVehiculo')
                 ->with(['Favoritos'=> function($q){$q->where('Correo_id',Session::get('user_session')[0]);}])->get();
                 if(!empty($vehiculos)){
-                    return view('vehiculos.catalogo', compact('vehiculos','rol'));
+                    return view('vehiculos.catalogo', compact('vehiculos','rol','TipoVehiculos'));
                 }else{
                     return route('/');
                 }
@@ -224,7 +225,7 @@ class VehiculosController extends Controller
             else{
                 if(!empty($vehiculos)){
 
-                    return view('vehiculos.catalogo', compact('vehiculos','rol'));
+                    return view('vehiculos.catalogo', compact('vehiculos','rol','TipoVehiculos'));
                 }else{
                     return route('/');
                 }
@@ -238,7 +239,7 @@ class VehiculosController extends Controller
             //dd(count($vehiculo['fotos']));
             //dd($vehiculos);
             if(!empty($vehiculos)){
-                return view('vehiculos.catalogo', compact('vehiculos','rol'));
+                return view('vehiculos.catalogo', compact('vehiculos','rol','TipoVehiculos'));
             }else{
                 return route('/');
             }
