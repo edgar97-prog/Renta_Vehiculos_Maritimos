@@ -7,6 +7,7 @@ use App\Fotos;
 use App\Usuarios;
 use App\TipoVehiculos;
 use App\Favoritos;
+use App\Rentas;
 use Session;
 use Illuminate\Http\Request;
 
@@ -94,8 +95,10 @@ class VehiculosController extends Controller
      */
     public function show(Vehiculos $vehiculos,$id)
     {
-        //
-        $vehiculo = Vehiculos::where('id','=',$id)->with('Fotos')->first();
+        //$vehiculo = Vehiculos::where('id','=',$id)->with('Fotos')->first();
+        $vehiculo = Vehiculos::where('id',$id)->with('Fotos')->with(['Favoritos'=> function($q){$q->where('Correo_id',Session::get('user_session')[0]);}])->first();
+        if(empty($vehiculo))
+          return redirect('/catalogo');
         $rol = Session::get('user_session')[1];
         $fotos = $vehiculo['fotos'];
         return view('vehiculos.vehiculodetalle',compact('rol','vehiculo','fotos'));
@@ -269,5 +272,14 @@ class VehiculosController extends Controller
       
 
     }
-
+    public function rentas(Request $request)
+    {
+      $arregloV = array('Correo_id' => Session::get('user_session')[0],'Vehiculo_id' => $request->idv,'fechaIni' => $request->FI,'hrsRenta' => $request->HR);
+      
+      $newRenta = Rentas::create($arregloV);
+      if(empty($newRenta))
+        return 'E';
+      else
+        return 'S';
+    }
 }

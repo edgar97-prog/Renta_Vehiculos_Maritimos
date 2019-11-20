@@ -89,14 +89,18 @@
 				<span>
 					<div class="botonMG btnTrans">
 						{!! Form::open(['id'=>$vehiculo['id'], 'class'=>'formAction']) !!}
+						@if(count($vehiculo['Favoritos'])== 0)
 						{!!Form::submit('MG',['class'=>'btnAction','title' =>'Agregar a favoritos','type' =>'button'])!!}
+						@else
+						{!!Form::submit('MG',['class'=>'btnAction','title' =>'Quitar de favoritos','type' =>'button'])!!}
+						@endif
 						
 					</div>
 					@if(Session::has('user_session'))
 						@if(count($vehiculo['Favoritos'])== 0)
 						<span id="span{{$vehiculo['id']}}"><i class="fa fa-heart-o fa-lg iconoFa" title="Agregar a favoritos"></i></span>
 						@else
-						<span id="span{{$vehiculo['id']}}"><i class="fa fa-heart fa-lg iconoFa" aria-hidden="true"></i></span>
+						<span id="span{{$vehiculo['id']}}"><i class="fa fa-heart fa-lg iconoFa" aria-hidden="true" title="Eliminar de favoritos"></i></span>
 						@endif
 					@else
 						<span id="span{{$vehiculo['id']}}"><i class="fa fa-heart-o fa-lg iconoFa" title="Agregar a favoritos"></i></span>

@@ -30,55 +30,29 @@
 	<button class="let nvo_vehiculo" style="cursor: pointer;">+</button>
 	</span>
 	<table class="table table-hover">
-	
-
-	<th>
-		Nombre
-	</th>
-	<th>
-		Descripción
-	</th>
-	<th>
-		Precio de Renta
-	</th>
-	<th>
-		Precio Descuento
-	</th>
-	<th>
-		Tipo
-	</th>
-	<th>
-		Hora min. Renta
-	</th>
-	<th>
-		Fotografías
-	</th>
+	<thead valign="center">
+		<tr>
+			<th>Nombre</th>
+			<th>Descripción</th>
+			<th>Precio de Renta</th>
+			<th>Precio Descuento</th>
+			<th>Tipo</th>
+			<th>Hora min. Renta</th>
+			<th>Fotografías</th>
+		</tr>
 	</thead>
 	<tbody>
 	 @foreach($vehiculos as $vehiculo)
-	<tr data-id='{{$vehiculo->
-		id}}' class="registro">
-		<td>
-			{{$vehiculo->Nombre}}
-		</td>
-		<td>
-			{{$vehiculo->Descripcion}}
-		</td>
-		<td>
-			{{$vehiculo->precioRenta}}
-		</td>
-		<td>
-			{{$vehiculo->precioDescuento}}
-		</td>
-		<td>
-			{{$vehiculo['TipoVehiculo']['tipo']}}
-		</td>
-		<td>
-			{{$vehiculo->horasRenta}}
-		</td>
-		<td>
+	<tr data-id='{{$vehiculo->id}}' class="registro tabVehi">
+		<td><div>{{$vehiculo->Nombre}}</div></td>
+		<td><div class="tdDes">{{$vehiculo->Descripcion}}</div></td>
+		<td><div>{{$vehiculo->precioRenta}}</div></td>
+		<td><div>{{$vehiculo->precioDescuento}}</div></td>
+		<td><div>{{$vehiculo['TipoVehiculo']['tipo']}}</div></td>
+		<td><div>{{$vehiculo->horasRenta}}</div></td>
+		<td><div class="tdFoto">
 			 @foreach($vehiculo->Fotos as $foto) <img width="90" height="90" src="{{asset("fotos/$foto->Foto")}}"> @endforeach
-		</td>
+		</div></td>
 	</tr>
 	 @endforeach
 	</tbody>

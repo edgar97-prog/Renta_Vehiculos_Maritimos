@@ -192,7 +192,6 @@ var elimFot = [];
 		console.log(tb);*/
 		var Vehiculo_id = event.currentTarget.id;
 		var mgValor = $('#Ocu'+Vehiculo_id).val();
-		console.log(mgValor);
 		if(mgValor == 1) //SI YA ESTÁ EN MG
 		{
 			$.ajax({
@@ -204,18 +203,14 @@ var elimFot = [];
 					},
 				success: function(datos){
 					if(datos ==1){
-						//console.log(datos);
-						//alert('Agregado');
 						$('#span'+Vehiculo_id).html('<i class="fa fa-heart-o fa-lg iconoFa" title="Agregar a favoritos"></i>');
+						$('.btnAction2').attr("title","Agregar a favoritos");
+						$('.btnAction').attr("title","Agregar a favoritos");
 						$('#Ocu'+Vehiculo_id).val(0);
-					}
-					else{
-						//alert('No');
-						console.log(datos);
 					}
 				},
 				error: function(){
-					alert('ERROR QUITAR FAVORITOS');
+					alert('ERROR AL QUITAR DE FAVORITOS');
 				}
 			});
 		}
@@ -230,17 +225,16 @@ var elimFot = [];
 					},
 				success: function(datos){
 					if(datos ==1){
-						console.log(datos);
 						//alert('Agregado');
-						$('#span'+Vehiculo_id).html('<i class="fa fa-heart fa-lg iconoFa" aria-hidden="true"></i>');
+						$('#span'+Vehiculo_id).html('<i class="fa fa-heart fa-lg iconoFa" title="Quitar de favoritos" aria-hidden="true"></i>');
+						$('.btnAction2').attr("title","Quitar de favoritos");
+						$('.btnAction').attr("title","Quitar de favoritos");
 						$('#Ocu'+Vehiculo_id).val(1);
 					}
 					else{
 						if(datos == 0){
 							$("#login").modal('show');
 						}
-						//alert('No');
-						console.log(datos);
 					}
 				},
 				error: function(){

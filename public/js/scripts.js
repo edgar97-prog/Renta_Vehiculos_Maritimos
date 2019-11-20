@@ -138,9 +138,8 @@ $(document).ready(function(){
 	});
 
 	$('.btnComentarios').click(function(){
-
 		var comentario = $('.coment').val();
-		if(comentario == "")
+		if(comentario === "")
 			alert("Necesita rellenar el campo comentario");
 		else{
 			$.ajax({
@@ -184,7 +183,6 @@ $(document).ready(function(){
 		$('#imgCurrent').attr('src',$src);
 		$(this).parent('ul').find('li').children('img').attr('class','img-fluid');
 		$(this).children('img').addClass('imgselected');
-		//$(this).children('img').removeClass('imgselected');
 	});
 	$('#calendar').datepicker({
         inline: true,
@@ -193,13 +191,14 @@ $(document).ready(function(){
         dayNamesMin: ['Do', 'Lu', 'Ma', 'MI', 'Ju', 'Vi', 'Sá'],
         monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
 					'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-		dateFormat: 'dd/mm/yy',
+		dateFormat: 'yy-mm-dd',
 		onSelect: function (date) {
-			//alert(date);
 			$('#showCalendar').html(date);
+			$('#calendar').css('display','none');
+			calendarioMostrado = false;
 		},
 		minDate: new Date(),
-		maxDate: "+3d"
+		maxDate: "+1w"
     });
     var calendarioMostrado = false;
     $('#showCalendar').on('click',function(){
@@ -217,14 +216,44 @@ $(document).ready(function(){
     	$('.HrInicio').html("");
     	$('.listHrs').html("");
     	for (var i = 9; i < 18-opc.html(); i++) {
-    		if(i > 11)
-    			$('#listaHrsIni').append("<option value='"+i+"'>"+i+":00 pm</option>");
-    		else
-    			$('#listaHrsIni').append("<option value='"+i+"'>"+i+":00 am</option>");
+    		$('#listaHrsIni').append("<option value='"+i+"'>"+i+":00</option>");
     	}
     	crear_select();
     });
-    $('.HrInicio').on('click','li',function(){
-    	var opc = $(this).parent("ul").find('.active');
+    var timerErr;
+    $('#btnRenta').on('click',function(){
+    	if($('.btnSC').html()==="--/--/----"){
+    		clearInterval(timerErr);
+    		$("#errRenta").css('display','block');
+    		$(".btnSC").focus();
+    		$(".btnSC").click();
+    		timerErr = setInterval(hideErr,2000);
+    	}else{
+    		var FechaIni = $('.btnSC').html()+" "+$('.HrInicio').find('.active').html();
+    		var hrsRenta = $('.listHrs').find('.active').html();
+			var idv = $(this).data('id');
+			$.ajax({
+				type:'POST',
+				url:'/rentas',
+				data:{
+					'token':$('#token').val(),
+					'idv':idv,
+					'FI':FechaIni,
+					'HR':hrsRenta
+				},
+				success:function(data){
+					if(data === 'S'){
+						$('.comentarioModal').html('<center><label>La renta se ha realizado correctamente.<br>En breve uno de nuestros empleados se pondrá en contacto con usted para corroborar la renta.</label></center>');
+						$('#ModalComent').modal('show');
+					}else{
+						alert("Ha ocurrido un error al momento de guardar la renta");
+					}
+				}
+			});
+    	}
     });
+    function hideErr(){
+    	$("#errRenta").css('display','none');
+    	clearInterval(timerErr);
+    }
 });

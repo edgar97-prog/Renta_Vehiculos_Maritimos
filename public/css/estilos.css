@@ -135,6 +135,18 @@ a:active, a:focus{background:transparent;}
   background: #fbf8e9;
 }
 
+.tabVehi td div{
+  max-height: 150px;
+  height: 150px;
+  min-height: 150px;
+}
+.tdFoto{
+  overflow-y: auto;
+}
+.tdDes{
+  max-width: 550px;
+}
+
 /*Modal */
 .header-modal
 {
@@ -405,7 +417,7 @@ a:active, a:focus{background:transparent;}
 .available{
   color: gray;
   position: absolute;
-  margin-left: -190px;
+  margin-left: -170px;
   margin-top: 27px;
 }
 @media (max-width: 767px) {
@@ -419,7 +431,7 @@ a:active, a:focus{background:transparent;}
 }
 .icoFav,#addedFav{
   float: right;
-  cursor: pointer;
+  z-index: 1;
 }
 .caract{margin-top: 10px;}
 #addedFav{display: none;}
@@ -430,6 +442,8 @@ a:active, a:focus{background:transparent;}
   margin-top: -130px;
   margin-left: -200px;
   display: none;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 /*CATALOGO*/
@@ -485,7 +499,32 @@ a:active, a:focus{background:transparent;}
 .TablaVehiculo:hover .botonMG{
   display: block;
 }
-
+.tituloProd:hover > span > .botonMG2{
+  display: inline-block;
+}
+.botonMG2{
+  width: 30px;
+  height: 30px;
+  display: none;
+  cursor: pointer;
+  float: right;
+  border-radius: 100%;
+  margin-left: -50px;
+}
+.btnAction2{
+  border-radius: 80%;
+  font-size: 10px;
+  width: 35px;
+  height: 35px;
+  margin-left: -7px;
+  margin-top: -5px;
+  z-index: 5;
+  position: absolute;
+  cursor: pointer;
+  background: transparent;
+  color: transparent;
+  border:none;
+}
 .botonMG{
   z-index: 999;
   width: 50px;
@@ -593,7 +632,6 @@ a:active, a:focus{background:transparent;}
 }
 .btnAction{
   position: absolute;
-  border:solid;
   z-index: 999;
   width: 26px;
   height: 26px;
