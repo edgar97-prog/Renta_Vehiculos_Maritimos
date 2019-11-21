@@ -281,4 +281,16 @@ class VehiculosController extends Controller
       else
         return 'S';
     }
+
+    public function mostrarFavoritos()
+    {
+        
+           
+        $rol = Session::get('user_session')[1];
+         $vehiculos = Vehiculos::with('Fotos')->with('TipoVehiculo')
+         ->with('Favoritos')->join('favoritos','favoritos.Vehiculo_id','=','vehiculos.id')
+        ->where('favoritos.Correo_id','=',Session::get('user_session')[0])
+        ->get();
+        return view('vehiculos.favoritos',compact('vehiculos','rol'));
+    }
 }

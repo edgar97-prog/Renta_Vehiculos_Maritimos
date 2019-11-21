@@ -37,11 +37,15 @@
   <div class="carousel-inner">
     <div class="carousel-item active">
   @if(count($Fotos)>1)
-      <img class="d-block w-100" src="{{asset("fotos/$Fotos[0]")}}" alt="First slide">
+    <a href="{{route("vehiculos.show",$idvehiculos[0])}}">
+    <img class="d-block w-100" src="{{asset("fotos/$Fotos[0]")}}" alt="First slide">
+    </a>
     </div>
      @for($i = 1; $i<=(count($Fotos)-1) ; $i++)
     <div class="carousel-item">
+      <a href="{{route("vehiculos.show",$idvehiculos[$i])}}">
       <img class="d-block w-100" src="{{asset("fotos/$Fotos[$i]")}}" alt="Second slide">
+    </a>
     </div>
     @endfor
     @else
