@@ -44,6 +44,9 @@
                     <a class="nav-link" href="{{ action('UsuariosController@create') }}">REGISTRARSE</a>
                   </li>
               @else
+              <li class="nav-item">
+                    <a class="nav-link" href="{{(url('/muestraFavoritos'))}}">Tus me gusta</a>
+                  </li>
                 @yield('opcMenu')
                 <li class="nav-item" style="padding: 0px 5px;">
                   <h3><i class="fa fa-cog" aria-hidden="true"></i></h3>

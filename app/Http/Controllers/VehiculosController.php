@@ -8,6 +8,7 @@ use App\Usuarios;
 use App\TipoVehiculos;
 use App\Favoritos;
 use App\Rentas;
+use App\Dolar;
 use Session;
 use Illuminate\Http\Request;
 
@@ -203,14 +204,13 @@ class VehiculosController extends Controller
     {   
         $rol = Session::get('user_session')[1];
         $TipoVehiculos = TipoVehiculos::all();
-        /*$vehiculos = Vehiculos::with('Fotos')->with('TipoVehiculo')
-            ->with(['Favoritos'=> function($q){$q->where('Correo_id',Session::get('user_session')[0]);}])->get();
-        dd($vehiculos);*/
-        /*if(Session::has('user_session')){
-          $vehiculos = Vehiculos::with('Fotos')->with('TipoVehiculo')
-            ->with(['Favoritos'=> function($q){$q->where('Correo_id',Session::get('user_session')[0]);}])->get(); dd($vehiculos);
-        }*/
-       
+        $Dolar = Dolar::all();
+        $precioDolar=$Dolar[0]['valor'];
+        if($Dolar[0]['permitir'] == 1){
+         $precioDolar = self::obtenDivisa(1,'USD','MXN');
+         $a = Dolar::where('permitir','=','1')->update(array('valor' => $precioDolar,'permitir' => 0));
+        }
+       //dd($precioDolar);
 
         if(isset($request->nombreVehiculoBuscar)){
             $vehiculos = Vehiculos::where('Nombre','LIKE','%'.$request->nombreVehiculoBuscar.'%')->with('Fotos')->with('TipoVehiculo')
@@ -220,7 +220,7 @@ class VehiculosController extends Controller
                 $vehiculos = Vehiculos::with('Fotos')->with('TipoVehiculo')
                 ->with(['Favoritos'=> function($q){$q->where('Correo_id',Session::get('user_session')[0]);}])->get();
                 if(!empty($vehiculos)){
-                    return view('vehiculos.catalogo', compact('vehiculos','rol','TipoVehiculos'));
+                    return view('vehiculos.catalogo', compact('vehiculos','rol','TipoVehiculos','precioDolar'));
                 }else{
                     return route('/');
                 }
@@ -228,7 +228,7 @@ class VehiculosController extends Controller
             else{
                 if(!empty($vehiculos)){
 
-                    return view('vehiculos.catalogo', compact('vehiculos','rol','TipoVehiculos'));
+                    return view('vehiculos.catalogo', compact('vehiculos','rol','TipoVehiculos','precioDolar'));
                 }else{
                     return route('/');
                 }
@@ -242,7 +242,7 @@ class VehiculosController extends Controller
             //dd(count($vehiculo['fotos']));
             //dd($vehiculos);
             if(!empty($vehiculos)){
-                return view('vehiculos.catalogo', compact('vehiculos','rol','TipoVehiculos'));
+                return view('vehiculos.catalogo', compact('vehiculos','rol','TipoVehiculos','precioDolar'));
             }else{
                 return route('/');
             }
@@ -281,5 +281,17 @@ class VehiculosController extends Controller
         return 'E';
       else
         return 'S';
+    }
+
+    public function mostrarFavoritos()
+    {
+        
+           
+        $rol = Session::get('user_session')[1];
+         $vehiculos = Vehiculos::with('Fotos')->with('TipoVehiculo')
+         ->with('Favoritos')->join('favoritos','favoritos.Vehiculo_id','=','vehiculos.id')
+        ->where('favoritos.Correo_id','=',Session::get('user_session')[0])
+        ->get();
+        return view('vehiculos.favoritos',compact('vehiculos','rol'));
     }
 }

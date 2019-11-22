@@ -255,27 +255,28 @@ class UsuariosController extends Controller
         $vehiculos = Vehiculos::with('Fotos')->get();
         if(count($vehiculos) == 0){
             $Fotos = array();
+            $idvehiculos = array();
             $vehiculoMostrado = array();
-            return view('welcome',compact('rol','Fotos','vehiculoMostrado'));
+            return view('welcome',compact('rol','Fotos','vehiculoMostrado','idvehiculos'));
         }
         else{
             if(!is_null($vehiculos)){
             $Fotos = array();
-     
+            $idvehiculos = array();
         if(count($vehiculos[0]->fotos)>0){
             for ($i=0; $i < 3; $i++) { 
                $numvehiculo = rand(0,(count($vehiculos)-1));
                $numfoto = rand(0,count($vehiculos[$numvehiculo]->fotos)-1);
               $foto = $vehiculos[$numvehiculo]->fotos[$numfoto]['Foto'];
-               array_push($Fotos,$foto);
+             array_push($idvehiculos, $vehiculos[$numvehiculo]->id);
+             array_push($Fotos,$foto);
         }
-            
             
         }
             $vehiculosOferta = Vehiculos::where('Descuento','<>',0)->get('id');
             $vehiculoRandom = rand(0,count($vehiculosOferta)-1);
             $vehiculoMostrado = Vehiculos::where('id','=',$vehiculosOferta[$vehiculoRandom]['id'])->with('Fotos')->with('TipoVehiculo')->get();
-                return view('welcome',compact('rol','Fotos','vehiculoMostrado'));
+                return view('welcome',compact('rol','Fotos','vehiculoMostrado','idvehiculos'));
             }
         }
         
