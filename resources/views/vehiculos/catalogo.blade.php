@@ -22,7 +22,7 @@
 				</div>
 			</td>
 			<td class="colBG">
-				
+				<i id="valorDolar" style="display: none; width: 0px;">{{$precioDolar}}</i>
 			</td>
 			<td class="colBG">
 				<div align="right" style="">
