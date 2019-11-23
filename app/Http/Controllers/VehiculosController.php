@@ -102,7 +102,17 @@ class VehiculosController extends Controller
           return redirect('/catalogo');
         $rol = Session::get('user_session')[1];
         $fotos = $vehiculo['fotos'];
-        return view('vehiculos.vehiculodetalle',compact('rol','vehiculo','fotos'));
+        $rentado = Rentas::where("Correo_id",Session::get('user_session')[0])->where("Vehiculo_id",$id)->where("estatus","E")->first();
+        if(!empty($rentado)){
+          $R = true;
+          $hora = intval(substr($rentado['fechaIni'], 11,12));
+          $rentado['fechaIni'] = substr($rentado['fechaIni'], 0,10);
+        }
+        else{
+          $R = false;
+          $hora = 0;
+        }
+        return view('vehiculos.vehiculodetalle',compact('rol','vehiculo','fotos','R','rentado','hora'));
     }
 
     /**
@@ -275,12 +285,17 @@ class VehiculosController extends Controller
     public function rentas(Request $request)
     {
       $arregloV = array('Correo_id' => Session::get('user_session')[0],'Vehiculo_id' => $request->idv,'fechaIni' => $request->FI,'hrsRenta' => $request->HR);
-      
+      $rentado = Rentas::where("Correo_id",Session::get('user_session')[0])->where("Vehiculo_id",$request->idv)->where("fechaIni",$request->FI)->first();
+      if(!empty($rentado)){
+        if($rentado['estatus'] == 'E')
+          $arregloV = array('estatus'=>'C');
+        else
+          $arregloV = array('estatus'=>'E');
+        $rentado->update($arregloV);
+        return $arregloV['estatus'];
+      }
       $newRenta = Rentas::create($arregloV);
-      if(empty($newRenta))
-        return 'E';
-      else
-        return 'S';
+      return 'E';
     }
 
     public function mostrarFavoritos()
