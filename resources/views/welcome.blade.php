@@ -13,6 +13,7 @@
 <script>
   var bod = document.getElementById("cuerpo");
   bod.classList.remove("container");
+  $('body').css("overflow-x","hidden");
 </script>
 <div class="wrapper bgded overlay" style="background-image:url('{{asset("imagenesInicio/inicio.png")}}');">
   <div id="pageintro" class="hoc clear"> 

@@ -242,10 +242,24 @@ $(document).ready(function(){
 					'HR':hrsRenta
 				},
 				success:function(data){
-					if(data === 'S'){
+					if(data === 'E'){
 						$('.comentarioModal').html('<center><label>La renta se ha realizado correctamente.<br>En breve uno de nuestros empleados se pondrá en contacto con usted para corroborar la renta.</label></center>');
 						$('#ModalComent').modal('show');
-					}else{
+						document.getElementById("btnRenta").classList.remove("btn-warning");
+						document.getElementById("btnRenta").classList.add("btn-danger");
+						$('.select_mate').css('pointer-events','none');
+						$('#showCalendar').css('pointer-events','none');
+						$('#btnRenta').html("CANCELAR RENTA");
+					}else if(data === 'C'){
+						$('.comentarioModal').html('<center><label>La renta ha sido cancelada con exito.</label></center>');
+						$('#ModalComent').modal('show');
+						$('.select_mate').css('pointer-events','auto');
+						$('#showCalendar').css('pointer-events','auto');
+						document.getElementById("btnRenta").classList.remove("btn-danger");
+						document.getElementById("btnRenta").classList.add("btn-warning");
+						$('#btnRenta').html("¡RENTAR AHORA!");
+					}
+					else{
 						alert("Ha ocurrido un error al momento de guardar la renta");
 					}
 				}
