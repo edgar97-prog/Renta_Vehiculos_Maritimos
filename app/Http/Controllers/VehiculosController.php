@@ -300,13 +300,13 @@ class VehiculosController extends Controller
 
     public function mostrarFavoritos()
     {
-        
-           
+        $Dolar = Dolar::all();
+        $precioDolar=$Dolar[0]['valor'];
         $rol = Session::get('user_session')[1];
          $vehiculos = Vehiculos::with('Fotos')->with('TipoVehiculo')
          ->with('Favoritos')->join('favoritos','favoritos.Vehiculo_id','=','vehiculos.id')
         ->where('favoritos.Correo_id','=',Session::get('user_session')[0])
         ->get();
-        return view('vehiculos.favoritos',compact('vehiculos','rol'));
+        return view('vehiculos.favoritos',compact('vehiculos','rol','precioDolar'));
     }
 }
