@@ -138,7 +138,7 @@
 	</tr>
 	<tr >
 		<td colspan="2">
-			 {!! Form::text('vehiculo',count($vehiculo['Favoritos']),['class' => 'textboxHidden','id'=>'Ocu'.$vehiculo['id']]) !!}
+			 {!! Form::text('vehiculo',count($vehiculo['Favoritos']),['class' => 'text','id'=>'Ocu'.$vehiculo['id']]) !!}
 			 {!! Form::close() !!}
 		</td>
 	</tr>

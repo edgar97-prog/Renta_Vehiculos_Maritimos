@@ -1,4 +1,4 @@
-@extends('plantilla')
+	@extends('plantilla')
 @section('opcMenu')
 	@if($rol == 3 || $rol == 2)
     <li class="nav-item" id="opcpanel">
