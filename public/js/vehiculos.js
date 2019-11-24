@@ -162,11 +162,11 @@ var elimFot = [];
 			//console.log(precioRenta);
 			for(var i=0; i<precioRenta.length;i++){
 				let precio =$('.precioDescuento')[i].innerText;
-				$('.precioDescuento')[i].innerHTML= parseFloat(precio) / valorDolar + ' USD';
+				$('.precioDescuento')[i].innerHTML= (parseFloat(precio) / valorDolar).toFixed(2) + ' USD';
 			}
 			for(var i=0; i<precioRentaAnterior.length;i++){
 				let precio =$('.precioRenta')[i].innerText;
-				$('.precioRenta')[i].innerHTML= parseFloat(precio) / valorDolar + ' USD';
+				$('.precioRenta')[i].innerHTML= (parseFloat(precio) / valorDolar).toFixed(2) + ' USD';
 			}
 		}
 		else{
@@ -175,11 +175,11 @@ var elimFot = [];
 			//console.log(precioRenta);
 			for(var i=0; i<precioRenta.length;i++){
 				let precio =$('.precioDescuento')[i].innerText;
-				$('.precioDescuento')[i].innerHTML= parseFloat(precio) * valorDolar + ' MXN';
+				$('.precioDescuento')[i].innerHTML= (parseFloat(precio) * valorDolar).toFixed(2) + ' MXN';
 			}
 			for(var i=0; i<precioRentaAnterior.length;i++){
 				let precio =$('.precioRenta')[i].innerText;
-				$('.precioRenta')[i].innerHTML= parseFloat(precio) * valorDolar + ' MXN';
+				$('.precioRenta')[i].innerHTML= (parseFloat(precio) * valorDolar).toFixed(2) + ' MXN';
 			}
 		}
 	});
