@@ -96,23 +96,38 @@ class VehiculosController extends Controller
      */
     public function show(Vehiculos $vehiculos,$id)
     {
-        //$vehiculo = Vehiculos::where('id','=',$id)->with('Fotos')->first();
         $vehiculo = Vehiculos::where('id',$id)->with('Fotos')->with(['Favoritos'=> function($q){$q->where('Correo_id',Session::get('user_session')[0]);}])->first();
         if(empty($vehiculo))
           return redirect('/catalogo');
-        $rol = Session::get('user_session')[1];
         $fotos = $vehiculo['fotos'];
-        $rentado = Rentas::where("Correo_id",Session::get('user_session')[0])->where("Vehiculo_id",$id)->where("estatus","E")->first();
-        if(!empty($rentado)){
-          $R = true;
-          $hora = intval(substr($rentado['fechaIni'], 11,12));
-          $rentado['fechaIni'] = substr($rentado['fechaIni'], 0,10);
-        }
-        else{
+        if(!Session::has("user_session")){
+          $rol = 1;
           $R = false;
           $hora = 0;
+          $rentado = "";
+          return view('vehiculos.vehiculodetalle',compact('rol','vehiculo','fotos','R','rentado','hora'));
+        }else{
+            $rol = Session::get('user_session')[1];
+            $rentado = Rentas::where("Correo_id",Session::get('user_session')[0])->where("Vehiculo_id",$id)->where("estatus","E")->first();
+            if(!empty($rentado)){ //Si lo renté
+              $R = true;
+              $hora = intval(substr($rentado['fechaIni'], 11,12));
+              $rentado['fechaIni'] = substr($rentado['fechaIni'], 0,10);
+              return view('vehiculos.vehiculodetalle',compact('rol','vehiculo','fotos','R','rentado','hora'));
+            }
+            else{
+              $R = false;
+              $hora = 0;
+              $hrsRentadas = Rentas::where("Vehiculo_id",$id)->where("estatus","E")->orderBy("fechaIni")->get(["fechaIni","hrsRenta"]);
+              if(empty($hrsRentadas[0])){
+                return view('vehiculos.vehiculodetalle',compact('rol','vehiculo','fotos','R','rentado','hora'));
+              }
+              else{
+                $hrsRentadas[0] = json_encode($hrsRentadas[0],JSON_FORCE_OBJECT);
+                return view('vehiculos.vehiculodetalle',compact('rol','vehiculo','fotos','R','rentado','hora','hrsRentadas'));
+              }
+            } 
         }
-        return view('vehiculos.vehiculodetalle',compact('rol','vehiculo','fotos','R','rentado','hora'));
     }
 
     /**
@@ -135,20 +150,18 @@ class VehiculosController extends Controller
      */
     public function update(Request $request, Vehiculos $vehiculos)
     {
-        //
-           $precioDescuento =$request->precioRenta - (($request->precioRenta * ($request->Descuento * 0.01)));
-
-        $datos = array('Nombre'=>$request->Nombre,'Descripcion'=>$request->Descripcion,
-                    'precioRenta'=>$request->precioRenta,'precioDescuento'=>$precioDescuento,
-                    'Descuento'=>$request->Descuento,'horasRenta'=>$request->horasRenta,
-                    'tipoVehiculos_id'=>$request->tipoVehiculos_id,'num_personas'=>$request->num_personas);
-        $vehiculo = Vehiculos::find($request->idv);
-        $vehiculo->update($datos);
-        $arregloEliminaFoto = explode(',', $request->idfot);
-        foreach ($arregloEliminaFoto as $foto ) {
-            Fotos::destroy($foto);
-        }
-        $arrFotos = array('Foto'=>"",'vehiculos_id'=>$vehiculo->id);
+      $precioDescuento =$request->precioRenta - (($request->precioRenta * ($request->Descuento * 0.01)));
+      $datos = array('Nombre'=>$request->Nombre,'Descripcion'=>$request->Descripcion,
+                  'precioRenta'=>$request->precioRenta,'precioDescuento'=>$precioDescuento,
+                  'Descuento'=>$request->Descuento,'horasRenta'=>$request->horasRenta,
+                  'tipoVehiculos_id'=>$request->tipoVehiculos_id,'num_personas'=>$request->num_personas);
+      $vehiculo = Vehiculos::find($request->idv);
+      $vehiculo->update($datos);
+      $arregloEliminaFoto = explode(',', $request->idfot);
+      foreach ($arregloEliminaFoto as $foto ) {
+          Fotos::destroy($foto);
+      }
+      $arrFotos = array('Foto'=>"",'vehiculos_id'=>$vehiculo->id);
 
       $contFoto =  $request->nvafotos;
         for($i=1; $i<=$contFoto; $i++)
@@ -159,9 +172,7 @@ class VehiculosController extends Controller
             Fotos::create($arrFotos);
             $imagen->move('fotos',$nameImage);
         }
-
       return redirect()->route('vehiculos.index')->with('mensaje','Modificación exitosa');
-
     }
 
     /**
@@ -284,6 +295,8 @@ class VehiculosController extends Controller
     }
     public function rentas(Request $request)
     {
+      if(!Session::has("user_session"))
+        return 'U';
       $arregloV = array('Correo_id' => Session::get('user_session')[0],'Vehiculo_id' => $request->idv,'fechaIni' => $request->FI,'hrsRenta' => $request->HR);
       $rentado = Rentas::where("Correo_id",Session::get('user_session')[0])->where("Vehiculo_id",$request->idv)->where("fechaIni",$request->FI)->first();
       if(!empty($rentado)){

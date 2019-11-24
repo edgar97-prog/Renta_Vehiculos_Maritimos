@@ -42,7 +42,7 @@
 			{!!Form::submit('MG',['class'=>'btnAction2','type' =>'button','title'=>'Quitar de favoritos'])!!}
 			@endif
 			{!! Form::close() !!}
-			{!! Form::text('vehiculo',count($vehiculo['Favoritos']),['class' => 'textboxHidden','id'=>'Ocu'.$vehiculo['id']]) !!}
+			{!! Form::text('vehiculo',count($vehiculo['Favoritos']),['id'=>'Ocu'.$vehiculo['id'],'style'=>'display:none']) !!}
 			 {!! Form::close() !!}
 			</div>
 			@if(count($vehiculo['Favoritos']) == 0)
@@ -69,7 +69,7 @@
 			<span>Selecciona las horas de renta</span>
 			<div class="row">
 				<div class="select_mate" data-mate-select="active" >
-					<select name="Horas" onclick="return false;" id="">
+					<select name="Horas" onclick="return false;" id="LHR">
 					  @for($i = $vehiculo['horasRenta']; $i < 9; $i++)
 					  <option value="{{$i}}">{{$i}}</option>
 					  @endfor
@@ -89,18 +89,40 @@
 			<p>Seleccionar fecha:
 				<button class="btn btnSC" id="showCalendar">@if($R){{$rentado['fechaIni']}}@else--/--/----@endif</button>
 			</p>
+			@isset($hrsRentadas)
+			<script type="text/javascript">
+				/*var array = ["2019-11-23"];
+				$.datepicker.setDefaults({
+					beforeShowDay:function(date){
+        				var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
+        				return [array.indexOf(string) == -1];
+    				}
+				});*/
+				var arrHrs = [];
+				var arrCant = [];
+				var arrFechas = [];
+				//Arreglar el formato json que arroja.
+				var data = '{!!$hrsRentadas!!}'.replace(/"/,'').replace(/}"/,'}');
+				var datos = JSON.parse(data);
+				for (var i = 0; i < datos.length; i++) {
+					arrHrs.push(parseInt(datos[i]['fechaIni'].substring(11,13)));
+					arrCant.push(parseInt(datos[i]['hrsRenta']));
+					arrFechas.push(datos[i]['fechaIni'].substring(0,10));
+				}
+			</script>
+			@endisset
 			<span>Selecciona la hora de inicio de apartado</span>
 			<div class="row">
 				<div class="calendar" id="calendar"></div>
 				<div class="select_mate" data-mate-select="active" >
 					<select name="HrInicio" onclick="return false;" id="listaHrsIni">
-					  @for($i = 9; $i < 18-$vehiculo['horasRenta']; $i++)
-					  @if($hora == $i)
-					  <option value="{{$i}}" selected>{{$i}}:00</option>
-					  @else
-					  <option value="{{$i}}">{{$i}}:00</option>
-					  @endif
-					  @endfor
+						@for($i = 9; $i < 18-$vehiculo['horasRenta']; $i++)
+						@if($hora == $i)
+						<option value="{{$i}}" selected>{{$i}}:00</option>
+						@else
+						<option value="{{$i}}">{{$i}}:00</option>
+						@endif
+						@endfor
 					</select>
 				    <p class="selecionado_opcion"  onclick="open_select(this)" ></p>
 				    <span onclick="open_select(this)" class="icon_select_mate">
@@ -113,6 +135,7 @@
 				    <ul class="cont_select_int HrInicio">  </ul> 
 				  </div>
 				</div>
+				<p>Hrs disp.</p>
 			</div>
 		</div>
 		@if($R)
