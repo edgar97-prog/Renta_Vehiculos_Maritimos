@@ -184,6 +184,7 @@ $(document).ready(function(){
 		$(this).parent('ul').find('li').children('img').attr('class','img-fluid');
 		$(this).children('img').addClass('imgselected');
 	});
+	
 	$('#calendar').datepicker({
         inline: true,
         firstDay: 1,
@@ -196,6 +197,42 @@ $(document).ready(function(){
 			$('#showCalendar').html(date);
 			$('#calendar').css('display','none');
 			calendarioMostrado = false;
+			//ACTUALIZAR HORAS DISPONIBLES
+			$("#listaHrsIni").html("");
+	    	$('.HrInicio').html("");
+	    	$('.listHrs').html("");
+	    	var CHR = $("#LHR").val();
+	    	var tamF = arrFechas.length;
+	    	var pos = [];
+	    	console.log(arrCant);
+    		for (var i = 0; i < tamF; i++) {
+    			if(date === arrFechas[i]){
+    				pos.push(i);
+    			}
+    		}
+    		var tamP = pos.length;
+    		if(tamP === 0){
+	    		for (var i = 9; i < 18 - CHR; i++) {
+	    			$('#listaHrsIni').append("<option value='"+i+"'>"+i+":00</option>");
+	    		}
+	    	}else{
+	    		for (var i = 9; i < 18 - CHR; i++) {
+	    			var band = false;
+	    			var Inc = 0;
+	    			for (var j = 0; j < tamP; j++) {
+	    				if(arrHrs[j] === i){
+	    					band = true;
+	    					Inc = arrCant[j];
+	    					j = tamP;
+	    				}
+	    			}
+	    			if(band)
+	    				i += Inc - 1;
+	    			else
+	    				$('#listaHrsIni').append("<option value='"+i+"'>"+i+":00</option>");
+	    		}
+	    	}
+	    	crear_select();
 		},
 		minDate: new Date(),
 		maxDate: "+1w"
@@ -242,11 +279,25 @@ $(document).ready(function(){
 					'HR':hrsRenta
 				},
 				success:function(data){
-					if(data === 'S'){
+					if(data === 'E'){
 						$('.comentarioModal').html('<center><label>La renta se ha realizado correctamente.<br>En breve uno de nuestros empleados se pondrá en contacto con usted para corroborar la renta.</label></center>');
 						$('#ModalComent').modal('show');
-					}else{
-						alert("Ha ocurrido un error al momento de guardar la renta");
+						document.getElementById("btnRenta").classList.remove("btn-warning");
+						document.getElementById("btnRenta").classList.add("btn-danger");
+						$('.select_mate').css('pointer-events','none');
+						$('#showCalendar').css('pointer-events','none');
+						$('#btnRenta').html("CANCELAR RENTA");
+					}else if(data === 'C'){
+						$('.comentarioModal').html('<center><label>La renta ha sido cancelada con exito.</label></center>');
+						$('#ModalComent').modal('show');
+						$('.select_mate').css('pointer-events','auto');
+						$('#showCalendar').css('pointer-events','auto');
+						document.getElementById("btnRenta").classList.remove("btn-danger");
+						document.getElementById("btnRenta").classList.add("btn-warning");
+						$('#btnRenta').html("¡RENTAR AHORA!");
+					}
+					else{
+						$("#login").modal('show');
 					}
 				}
 			});
