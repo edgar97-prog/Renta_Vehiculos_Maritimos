@@ -74,7 +74,7 @@
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
-<div class="wrapper bgded" style="background-image:url('{{asset("imagenesInicio/yate.png")}}');">
+<div class="wrapper bgded" style="background-image:url('{{asset("imagenesInicio/yate.jpeg")}}');">
   <div class="hoc split clear">
     <section> 
       <!-- ################################################################################################ -->
@@ -82,7 +82,7 @@
       <p>Somo un negocio 100% mexicano, dedicado desde hace ya varios años a la renta de vehiculos maritimos, actualmente nos hemos renovado con la inclusión de un sitio web, para brindar una mejor atención al cliente.</p>
       <ul class="fa-ul">
         <li><i class="fa-li fa fa-check-circle"></i>No dejes pasar la oportunidad y atrevete a vivir una experiencia para recordar.</li>
-        <li><i class="fa-li fa fa-check-circle"></i>Ponemos a tu disposición una gran variedad de vehiculos, no esperes más y dale un vistazo a nuestro catalogo.</li>
+        <li><i class="fa-li fa fa-check-circle"></i>Ponemos a tu disposición una gran variedad de vehiculos, dale un vistazo a nuestro catalogo.</li>
       </ul>
       <footer><a class="btn" href="#">Read More &raquo;</a></footer>
       <!-- ################################################################################################ -->
@@ -97,14 +97,16 @@
   <section class="hoc container clear"> 
     <!-- ################################################################################################ -->
     <div class="group">
-      <div class="one_half first">
-        <p class="font-xs">Tristique senectus et netus</p>
-        <h6 class="heading font-x3">Consectetur accumsan habitant morbi</h6>
-        <p>Sapien etiam vulputate ligula eu felis blandit a efficitur ex consequat aenean id ornare lacus vitae condimentum quam sed varius feugiat elit id tristique etiam non volutpat lorem nulla vitae venenatis augue at fermentum.</p>
-        <p>Et fames ac turpis egestas donec eget enim eu neque euismod mollis suspendisse malesuada sed quam ac [&hellip;]</p>
-        <footer><a href="#">Read More &raquo;</a></footer>
+      <div class="one_half first"><br>
+      <br>
+      <br><br>
+        <h6 class="heading font-x3" style="color: black;">El placer de The Pelican's Los Cabos</h6>
+        <p style="color: black;">Siempre sabes lo que quieres, y te gusta disfrutar de los placeres
+        de la vida, no esperes más y disfruta de días inolvidables, a lado de los tuyos,
+        solo con las comodidades que mereces, memorias para recordar y un sin fin de
+        diversión, te estamos esperando. </p>
       </div>
-      <div class="one_half"><a href="#"><img src="images/demo/480x360.png" alt=""></a></div>
+      <div class="one_half"><img id="desc1" height="40" src="{{asset("imagenesInicio/descripcion.jpeg")}}" alt=""></div>
     </div>
     <!-- ################################################################################################ -->
   </section>

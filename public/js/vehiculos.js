@@ -248,5 +248,15 @@ var elimFot = [];
 		
 	});
 
+	$('.terminos').click(function()
+	{	
+		$('.tituloTerm').empty();
+		$('.comentarioModal').empty();
+		$('.tituloTerm').append('Términos y Condiciones');
+		let texto = '1.- Usted solo puede hacer reservaciones con 24 hrs. de anticipación. <br><br> 2.- Así mismo solamente puede hacer cancelaciones con 24 hrs. de anticipación.';
+		texto = texto+'<br><br>3.- El precio del dolar no se obtiene en tiempo real, se obtiene cada hora, es importante que lo tenga en cuenta.';
+		$('.comentarioModal').append('<center>'+texto+'</center>');
+		$('#ModalComent').modal('show');
+	})
 
 });

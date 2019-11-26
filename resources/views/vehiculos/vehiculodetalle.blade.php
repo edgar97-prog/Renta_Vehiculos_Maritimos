@@ -148,10 +148,12 @@
 		<button class="btn btn-danger" data-id="{{$vehiculo['id']}}" id="btnRenta" style="margin-top: 30px;width: 100%;margin-left: 5px;margin-bottom: 5px;">
 			CANCELAR RENTA
 		</button>
+		<center><a href="#" class="terminos">Términos y Condiciones</a></center>
 		@else
 		<button class="btn btn-warning" data-id="{{$vehiculo['id']}}" id="btnRenta" style="margin-top: 30px;width: 100%;margin-left: 5px;margin-bottom: 5px;">
 			¡RENTAR AHORA!
 		</button>
+		<center><a href="#" class="terminos">Términos y Condiciones</a></center>
 		@endif
 		<div class="alert alert-danger" style="margin-left: 5px;display: none;text-align: center;" id="errRenta">
 			Debes seleccionar una fecha.
@@ -161,5 +163,6 @@
 @endsection
 
 @section('footers')
+@include('modal.modalTerminos')
 @include('modal.modalComentario')
 @endsection

@@ -722,3 +722,9 @@ a:active, a:focus{background:transparent;}
   display: none;
 }
 /*RADIO BUTTONS CATALOGO*/
+
+#desc1
+{
+  width: 120%;
+  height: 90%
+}
