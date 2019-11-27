@@ -155,7 +155,8 @@
 </table>
 </a>
 @endforeach
-
+<br>
+{!!$vehiculos->render()!!}
 @endsection
 @section('footers')
 @include('modal.modalComentario')

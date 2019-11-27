@@ -239,7 +239,7 @@ class VehiculosController extends Controller
 
             if(count($vehiculos) == 0){
                 $vehiculos = Vehiculos::with('Fotos')->with('TipoVehiculo')
-                ->with(['Favoritos'=> function($q){$q->where('Correo_id',Session::get('user_session')[0]);}])->get();
+                ->with(['Favoritos'=> function($q){$q->where('Correo_id',Session::get('user_session')[0]);}])->paginate(9);
                 if(!empty($vehiculos)){
                     return view('vehiculos.catalogo', compact('vehiculos','rol','TipoVehiculos','precioDolar'));
                 }else{
@@ -257,7 +257,7 @@ class VehiculosController extends Controller
         }
         else{
             $vehiculos = Vehiculos::with('Fotos')->with('TipoVehiculo')
-            ->with(['Favoritos'=> function($q){$q->where('Correo_id',Session::get('user_session')[0]);}])->get();
+            ->with(['Favoritos'=> function($q){$q->where('Correo_id',Session::get('user_session')[0]);}])->paginate(9);
             //$tipoVehiculos = TipoVehiculos::all();
             //dd($vehiculos[0]['tipoVehiculo']['tipo']);
             //dd(count($vehiculo['fotos']));
