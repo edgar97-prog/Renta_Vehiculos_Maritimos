@@ -50,3 +50,7 @@ Route::post('fav/eliminar','FavoritosController@eliminar');
 Route::get('/pruebaDolar','VehiculosController@pruebaDolar');
 
 Route::get('/muestraFavoritos','VehiculosController@mostrarFavoritos');
+
+//MOSTRAR LAS RENTAS
+
+Route::get('/muestra/rentas','VehiculosController@muestraRentas');

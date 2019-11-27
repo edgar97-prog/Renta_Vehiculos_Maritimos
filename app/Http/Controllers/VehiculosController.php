@@ -322,4 +322,15 @@ class VehiculosController extends Controller
         ->get();
         return view('vehiculos.favoritos',compact('vehiculos','rol','precioDolar'));
     }
+
+    public function muestraRentas()
+    {
+
+      $datosRenta = Rentas::join('usuarios','usuarios.Correo','=','rentas.Correo_id')
+      ->join('vehiculos','vehiculos.id','=','rentas.Vehiculo_id')
+      ->select('usuarios.Correo','usuarios.ApellidoP','usuarios.ApellidoM','usuarios.Nombre AS Nombre_Usuario',
+        'vehiculos.Nombre','vehiculos.precioRenta','rentas.fechaIni','rentas.hrsRenta','rentas.estatus')->get();
+      dd($datosRenta);
+      return view('rentas',compact('datosRenta'));
+    }
 }
