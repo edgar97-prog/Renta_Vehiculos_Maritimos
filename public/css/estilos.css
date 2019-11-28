@@ -728,3 +728,8 @@ a:active, a:focus{background:transparent;}
   width: 120%;
   height: 90%
 }
+
+.encabezado
+{
+    background-color: black;
+}

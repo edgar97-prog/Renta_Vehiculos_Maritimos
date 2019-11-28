@@ -328,9 +328,26 @@ class VehiculosController extends Controller
 
       $datosRenta = Rentas::join('usuarios','usuarios.Correo','=','rentas.Correo_id')
       ->join('vehiculos','vehiculos.id','=','rentas.Vehiculo_id')
-      ->select('usuarios.Correo','usuarios.ApellidoP','usuarios.ApellidoM','usuarios.Nombre AS Nombre_Usuario',
+      ->select('rentas.id','usuarios.Correo','usuarios.ApellidoP','usuarios.ApellidoM','usuarios.Nombre AS Nombre_Usuario',
         'vehiculos.Nombre','vehiculos.precioRenta','rentas.fechaIni','rentas.hrsRenta','rentas.estatus')->get();
-      dd($datosRenta);
       return view('rentas',compact('datosRenta'));
+    }
+
+    public function administraRenta($id,$accion)
+    {
+        if($accion == 1)
+        {
+          $estado = 'A';
+        }
+        else
+        {
+          $estado = 'C';
+        }
+
+        $renta = Rentas::find($id);
+        $renta->estatus = $estado;
+        $renta->update();
+
+        return redirect('/muestra/rentas')->with('mensaje','Actualización realizada');
     }
 }
