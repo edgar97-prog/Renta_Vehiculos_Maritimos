@@ -327,13 +327,15 @@ class VehiculosController extends Controller
 
     public function muestraRentas()
     {
+      $rol = Session::get('user_session')[1];
       
       DB::update("UPDATE rentas set rentas.estatus = 'A' where((TIMESTAMPDIFF(HOUR,NOW(),rentas.fechaIni))<=24 AND rentas.estatus = 'E')");
       $datosRenta = Rentas::join('usuarios','usuarios.Correo','=','rentas.Correo_id')
       ->join('vehiculos','vehiculos.id','=','rentas.Vehiculo_id')
       ->select('rentas.id','usuarios.Correo','usuarios.ApellidoP','usuarios.ApellidoM','usuarios.Nombre AS Nombre_Usuario',
-        'vehiculos.Nombre','vehiculos.precioRenta','rentas.fechaIni','rentas.hrsRenta','rentas.estatus')->paginate(10);
-      return view('rentas',compact('datosRenta'));
+        'vehiculos.Nombre','vehiculos.precioRenta','rentas.fechaIni','rentas.hrsRenta','rentas.estatus')
+      ->orderBy('rentas.fechaIni','ASC')->paginate(10);
+      return view('rentas',compact('datosRenta','rol'));
     }
 
     public function administraRenta($id,$accion)
@@ -365,5 +367,17 @@ class VehiculosController extends Controller
 
         return redirect('/muestra/rentas')->with('mensaje','Actualización realizada');
       }
+    }
+
+    public function rentasEspecifica(Request $request)
+    {
+      $rol = Session::get('user_session')[1];
+         $datosRenta = Rentas::join('usuarios','usuarios.Correo','=','rentas.Correo_id')
+      ->join('vehiculos','vehiculos.id','=','rentas.Vehiculo_id')
+      ->select('rentas.id','usuarios.Correo','usuarios.ApellidoP','usuarios.ApellidoM','usuarios.Nombre AS Nombre_Usuario',
+        'vehiculos.Nombre','vehiculos.precioRenta','rentas.fechaIni','rentas.hrsRenta','rentas.estatus')
+      ->whereDate('rentas.fechaIni',$request->fechaIni)
+      ->orderBy('rentas.fechaIni','ASC')->paginate(10);
+      return view('rentas',compact('datosRenta','rol'));
     }
 }

@@ -58,3 +58,5 @@ Route::get('/muestra/rentas','VehiculosController@muestraRentas');
 //Administrar rentas (Aceptar/Cancelar)
 
 Route::get('/administra/renta/{id}/{accion}','VehiculosController@administraRenta');
+
+Route::post('/rentas/especificas','VehiculosController@rentasEspecifica');

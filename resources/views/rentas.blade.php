@@ -1,8 +1,23 @@
 @extends('plantilla')
-
+@isset($rol)
+	@section('opcMenu')
+		@if($rol == 3)
+	    <li class="nav-item" id="opcpanel">
+	        <a class="nav-link btn btn-warning" href="{{ url('paneladmin') }}">PANEL ADMINISTRATIVO</a>
+	    </li>
+	    @endif
+	@endsection
+@endisset
 @section('cuerpo')
 	<br><br><br><br>
 	<div>
+<div class="form-group" style="float: right;">
+	<form class="form-group" method="POST" action="{{url('/rentas/especificas')}}">
+			@csrf
+			<label>Ingrese la fecha: </label> <input type="date" name="fechaIni" class="buscRenta">
+			<button class="btn btn-primary">Buscar</button> <a href="{{url('/muestra/rentas')}}" class="btn btn-success">Mostrar Todo</a>
+	</form>
+</div><br><br>
 		<center><label><h1> Registro de Rentas </h1></label></div></center>
 		<br>
 		@if(session()->has('mensaje'))
@@ -13,6 +28,7 @@
 		</center>
 	</div>
 		@endif
+	<div class="table-responsive">
 		<table class="table table-bordered table-hover">
 			<thead class="table">
 				<td>Correo</td>
@@ -67,6 +83,7 @@
 				@endforeach
 			</tbody>
 		</table>
+	</div>
 		<center>{{$datosRenta->links()}} </center>
 	</div>
 
