@@ -4,7 +4,7 @@
     @if(!empty($vehiculoMostrado))
     <div class="modal-content">
       <div class="modal-header header-modal">
-        <h4 class="modal-title">¡No te lo puedes perder!</h4>
+        <h4 class="modal-title"></h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body">
