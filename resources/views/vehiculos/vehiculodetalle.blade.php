@@ -68,7 +68,7 @@
 		<div class="caract">
 			<span>Selecciona las horas de renta</span>
 			<div class="row">
-				<div class="select_mate" data-mate-select="active" >
+				<div class="select_mate" data-mate-select="active">
 					<select name="Horas" onclick="return false;" id="LHR">
 					  @for($i = $vehiculo['horasRenta']; $i < 9; $i++)
 					  <option value="{{$i}}">{{$i}}</option>
@@ -91,17 +91,9 @@
 			</p>
 			@isset($hrsRentadas)
 			<script type="text/javascript">
-				/*var array = ["2019-11-23"];
-				$.datepicker.setDefaults({
-					beforeShowDay:function(date){
-        				var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
-        				return [array.indexOf(string) == -1];
-    				}
-				});*/
 				var arrHrs = [];
 				var arrCant = [];
 				var arrFechas = [];
-				//Arreglar el formato json que arroja.
 				var data = '{!!$hrsRentadas!!}'.replace(/"/,'').replace(/}"/,'}');
 				var datos = JSON.parse(data);
 				for (var i = 0; i < datos.length; i++) {
@@ -111,10 +103,10 @@
 				}
 			</script>
 			@endisset
-			<span>Selecciona la hora de inicio de apartado</span>
+			<span id="spanMsj">Selecciona la hora de inicio de apartado</span>
 			<div class="row">
 				<div class="calendar" id="calendar"></div>
-				<div class="select_mate" data-mate-select="active" >
+				<div class="select_mate" data-mate-select="active" id="ListaHrsD" >
 					<select name="HrInicio" onclick="return false;" id="listaHrsIni">
 						@for($i = 9; $i < 18-$vehiculo['horasRenta']; $i++)
 						@if($hora == $i)
@@ -135,7 +127,7 @@
 				    <ul class="cont_select_int HrInicio">  </ul> 
 				  </div>
 				</div>
-				<p>Hrs disp.</p>
+				<p id="lblHrsD" style="margin-left: 15px;margin-top: 8px;">Hrs disp.</p>
 			</div>
 		</div>
 		@if($R)

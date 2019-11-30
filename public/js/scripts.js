@@ -184,7 +184,9 @@ $(document).ready(function(){
 		$(this).parent('ul').find('li').children('img').attr('class','img-fluid');
 		$(this).children('img').addClass('imgselected');
 	});
-	
+	var Dhoy = new Date();
+	var tomorrow = new Date(Dhoy);
+	tomorrow.setDate(tomorrow.getDate() + 1);
 	$('#calendar').datepicker({
         inline: true,
         firstDay: 1,
@@ -198,45 +200,81 @@ $(document).ready(function(){
 			$('#calendar').css('display','none');
 			calendarioMostrado = false;
 			//ACTUALIZAR HORAS DISPONIBLES
-			$("#listaHrsIni").html("");
-	    	$('.HrInicio').html("");
-	    	$('.listHrs').html("");
-	    	var CHR = $("#LHR").val();
-	    	var tamF = arrFechas.length;
-	    	var pos = [];
-	    	console.log(arrCant);
-    		for (var i = 0; i < tamF; i++) {
-    			if(date === arrFechas[i]){
-    				pos.push(i);
+			ActualizaHorasDisponibles(date);
+			VerificaListaHoras();
+		},
+		minDate: tomorrow,
+		maxDate: "+1w +1d"
+    });
+    function ActualizaHorasDisponibles(date){
+    	$("#listaHrsIni").html("");
+    	$('.HrInicio').html("");
+    	$('.listHrs').html("");
+    	var CHR = $("#LHR").val();
+    	if (typeof arrFechas === 'undefined') {
+    		var tamF = 0;
+    	}else{
+    		var tamF = arrFechas.length;	
+    	}
+    	var pos = [];
+    	for (var i = 0; i < tamF; i++) {
+			if(date === arrFechas[i]){
+				pos.push(i);
+			}
+		}
+		var tamP = pos.length;
+		if(tamP === 0){
+    		for (var i = 9; i < 18 - CHR; i++) {
+    			$('#listaHrsIni').append("<option value='"+i+"'>"+i+":00</option>");
+    		}
+    	}else{
+    		for (var i = 9; i < 18 - CHR; i++) {
+    			var band = false;
+    			var Inc = 0;
+    			for (var j = 0; j < tamP; j++) {
+    				if(arrHrs[j] === i){ //9|2 14|2
+    					band = true;
+    					Inc = arrCant[j];//11 12 13 14 15 16 17
+    					j = tamP;
+    				}
+    			}
+    			if(band)
+    				i += Inc - 1;
+    			else{
+    				var desocupado = true,HrOcupada = 0;
+    				for (var h = parseInt(i)+1; h < (parseInt(i)+parseInt(CHR)); h++) {
+    					for (var j = 0,p = 1; j < tamP; j++,p++) {
+    						if(arrHrs[j] === h){
+    							HrOcupada = h;
+    							h = (parseInt(i)+parseInt(CHR));
+    							j = tamP;
+    							desocupado = false;
+    							break;
+    						}
+    					}
+    				}
+    				if(desocupado){
+    					$('#listaHrsIni').append("<option value='"+i+"'>"+i+":00</option>");
+    				}else{
+    					i =  parseInt(HrOcupada) - 1;
+    				}
     			}
     		}
-    		var tamP = pos.length;
-    		if(tamP === 0){
-	    		for (var i = 9; i < 18 - CHR; i++) {
-	    			$('#listaHrsIni').append("<option value='"+i+"'>"+i+":00</option>");
-	    		}
-	    	}else{
-	    		for (var i = 9; i < 18 - CHR; i++) {
-	    			var band = false;
-	    			var Inc = 0;
-	    			for (var j = 0; j < tamP; j++) {
-	    				if(arrHrs[j] === i){
-	    					band = true;
-	    					Inc = arrCant[j];
-	    					j = tamP;
-	    				}
-	    			}
-	    			if(band)
-	    				i += Inc - 1;
-	    			else
-	    				$('#listaHrsIni').append("<option value='"+i+"'>"+i+":00</option>");
-	    		}
-	    	}
-	    	crear_select();
-		},
-		minDate: new Date(),
-		maxDate: "+1w"
-    });
+    	}
+	    crear_select();
+    }
+    function VerificaListaHoras(){
+    	var Activo = $('.HrInicio').find('.active').html();
+		if(typeof Activo === 'undefined'){
+			$('#ListaHrsD').css('display','none');
+			$('#lblHrsD').css('display','none');
+			$('#spanMsj').html("No hay horas disponibles, intenta otra fecha u menos horas.");
+		}else{
+			$('#lblHrsD').css('display','block');
+			$('#spanMsj').html("Selecciona la hora de inicio de apartado");
+			$('#ListaHrsD').css('display','block');
+		}
+    }
     var calendarioMostrado = false;
     $('#showCalendar').on('click',function(){
     	if(!calendarioMostrado){
@@ -248,14 +286,8 @@ $(document).ready(function(){
     	}
     });
     $('.listHrs').on('click','li',function(){
-    	var opc = $(this).parent("ul").find('.active');
-    	$("#listaHrsIni").html("");
-    	$('.HrInicio').html("");
-    	$('.listHrs').html("");
-    	for (var i = 9; i < 18-opc.html(); i++) {
-    		$('#listaHrsIni').append("<option value='"+i+"'>"+i+":00</option>");
-    	}
-    	crear_select();
+    	ActualizaHorasDisponibles($('.btnSC').html());
+		VerificaListaHoras();
     });
     var timerErr;
     $('#btnRenta').on('click',function(){
@@ -265,7 +297,13 @@ $(document).ready(function(){
     		$(".btnSC").focus();
     		$(".btnSC").click();
     		timerErr = setInterval(hideErr,2000);
-    	}else{
+    	}else if(typeof Activo === 'undefined'){
+    		clearInterval(timerErr);
+    		$("#errRenta").html("No hay horas disponibles");
+    		$("#errRenta").css('display','block');
+    		timerErr = setInterval(hideErr,2000);
+    	}
+    	else{
     		var FechaIni = $('.btnSC').html()+" "+$('.HrInicio').find('.active').html();
     		var hrsRenta = $('.listHrs').find('.active').html();
 			var idv = $(this).data('id');
@@ -305,6 +343,7 @@ $(document).ready(function(){
     });
     function hideErr(){
     	$("#errRenta").css('display','none');
+    	$("#errRenta").html("Debes seleccionar una fecha.");
     	clearInterval(timerErr);
     }
 });
