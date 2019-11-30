@@ -36,6 +36,13 @@
 			<li id="btnVerComentarios"><i class="fa fa-envelope-o" aria-hidden="true"></i>
  			BANDEJA DE ENTRADA</li>
 		</ul>
+		<h4>RENTAS</h4>
+		<hr style="background: gray;">
+		<ul class="listaPanel">
+			<li><i class="fa fa-envelope-o" aria-hidden="true"></i>
+ 			<a href="{{url('/muestra/rentas')}}"> ADMINISTRAR </a></li>
+		</ul>
+
 	</div>
 	<div class="col-sm-8 subcuerpo" id="subcuerpo">
 		<h4 id="tituloemp">EMPLEADOS REGISTRADOS</h4>
