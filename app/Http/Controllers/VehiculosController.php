@@ -11,6 +11,8 @@ use App\Rentas;
 use App\Dolar;
 use Session;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use DB;
 
 class VehiculosController extends Controller
 {
@@ -20,7 +22,7 @@ class VehiculosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function __construct(){
-        $this->middleware('autenticar',['only'=>['store','index','update','destroy','datos,','busqueda']]);
+        $this->middleware('autenticar',['only'=>['store','index','update','destroy','datos,','busqueda','muestraRentas']]);
         $this->middleware('Both_user',['only'=>['store','index','update','destroy','datos,','busqueda']]);
     }
     public function index()
@@ -325,16 +327,29 @@ class VehiculosController extends Controller
 
     public function muestraRentas()
     {
-
+      
+      DB::update("UPDATE rentas set rentas.estatus = 'A' where((TIMESTAMPDIFF(HOUR,NOW(),rentas.fechaIni))<=24 AND rentas.estatus = 'E')");
       $datosRenta = Rentas::join('usuarios','usuarios.Correo','=','rentas.Correo_id')
       ->join('vehiculos','vehiculos.id','=','rentas.Vehiculo_id')
       ->select('rentas.id','usuarios.Correo','usuarios.ApellidoP','usuarios.ApellidoM','usuarios.Nombre AS Nombre_Usuario',
-        'vehiculos.Nombre','vehiculos.precioRenta','rentas.fechaIni','rentas.hrsRenta','rentas.estatus')->get();
+        'vehiculos.Nombre','vehiculos.precioRenta','rentas.fechaIni','rentas.hrsRenta','rentas.estatus')->paginate(10);
       return view('rentas',compact('datosRenta'));
     }
 
     public function administraRenta($id,$accion)
     {
+
+        $date = Carbon::now();
+        $registro = Rentas::find($id);
+        $fecharenta = $registro->fechaIni;
+        $diferencia = $date->diffInHours($fecharenta);
+        if($diferencia<=24)
+        {
+          $registro->estatus = 'A';
+          $registro->update();
+           return redirect('/muestra/rentas')->with('mensaje','Lo sentimos, no puede cancelar ninguna renta pasadas 24 horas');
+        }
+        else{
         if($accion == 1)
         {
           $estado = 'A';
@@ -349,5 +364,6 @@ class VehiculosController extends Controller
         $renta->update();
 
         return redirect('/muestra/rentas')->with('mensaje','Actualización realizada');
+      }
     }
 }

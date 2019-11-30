@@ -67,6 +67,7 @@
 				@endforeach
 			</tbody>
 		</table>
+		<center>{{$datosRenta->links()}} </center>
 	</div>
 
 @endsection
