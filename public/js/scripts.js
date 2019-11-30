@@ -291,6 +291,7 @@ $(document).ready(function(){
     });
     var timerErr;
     $('#btnRenta').on('click',function(){
+    	var Activo = $('.HrInicio').find('.active').html();
     	if($('.btnSC').html()==="--/--/----"){
     		clearInterval(timerErr);
     		$("#errRenta").css('display','block');
