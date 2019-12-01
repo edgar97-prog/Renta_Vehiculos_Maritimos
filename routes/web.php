@@ -59,16 +59,4 @@ Route::get('/muestra/rentas','VehiculosController@muestraRentas');
 
 Route::get('/administra/renta/{id}/{accion}','VehiculosController@administraRenta');
 
-Route::get('pruebaemail',function(){
-	$data = array(
-		'name' => 'misael'
-	);
-
-	//nombre de la vista, array de datos necesario
-	Mail::send('email_prueba',$data,function($message){
-		$message->from('correo del que envia','nombre del que envia');
-		$message->to('correo destino')->subject('asunto');
-	});
-
-	return 'Tu Email ha sido enviado correctamente';
-});
+Route::post('/rentas/especificas','VehiculosController@rentasEspecifica');
