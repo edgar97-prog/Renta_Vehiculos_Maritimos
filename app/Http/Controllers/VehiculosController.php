@@ -110,7 +110,7 @@ class VehiculosController extends Controller
           return view('vehiculos.vehiculodetalle',compact('rol','vehiculo','fotos','R','rentado','hora'));
         }else{
             $rol = Session::get('user_session')[1];
-            $rentado = Rentas::where("Correo_id",Session::get('user_session')[0])->where("Vehiculo_id",$id)->where("estatus","E")->first();
+            $rentado = Rentas::where("Correo_id",'=',Session::get('user_session')[0])->where("Vehiculo_id",'=',$id)->whereNotIn("estatus",["F"])->first();
             if(!empty($rentado)){ //Si lo renté
               $R = true;
               $hora = intval(substr($rentado['fechaIni'], 11,12));
@@ -120,7 +120,7 @@ class VehiculosController extends Controller
             else{
               $R = false;
               $hora = 0;
-              $hrsRentadas = Rentas::where("Vehiculo_id",$id)->where("estatus","E")->orderBy("fechaIni")->get(["fechaIni","hrsRenta"]);
+              $hrsRentadas = Rentas::where("Vehiculo_id",$id)->where("estatus",'=',"E",'or','estatus','=','A')->orderBy("fechaIni")->get(["fechaIni","hrsRenta"]);
               if(empty($hrsRentadas[0])){
                 return view('vehiculos.vehiculodetalle',compact('rol','vehiculo','fotos','R','rentado','hora'));
               }
