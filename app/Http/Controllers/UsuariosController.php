@@ -273,10 +273,16 @@ class UsuariosController extends Controller
         }
             
         }
-            $vehiculosOferta = Vehiculos::where('Descuento','<>',0)->get('id');
+
+            $vehiculosOferta = Vehiculos::get('id');
             $vehiculoRandom = rand(0,count($vehiculosOferta)-1);
             $vehiculoMostrado = Vehiculos::where('id','=',$vehiculosOferta[$vehiculoRandom]['id'])->with('Fotos')->with('TipoVehiculo')->get();
                 return view('welcome',compact('rol','Fotos','vehiculoMostrado','idvehiculos'));
+
+           /* $vehiculosOferta = Vehiculos::where('Descuento','<>',0)->get('id');
+            $vehiculoRandom = rand(0,count($vehiculosOferta)-1);
+            $vehiculoMostrado = Vehiculos::where('id','=',$vehiculosOferta[$vehiculoRandom]['id'])->with('Fotos')->with('TipoVehiculo')->get();
+                return view('welcome',compact('rol','Fotos','vehiculoMostrado','idvehiculos'));*/
             }
         }
         
