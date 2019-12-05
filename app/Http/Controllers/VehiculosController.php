@@ -237,7 +237,7 @@ class VehiculosController extends Controller
 
         if(isset($request->nombreVehiculoBuscar)){
             $vehiculos = Vehiculos::where('Nombre','LIKE','%'.$request->nombreVehiculoBuscar.'%')->with('Fotos')->with('TipoVehiculo')
-              ->with(['Favoritos'=> function($q){$q->where('Correo_id',Session::get('user_session')[0]);}])->get();//SI ENCUENTRA ALGO PARECIDO
+              ->with(['Favoritos'=> function($q){$q->where('Correo_id',Session::get('user_session')[0]);}])->paginate(9);//SI ENCUENTRA ALGO PARECIDO
 
             if(count($vehiculos) == 0){
                 $vehiculos = Vehiculos::with('Fotos')->with('TipoVehiculo')
