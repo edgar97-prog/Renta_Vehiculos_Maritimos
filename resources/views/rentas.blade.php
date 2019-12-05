@@ -52,6 +52,9 @@
 				@if($datos->estatus == 'A')
 			<tr class="table-success">
 				@endif
+				@if($datos->estatus == 'F')
+			<tr class="table-primary">
+				@endif
 				<td>{{$datos->Correo}}</td>
 				<td>{{$datos->ApellidoP}} {{$datos->ApellidoM}} {{$datos->Nombre_Usuario}}</td>
 				<td>{{$datos->Nombre}}</td>
@@ -68,9 +71,12 @@
 				@if($datos->estatus == "A")
 				<td><strong>Aceptado</strong></td>
 				@endif
+				@if($datos->estatus == "F")
+				<td><strong>Finalizado</strong></td>
+				@endif
 				<td>
 				<div style="width:180px">
-				@if($datos->estatus == "C")
+				@if($datos->estatus == "C" || $datos->estatus == "F")
     			<a href="/administra/renta/{{$datos->id}}/1"><button class="btn btn-success" disabled="true">Aceptar</button></a>
     			<a href="/administra/renta/{{$datos->id}}/2"><button class="btn btn-warning" disabled="true">Cancelar</button></a>
     			@else

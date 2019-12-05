@@ -10,7 +10,6 @@
       <div class="modal-body">
        <center><h1><label class="bg-warning"> ¡Te puede interesar! </label></h1>
       <label>{{$vehiculoMostrado[0]['Nombre']}}</label><br>
-       <label>Ahorras un {{$vehiculoMostrado[0]['Descuento']}}%</label><br>
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
           <div class="carousel-inner">
   @if(count($vehiculoMostrado[0]['Fotos']->toArray())>0)

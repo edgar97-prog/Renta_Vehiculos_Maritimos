@@ -168,11 +168,13 @@ class VehiculosController extends Controller
       $contFoto =  $request->nvafotos;
         for($i=1; $i<=$contFoto; $i++)
         {
+
             $imagen = $request->file('foto'.$i);
             $nameImage = $imagen->getClientOriginalName();
             $arrFotos['Foto'] = $nameImage;
             Fotos::create($arrFotos);
             $imagen->move('fotos',$nameImage);
+                        
         }
       return redirect()->route('vehiculos.index')->with('mensaje','Modificación exitosa');
     }
@@ -328,8 +330,23 @@ class VehiculosController extends Controller
     public function muestraRentas()
     {
       $rol = Session::get('user_session')[1];
-      
+  //ACEPTAR RENTAS QUE NO SE CANCELARON CON 24 HRS DE ANTICIPACIÓN
       DB::update("UPDATE rentas set rentas.estatus = 'A' where((TIMESTAMPDIFF(HOUR,NOW(),rentas.fechaIni))<=24 AND rentas.estatus = 'E')");
+  //-----------------------------------
+
+      //FINALIZAR RENTAS------------------
+
+      DB::update("UPDATE rentas 
+SET rentas.estatus = 'F' 
+WHERE
+  ((
+      TIMESTAMPDIFF(
+        HOUR,
+        ADDDATE( rentas.fechaIni, INTERVAL rentas.hrsRenta HOUR ),
+      NOW()))>= 0 
+  AND rentas.estatus = 'A')");
+
+      //---------------------------------
       $datosRenta = Rentas::join('usuarios','usuarios.Correo','=','rentas.Correo_id')
       ->join('vehiculos','vehiculos.id','=','rentas.Vehiculo_id')
       ->select('rentas.id','usuarios.Correo','usuarios.ApellidoP','usuarios.ApellidoM','usuarios.Nombre AS Nombre_Usuario',
@@ -380,4 +397,5 @@ class VehiculosController extends Controller
       ->orderBy('rentas.fechaIni','ASC')->paginate(10);
       return view('rentas',compact('datosRenta','rol'));
     }
+
 }

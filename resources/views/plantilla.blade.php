@@ -94,26 +94,26 @@
       </ul>
     </div>
     <div class="one_third">
-      <h6 class="heading">In faucibus orci luctus</h6>
+      <h6 class="heading">Terminos y Condiciones</h6>
       <ul class="nospace linklist">
         <li>
           <article>
-            <h2 class="nospace font-x1"><a href="#">Ultrices posuere cubilia</a></h2>
-            <time class="font-xs block btmspace-10" datetime="2045-04-06">Friday, 6<sup>th</sup> April 2045</time>
-            <p class="nospace">Lorem laoreet blandit donec mollis lacinia massa tincidunt malesuada [&hellip;]</p>
+            <h2 class="nospace font-x1"><a href="#">Rentas y cancelaciones</a></h2>
+            <p class="nospace">La renta de cualquiera de nuestras embarcaciones se debe realizar
+            con al menos 24 hrs de anticipación, para realizar una cancelación, debe efectuarla
+          antes de 24 hrs del día de renta, de lo contrario la cancelación no puede proceder.</p>
           </article>
         </li>
         <li>
           <article>
-            <h2 class="nospace font-x1"><a href="#">Curae cras tincidunt eros</a></h2>
-            <time class="font-xs block btmspace-10" datetime="2045-04-05">Thursday, 5<sup>th</sup> April 2045</time>
-            <p class="nospace">In id semper turpis in tristique dui ut ac mauris magna nunc eros enim [&hellip;]</p>
+            <h2 class="nospace font-x1"><a href="#">Precio del Dolar</a></h2>
+            <p class="nospace">El valor del precio del dolar en moneda mexicana (MXN) no se obtiene en tiempo real, si no, se actualiza una vez cada hora.</p>
           </article>
         </li>
       </ul>
     </div>
     <div class="one_third">
-      <h6 class="heading">DUDAS O COMENTARIOS</h6>
+      <h6 class="heading">Dudas o Comentarios</h6>
       <p class="nospace btmspace-30">No dudes en enviarnos dudas o comentarios a continuación.</p>
         <fieldset>
           <legend>Escribe Aquí:</legend>
