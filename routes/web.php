@@ -52,7 +52,7 @@ Route::get('/pruebaDolar','VehiculosController@pruebaDolar');
 Route::get('/muestraFavoritos','VehiculosController@mostrarFavoritos');
 
 //MOSTRAR LAS RENTAS
-
+Route::resource('/rentas','RentasController');
 Route::get('/muestra/rentas','VehiculosController@muestraRentas');
 
 //Administrar rentas (Aceptar/Cancelar)
@@ -60,3 +60,17 @@ Route::get('/muestra/rentas','VehiculosController@muestraRentas');
 Route::get('/administra/renta/{id}/{accion}','VehiculosController@administraRenta');
 
 Route::post('/rentas/especificas','VehiculosController@rentasEspecifica');
+
+Route::get('pruebaemail',function(){
+	$data = array(
+		'name' => 'misael'
+	);
+
+	//nombre de la vista, array de datos necesario
+	Mail::send('email_prueba',$data,function($message){
+		$message->from('correo del que envia','nombre del que envia');
+		$message->to('correo destino')->subject('asunto');
+	});
+
+	return 'Tu Email ha sido enviado correctamente';
+});

@@ -22,14 +22,14 @@ class VehiculosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function __construct(){
-        $this->middleware('autenticar',['only'=>['store','index','update','destroy','datos,','busqueda','muestraRentas']]);
+        $this->middleware('autenticar',['only'=>['store','index','update','destroy','datos,','busqueda']]);
+        $this->middleware('Is_admin',['only'=>['muestraRentas']]);
         $this->middleware('Both_user',['only'=>['store','index','update','destroy','datos,','busqueda']]);
     }
     public function index()
     {
         //
         $vehiculos = Vehiculos::with('Fotos')->with('TipoVehiculo')->paginate(8);
-  
         $tipoVehiculos = TipoVehiculos::all();
         $rol = Session::get('user_session')[1];
         return view('vehiculos.index',compact('vehiculos','rol','tipoVehiculos'));
@@ -110,7 +110,7 @@ class VehiculosController extends Controller
           return view('vehiculos.vehiculodetalle',compact('rol','vehiculo','fotos','R','rentado','hora'));
         }else{
             $rol = Session::get('user_session')[1];
-            $rentado = Rentas::where("Correo_id",Session::get('user_session')[0])->where("Vehiculo_id",$id)->where("estatus","E")->first();
+            $rentado = Rentas::where("Correo_id",'=',Session::get('user_session')[0])->where("Vehiculo_id",'=',$id)->whereNotIn("estatus",["F"])->first();
             if(!empty($rentado)){ //Si lo renté
               $R = true;
               $hora = intval(substr($rentado['fechaIni'], 11,12));
@@ -120,7 +120,7 @@ class VehiculosController extends Controller
             else{
               $R = false;
               $hora = 0;
-              $hrsRentadas = Rentas::where("Vehiculo_id",$id)->where("estatus","E")->orderBy("fechaIni")->get(["fechaIni","hrsRenta"]);
+              $hrsRentadas = Rentas::where("Vehiculo_id",$id)->where("estatus",'=',"E",'or','estatus','=','A')->orderBy("fechaIni")->get(["fechaIni","hrsRenta"]);
               if(empty($hrsRentadas[0])){
                 return view('vehiculos.vehiculodetalle',compact('rol','vehiculo','fotos','R','rentado','hora'));
               }
@@ -239,7 +239,7 @@ class VehiculosController extends Controller
 
         if(isset($request->nombreVehiculoBuscar)){
             $vehiculos = Vehiculos::where('Nombre','LIKE','%'.$request->nombreVehiculoBuscar.'%')->with('Fotos')->with('TipoVehiculo')
-              ->with(['Favoritos'=> function($q){$q->where('Correo_id',Session::get('user_session')[0]);}])->get();//SI ENCUENTRA ALGO PARECIDO
+              ->with(['Favoritos'=> function($q){$q->where('Correo_id',Session::get('user_session')[0]);}])->paginate(9);//SI ENCUENTRA ALGO PARECIDO
 
             if(count($vehiculos) == 0){
                 $vehiculos = Vehiculos::with('Fotos')->with('TipoVehiculo')
@@ -296,23 +296,6 @@ class VehiculosController extends Controller
         echo self::obtenDivisa(1,'USD','MXN');
       
 
-    }
-    public function rentas(Request $request)
-    {
-      if(!Session::has("user_session"))
-        return 'U';
-      $arregloV = array('Correo_id' => Session::get('user_session')[0],'Vehiculo_id' => $request->idv,'fechaIni' => $request->FI,'hrsRenta' => $request->HR);
-      $rentado = Rentas::where("Correo_id",Session::get('user_session')[0])->where("Vehiculo_id",$request->idv)->where("fechaIni",$request->FI)->first();
-      if(!empty($rentado)){
-        if($rentado['estatus'] == 'E')
-          $arregloV = array('estatus'=>'C');
-        else
-          $arregloV = array('estatus'=>'E');
-        $rentado->update($arregloV);
-        return $arregloV['estatus'];
-      }
-      $newRenta = Rentas::create($arregloV);
-      return 'E';
     }
 
     public function mostrarFavoritos()

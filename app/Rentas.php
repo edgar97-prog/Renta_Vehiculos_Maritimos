@@ -17,6 +17,6 @@ class Rentas extends Model
 
     public function Vehiculo()
     {
-    	return $this->belongsTo(Vehiculos::class);
+    	return $this->belongsTo(Vehiculos::class,"Vehiculo_id","id");
     }
 }

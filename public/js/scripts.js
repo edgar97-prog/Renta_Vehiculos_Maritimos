@@ -347,4 +347,28 @@ $(document).ready(function(){
     	$("#errRenta").html("Debes seleccionar una fecha.");
     	clearInterval(timerErr);
     }
+    $('#btnRentaCon').on('click',function(){
+    	var idr = $(this).data('id');
+    	$.ajax({
+    		type: 'get',
+    		url:'/rentas/'+idr,
+    		data:{
+    			'id':idr
+    		},
+    		success:function(data){
+    			var datos = JSON.parse(data);
+    			$('.tituloTerm').html("DATOS DE LA RENTA");
+    			$('.comentarioModal').html("<center>"+
+    				"<label>Usted ha rentado el vehículo en la fecha: <strong>"+datos['fechaIni'].substring(0,10)+"</strong></label>"+
+    				"<br><label>La renta inicia a las <strong>"+datos['fechaIni'].substring(10,16)+
+					"</strong> y termina a las <strong>"+(parseInt(datos['fechaIni'].substring(10,13))+parseInt(datos['hrsRenta']))+":00</strong>"+
+    				"</label>"+
+    				"<label>el precio de renta por hora es de <strong style='font-size:19px;'>$"+datos['precioDescuento']+"</strong></label>"+
+    				"<br><label><strong style='font-size:20px;'>Total: </strong><strong style='color:green;font-size:20px;'>$"+(parseInt(datos['precioDescuento'])*parseInt(datos['hrsRenta']))+"</strong></label>"+
+    				"</center>");
+				$('#ModalComent').modal('show');
+    			console.log(datos);
+    		}
+    	});
+    });
 });

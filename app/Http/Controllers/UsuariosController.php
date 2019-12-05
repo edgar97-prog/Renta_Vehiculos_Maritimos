@@ -329,7 +329,7 @@ class UsuariosController extends Controller
              'Calle.regex'=>'El nombre de la calle contiene carácteres no válidos.',
              'Colonia.regex'=>'El nombre de la colonia contiene carácteres no válidos.']);
         if($validator->fails()){
-            return back()->withErrors($validator,'actualiza');
+            return redirect('/usuarios/create')->withErrors($validator,'registro');
         }
         $user = new Usuarios;
         $user->Correo = $request->Correo;
