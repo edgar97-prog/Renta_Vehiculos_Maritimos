@@ -39,8 +39,8 @@
 		<h4>RENTAS</h4>
 		<hr style="background: gray;">
 		<ul class="listaPanel">
-			<li><i class="fa fa-envelope-o" aria-hidden="true"></i>
- 			<a href="{{url('/muestra/rentas')}}"> ADMINISTRAR </a></li>
+			<a href="{{url('/muestra/rentas')}}"><li style="cursor: pointer;"><i class="fa fa-envelope-o" aria-hidden="true"></i>
+ 			 ADMINISTRAR</li></a>
 		</ul>
 
 	</div>

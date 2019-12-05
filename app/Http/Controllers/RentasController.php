@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Rentas;
+use App\Usuarios;
+use App\Vehiculo;
+use Session;
 use Illuminate\Http\Request;
 
 class RentasController extends Controller
@@ -12,6 +15,9 @@ class RentasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct(){
+        $this->middleware('autenticar',['only'=>['show']]);
+    }
     public function index()
     {
         //
@@ -35,7 +41,20 @@ class RentasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if(!Session::has("user_session"))
+            return 'U';
+        $arregloV = array('Correo_id' => Session::get('user_session')[0],'Vehiculo_id' => $request->idv,'fechaIni' => $request->FI,'hrsRenta' => $request->HR);
+        $rentado = Rentas::where("Correo_id",Session::get('user_session')[0])->where("Vehiculo_id",$request->idv)->where("fechaIni",$request->FI)->first();
+        if(!empty($rentado)){
+            if($rentado['estatus'] == 'E')
+                $arregloV = array('estatus'=>'C');
+            else
+                $arregloV = array('estatus'=>'E');
+            $rentado->update($arregloV);
+            return $arregloV['estatus'];
+        }
+        $newRenta = Rentas::create($arregloV);
+        return 'E';
     }
 
     /**
@@ -44,9 +63,10 @@ class RentasController extends Controller
      * @param  \App\Rentas  $rentas
      * @return \Illuminate\Http\Response
      */
-    public function show(Rentas $rentas)
+    public function show(Rentas $rentas, Request $request)
     {
-        //
+        $renta = Rentas::where('Rentas.id',$request->id)->join('Vehiculos', 'Vehiculo_id', '=', 'Vehiculos.id')->select("fechaIni","hrsRenta","precioDescuento")->first();
+        return json_encode($renta,JSON_FORCE_OBJECT);
     }
 
     /**

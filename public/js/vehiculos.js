@@ -253,8 +253,8 @@ var elimFot = [];
 		$('.tituloTerm').empty();
 		$('.comentarioModal').empty();
 		$('.tituloTerm').append('Términos y Condiciones');
-		let texto = '1.- Usted solo puede hacer reservaciones con 24 hrs. de anticipación. <br><br> 2.- Así mismo solamente puede hacer cancelaciones con 24 hrs. de anticipación.';
-		texto = texto+'<br><br>3.- El precio del dolar no se obtiene en tiempo real, se obtiene cada hora, es importante que lo tenga en cuenta.';
+		let texto = '1.- Usted solo puede hacer reservaciones con un mínimo de 24 hrs. de anticipación hasta 1 semana. <br><br> 2.- Usted puede hacer cancelaciones únicamente antes de las 24 hrs. de la hora de renta, de el contrario, la renta se cobrará';
+		texto = texto+'<br><br>3.- El precio mostrado es en dolares. Por lo que, si se hará el pago en pesos mexicanos, se calculará con el valor actual del dolar.';
 		$('.comentarioModal').append('<center>'+texto+'</center>');
 		$('#ModalComent').modal('show');
 	})
