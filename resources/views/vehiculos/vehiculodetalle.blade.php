@@ -71,7 +71,15 @@
 				<div class="select_mate" data-mate-select="active">
 					<select name="Horas" onclick="return false;" id="LHR">
 					  @for($i = $vehiculo['horasRenta']; $i < 9; $i++)
+					  @if($R)
+					  @if($rentado['hrsRenta'] == $i)
+					  <option value="{{$i}}" selected>{{$i}}</option>
+					  @else
 					  <option value="{{$i}}">{{$i}}</option>
+					  @endif
+					  @else
+					  <option value="{{$i}}">{{$i}}</option>
+					  @endif
 					  @endfor
 					</select>
 				    <p class="selecionado_opcion"  onclick="open_select(this)" ></p>
@@ -135,11 +143,15 @@
 			$('.select_mate').css('pointer-events','none');
 			$('#showCalendar').css('pointer-events','none');
 		</script>
-		@endif
-		@if($R)
+		@if($rentado['estatus'] == 'E')
 		<button class="btn btn-danger" data-id="{{$vehiculo['id']}}" id="btnRenta" style="margin-top: 30px;width: 100%;margin-left: 5px;margin-bottom: 5px;">
 			CANCELAR RENTA
 		</button>
+		@else
+		<button class="btn btn-success" data-id="{{$rentado['id']}}" id="btnRentaCon" style="margin-top: 30px;width: 100%;margin-left: 5px;margin-bottom: 5px;">
+			RENTA CONFIRMADA
+		</button>
+		@endif
 		<center><a href="#" class="terminos">Términos y Condiciones</a></center>
 		@else
 		<button class="btn btn-warning" data-id="{{$vehiculo['id']}}" id="btnRenta" style="margin-top: 30px;width: 100%;margin-left: 5px;margin-bottom: 5px;">

@@ -52,7 +52,7 @@ Route::get('/pruebaDolar','VehiculosController@pruebaDolar');
 Route::get('/muestraFavoritos','VehiculosController@mostrarFavoritos');
 
 //MOSTRAR LAS RENTAS
-
+Route::resource('/rentas','RentasController');
 Route::get('/muestra/rentas','VehiculosController@muestraRentas');
 
 //Administrar rentas (Aceptar/Cancelar)
