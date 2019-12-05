@@ -61,16 +61,16 @@ Route::get('/administra/renta/{id}/{accion}','VehiculosController@administraRent
 
 Route::post('/rentas/especificas','VehiculosController@rentasEspecifica');
 
-Route::get('pruebaemail',function(){
+/*Route::get('pruebaemail',function(){
 	$data = array(
 		'name' => 'misael'
 	);
 
 	//nombre de la vista, array de datos necesario
 	Mail::send('email_prueba',$data,function($message){
-		$message->from('correo del que envia','nombre del que envia');
-		$message->to('correo destino')->subject('asunto');
+		$message->from('pruebasescuelas1297@gmail.com','MISAEL');
+		$message->to('negroblogs2@gmail.com')->subject('asunto');
 	});
 
 	return 'Tu Email ha sido enviado correctamente';
-});
+});*/

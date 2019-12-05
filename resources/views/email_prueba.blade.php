@@ -5,6 +5,11 @@
 	<title></title>
 </head>
 <body>
-	ESTO ES LO QUE SE MANDA POR CORREO
+	Se ha hecho una nueva renta. Por favor, ponerse en contacto lo más pronto posible. <br>
+	Correo: {{$correo}} <br>
+	Nombre: {{$nombre}} {{$appat}} {{$apmat}} <br>
+	Telefono: {{$telefono}} <br>
+	Vehiculo: {{$vehiculo}} <br>
+	Duración de la renta: {{$hrs}} horas.
 </body>
 </html>

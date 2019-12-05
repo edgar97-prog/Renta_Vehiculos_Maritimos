@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Rentas;
 use App\Usuarios;
-use App\Vehiculo;
+use App\Vehiculos;
+use App\Telefonos;
 use Session;
 use Illuminate\Http\Request;
+use Mail;
 
 class RentasController extends Controller
 {
@@ -51,9 +53,26 @@ class RentasController extends Controller
             else
                 $arregloV = array('estatus'=>'E');
             $rentado->update($arregloV);
+            Self::EnviarEmail($arregloV['Correo_id'],$arregloV['hrsRenta'],$arregloV['Vehiculo_id']);
             return $arregloV['estatus'];
         }
         $newRenta = Rentas::create($arregloV);
+
+        /*$usuario = Usuarios::where('Correo','=',$rentado['Correo_id'])->first();
+        $vehiculo = Vehiculos::where('id','=',$rentado['Vehiculo_id'])->first();
+        $data = array(
+        'correo' => $usuario['Correo'],
+        'nombre' => $usuario['Nombre'],
+        'appat' => $usuario['ApellidoP'],
+        'apmat' => $usuario['ApellidoM'],
+        'vehiculo' => $vehiculo['Nombre'],
+        'hrs' => $rentado['hrsRenta']
+        );
+        Mail::send('email_prueba',$data,function($message){
+            $message->from('pruebasescuelas1297@gmail.com','MISAEL');
+            $message->to('negroblogs2@gmail.com')->subject('asunto');
+        });*/
+        Self::EnviarEmail($arregloV['Correo_id'],$arregloV['hrsRenta'],$arregloV['Vehiculo_id']);
         return 'E';
     }
 
@@ -102,4 +121,25 @@ class RentasController extends Controller
     {
         //
     }
+
+    public function EnviarEmail($correo_id,$hrs,$vehiculo_id){
+        $usuario = Usuarios::where('Correo','=',$correo_id)->first();
+        $vehiculo = Vehiculos::where('id','=',$vehiculo_id)->first();
+        $telefono = Telefonos::where('Usuario_id','=',$correo_id)->first();
+        $data = array(
+        'correo' => $correo_id,
+        'nombre' => $usuario['Nombre'],
+        'appat' => $usuario['ApellidoP'],
+        'apmat' => $usuario['ApellidoM'],
+        'vehiculo' => $vehiculo['Nombre'],
+        'hrs' => $hrs,
+        'telefono' => $telefono['Telefono']
+        );
+
+        Mail::send('email_prueba',$data,function($message){
+            $message->from('correo','EMPRESAURIOS');
+            $message->to('correo del sr')->subject('asunto');
+        });
+    }
 }
+
