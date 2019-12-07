@@ -29,6 +29,7 @@
 	</form>
 	<button class="let nvo_vehiculo" style="cursor: pointer;">+</button>
 	</span>
+<div class="table-responsive">
 	<table class="table table-hover">
 	<thead valign="center">
 		<tr>
@@ -57,6 +58,7 @@
 	 @endforeach
 	</tbody>
 	</table>
+	</div>
 	<center>{{$vehiculos->links()}} </center>
 </div>
  @include('vehiculos.modales.agregar') @include('vehiculos.modales.modificar') @if($errors->any())

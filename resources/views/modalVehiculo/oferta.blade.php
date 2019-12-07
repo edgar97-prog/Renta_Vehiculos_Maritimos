@@ -9,7 +9,7 @@
       </div>
       <div class="modal-body">
        <center><h1><label class="bg-warning"> ¡Te puede interesar! </label></h1>
-      <label>{{$vehiculoMostrado[0]['Nombre']}}</label><br>
+    <h2><label>{{$vehiculoMostrado[0]['Nombre']}}</label></h2><br>
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
           <div class="carousel-inner">
   @if(count($vehiculoMostrado[0]['Fotos']->toArray())>0)
@@ -21,7 +21,8 @@
   @endif
          
         @if(count($vehiculoMostrado[0]['Fotos']->toArray())>1)
-            @for($i = 1; $i <= (count($vehiculoMostrado[0]['Fotos'][0]->toArray())-1); $i++)
+       
+            @for($i = 1; $i <= (count($vehiculoMostrado[0]['Fotos']->toArray())-1); $i++)
               <div class="carousel-item">
                 <img class="d-block w-100 Img" src="{{asset("fotos")}}/{{$vehiculoMostrado[0]["Fotos"][$i]["Foto"]}}" alt="Second slide">
               </div>

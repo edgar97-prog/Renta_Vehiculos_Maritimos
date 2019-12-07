@@ -98,7 +98,7 @@
       <ul class="nospace linklist">
         <li>
           <article>
-            <h2 class="nospace font-x1"><a href="#">Rentas y cancelaciones</a></h2>
+            <h2 class="nospace font-x1">Rentas y cancelaciones</h2>
             <p class="nospace">La renta de cualquiera de nuestras embarcaciones se debe realizar
             con al menos 24 hrs de anticipación, para realizar una cancelación, debe efectuarla
           antes de 24 hrs del día de renta, de lo contrario la cancelación no puede proceder.</p>
@@ -106,7 +106,7 @@
         </li>
         <li>
           <article>
-            <h2 class="nospace font-x1"><a href="#">Precio del Dolar</a></h2>
+            <h2 class="nospace font-x1">Precio del Dolar</h2>
             <p class="nospace">El valor del precio del dolar en moneda mexicana (MXN) no se obtiene en tiempo real, si no, se actualiza una vez cada hora.</p>
           </article>
         </li>
@@ -135,7 +135,7 @@
 <div class="wrapper row5">
   <div id="copyright" class="hoc clear"> 
     <!-- ################################################################################################ -->
-    <p class="fl_left">Copyright &copy; 2018 - All Rights Reserved - <a href="#">Domain Name</a></p>
+    <p class="fl_left">Copyright &copy; 2019 - All Rights Reserved - <a href="#">Domain Name</a></p>
     <p class="fl_right">Template by <a target="_blank" href="https://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>
     <!-- ################################################################################################ -->
   </div>

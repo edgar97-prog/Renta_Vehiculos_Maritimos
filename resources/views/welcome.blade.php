@@ -84,7 +84,7 @@
         <li><i class="fa-li fa fa-check-circle"></i>No dejes pasar la oportunidad y atrevete a vivir una experiencia para recordar.</li>
         <li><i class="fa-li fa fa-check-circle"></i>Ponemos a tu disposición una gran variedad de vehiculos, dale un vistazo a nuestro catalogo.</li>
       </ul>
-      <footer><a class="btn" href="#">Read More &raquo;</a></footer>
+      <footer></footer>
       <!-- ################################################################################################ -->
     </section>
   </div>

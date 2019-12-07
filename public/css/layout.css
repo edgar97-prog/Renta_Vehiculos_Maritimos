@@ -290,7 +290,7 @@ input:focus, textarea:focus, *:required:focus{border-color:#56AED4;}
 
 
 /* Split Box */
-.split section, .split section::after{color:#FFFFFF; background-color:rgba(35,127,219,0.8)/* #E43F21 */;}
+.split section, .split section::after{color:#FFFFFF; background-color:rgba(35,127,219,0.9)/* #E43F21 */;}
 .split section .fa-ul .fa-li{color:#E43F21;}
 
 
