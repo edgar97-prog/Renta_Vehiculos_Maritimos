@@ -317,7 +317,29 @@ $(document).ready(function(){
 					'FI':FechaIni,
 					'HR':hrsRenta
 				},
+				beforeSend:function(){
+					$('#btnRenta').css('pointer-events','none');
+					$('#body').css('cursor','progress');
+					clearInterval(timerErr);
+					if($('#btnRenta').hasClass("btn-warning")){
+		    			$("#errRenta").html("ESPERE MIENTRAS SE EFECTUA LA RENTA");
+			    		document.getElementById("errRenta").classList.remove("alert-danger");
+			    		document.getElementById("errRenta").classList.add("alert-success");
+			    		$("#errRenta").css('display','block');
+			    		timerErr = setInterval(hideErr,3500);
+		    		}else{
+		    			$("#errRenta").html("ESPERE MIENTRAS SE CANCELA LA RENTA");
+			    		document.getElementById("errRenta").classList.remove("alert-danger");
+			    		document.getElementById("errRenta").classList.add("alert-warning");
+			    		$("#errRenta").css('display','block');
+			    		timerErr = setInterval(hideErr,2000);
+		    		}
+				},
 				success:function(data){
+					if($('#btnRenta').hasClass("btn-warning"))
+						document.getElementById("errRenta").classList.remove("alert-success");
+					else
+						document.getElementById("errRenta").classList.remove("alert-warning");
 					if(data === 'E'){
 						$('.comentarioModal').html('<center><label>La renta se ha realizado correctamente.<br>En breve uno de nuestros empleados se pondrá en contacto con usted para corroborar la renta.</label></center>');
 						$('#ModalComent').modal('show');
@@ -338,6 +360,10 @@ $(document).ready(function(){
 					else{
 						$("#login").modal('show');
 					}
+					$('#btnRenta').css('pointer-events','auto');
+					$('#body').css('cursor','default');
+					$("#errRenta").css('display','none');
+		    		document.getElementById("errRenta").classList.add("alert-danger");
 				}
 			});
     	}

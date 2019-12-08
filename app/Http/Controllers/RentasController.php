@@ -48,12 +48,15 @@ class RentasController extends Controller
         $arregloV = array('Correo_id' => Session::get('user_session')[0],'Vehiculo_id' => $request->idv,'fechaIni' => $request->FI,'hrsRenta' => $request->HR);
         $rentado = Rentas::where("Correo_id",Session::get('user_session')[0])->where("Vehiculo_id",$request->idv)->where("fechaIni",$request->FI)->first();
         if(!empty($rentado)){
-            if($rentado['estatus'] == 'E')
-                $arregloV = array('estatus'=>'C');
-            else
-                $arregloV = array('estatus'=>'E');
+            if($rentado['estatus'] == 'E'){
+                $arregloV = array('estatus'=>'C','hrsRenta'=>$request->HR);
+            }
+            else{
+                $arregloV = array('estatus'=>'E','hrsRenta'=>$request->HR);
+            }
             $rentado->update($arregloV);
-            Self::EnviarEmail($arregloV['Correo_id'],$arregloV['hrsRenta'],$arregloV['Vehiculo_id']);
+            if($arregloV['estatus'] == 'E')
+                Self::EnviarEmail($rentado['Correo_id'],$arregloV['hrsRenta'],$rentado['Vehiculo_id']);
             return $arregloV['estatus'];
         }
         $newRenta = Rentas::create($arregloV);
@@ -137,8 +140,8 @@ class RentasController extends Controller
         );
 
         Mail::send('email_prueba',$data,function($message){
-            $message->from('correo','EMPRESAURIOS');
-            $message->to('correo del sr')->subject('asunto');
+            $message->from('correodelseñor@gmail.com','JOSE MANUEL');
+            $message->to('pruebasescuelas1297@gmail.com')->subject('NUEVO MENSAJE');
         });
     }
 }
