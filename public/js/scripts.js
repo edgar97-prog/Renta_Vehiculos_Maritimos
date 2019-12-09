@@ -115,7 +115,6 @@ $(document).ready(function(){
 				});
 				$('.icoInfo').on('click',function(){
 					clickhijo = true;
-					//$(this).parent("li").data('id');
 					$.ajax({
 						type:'POST',
 						url:'/datosCliente',
@@ -232,9 +231,9 @@ $(document).ready(function(){
     			var band = false;
     			var Inc = 0;
     			for (var j = 0; j < tamP; j++) {
-    				if(arrHrs[j] === i){ //9|2 14|2
+    				if(arrHrs[j] === i){
     					band = true;
-    					Inc = arrCant[j];//11 12 13 14 15 16 17
+    					Inc = arrCant[j];
     					j = tamP;
     				}
     			}
@@ -326,7 +325,7 @@ $(document).ready(function(){
 			    		document.getElementById("errRenta").classList.remove("alert-danger");
 			    		document.getElementById("errRenta").classList.add("alert-success");
 			    		$("#errRenta").css('display','block');
-			    		timerErr = setInterval(hideErr,3500);
+			    		timerErr = setInterval(hideErr,4500);
 		    		}else{
 		    			$("#errRenta").html("ESPERE MIENTRAS SE CANCELA LA RENTA");
 			    		document.getElementById("errRenta").classList.remove("alert-danger");
@@ -393,7 +392,6 @@ $(document).ready(function(){
     				"<br><label><strong style='font-size:20px;'>Total: </strong><strong style='color:green;font-size:20px;'>$"+(parseInt(datos['precioDescuento'])*parseInt(datos['hrsRenta']))+"</strong></label>"+
     				"</center>");
 				$('#ModalComent').modal('show');
-    			console.log(datos);
     		}
     	});
     });
